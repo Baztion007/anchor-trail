@@ -1,0 +1,93 @@
+import type { Metadata, Viewport } from "next";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
+import { StyleProvider } from "@/components/site/StyleProvider";
+import { DisclosureBar } from "@/components/site/DisclosureBar";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { SITE, jsonLdScript, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "Anchor & Trail — Luxury Cruises & Budget Backpacking, Honestly Compared",
+    template: "%s | Anchor & Trail",
+  },
+  description: SITE.description,
+  applicationName: SITE.name,
+  authors: [{ name: "Maya Ellison", url: `${SITE.url}/blog` }],
+  creator: "Anchor & Trail",
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    url: SITE.url,
+    locale: "en_US",
+    title: "Anchor & Trail — Luxury Cruises & Budget Backpacking, Honestly Compared",
+    description: SITE.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: SITE.twitter,
+    creator: SITE.twitter,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: "/logo.svg",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FAF9F6",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={`${playfair.variable} ${jakarta.variable}`}>
+      <body className="flex min-h-screen flex-col bg-canvas font-sans text-ink antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-navy focus:px-4 focus:py-2 focus:text-canvas focus:outline-2 focus:outline-offset-2 focus:outline-gold"
+        >
+          Skip to main content
+        </a>
+        <StyleProvider>
+          <DisclosureBar />
+          <Header />
+          <main id="main-content" tabIndex={-1} className="flex-1 focus-visible:outline-none">
+            {children}
+          </main>
+          <Footer />
+        </StyleProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLdScript([organizationJsonLd(), websiteJsonLd()]),
+          }}
+        />
+      </body>
+    </html>
+  );
+}

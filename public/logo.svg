@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="Anchor and Trail logo">
+  <!-- Trail marker: dashed path weaving to the anchor -->
+  <path d="M4 43c8-2 6-8 12-8s6 6 12 4 8-6 12-6" stroke="#C5A059" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="3.2 4.2"/>
+  <!-- Anchor -->
+  <g stroke="#0A2540" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="8.5" r="4.2"/>
+    <path d="M24 12.7V40"/>
+    <path d="M15 19.5h18"/>
+    <path d="M7.5 29.5c0 6.6 7.4 10.5 16.5 10.5s16.5-3.9 16.5-10.5"/>
+    <path d="M7.5 29.5 4 26.4"/>
+    <path d="M7.5 29.5l4.4-1.6"/>
+    <path d="M40.5 29.5 44 26.4"/>
+    <path d="M40.5 29.5l-4.4-1.6"/>
+  </g>
+</svg>
