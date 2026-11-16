@@ -261,11 +261,10 @@ export default async function ArticlePage({
                   </p>
                   <AffiliateLink
                     partner="booking"
-                    destination={
-                      article.category === "cruise"
-                        ? `${article.tags[0] ?? "cruise"} cruise port hotels`
-                        : "travel insurance"
-                    }
+                    // A concrete port city resolves on Booking's search; the
+                    // first tag would send a region label like "Mediterranean"
+                    // into the `ss` query and land on a dead results page.
+                    destination={article.portCity ?? "Barcelona, Spain"}
                     campaign="sidebar-partner"
                     className="mt-3 text-[14px]"
                     showIcon

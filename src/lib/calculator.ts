@@ -74,7 +74,9 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
       cta: input.style === "cruise" ? "Check port hotels" : "Search hostels & rooms",
       link: {
         partner: input.style === "cruise" ? "booking" : "hostelworld",
-        destination: rate.destination,
+        // staysQuery is a concrete "City, Country" — Booking's `ss` and
+        // Hostelworld's /hostels/{city} both resolve it. Region names don't.
+        destination: rate.staysQuery,
         campaign: "calculator-stays",
       },
     },
@@ -86,7 +88,7 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
       cta: "Browse tours & excursions",
       link: {
         partner: "viator",
-        destination: rate.destination,
+        destination: rate.activitiesQuery,
         campaign: "calculator-activities",
       },
     },
@@ -104,7 +106,9 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
     },
   ];
 
-  if (input.style === "backpacking") {
+  // Only offer the transit checklist when the region has a verified 12Go
+  // route — a region label ("The Balkans") would 404 on 12go.asia.
+  if (input.style === "backpacking" && rate.transitRoute) {
     checklist.push({
       category: "transit",
       partner: "twelve-go",
@@ -113,7 +117,7 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
       cta: "Compare buses, trains & ferries",
       link: {
         partner: "twelve-go",
-        destination: rate.destination,
+        destination: rate.transitRoute,
         campaign: "calculator-transit",
       },
     });

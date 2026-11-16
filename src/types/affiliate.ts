@@ -30,6 +30,15 @@ export interface AffiliatePartner {
   baseUrl: string;
   /** Static query params always appended (affiliate id, medium, etc.) */
   tracking: Record<string, string>;
+  /**
+   * Partner-specific URL builder. When present it receives the raw destination
+   * string and returns the full pre-tracking URL (path + core query params).
+   * Used by partners whose search URLs are path-based or conditional rather
+   * than a simple dynamic query key — e.g. 12Go route pages
+   * (/en/travel/{from}/{to}) or Hostelworld city pages (/hostels/{city}).
+   * When absent, the destination is mapped onto dynamicParamMap.destination.
+   */
+  buildUrl?: (destination: string) => string;
   /** Which query keys receive dynamic destination/campaign/subId values */
   dynamicParamMap?: {
     destination?: string;
@@ -181,6 +190,21 @@ export interface BudgetRate {
   flightLow: number;
   flightHigh: number;
   currency: "USD";
+  /**
+   * A concrete "City, Country" string the stay partners can resolve
+   * (Booking.com `ss` search and Hostelworld /hostels/{city} pages).
+   * Region names like "The Balkans" resolve nowhere — always keep this
+   * specific enough to land on live results.
+   */
+  staysQuery: string;
+  /** A concrete city string for Viator's text search. */
+  activitiesQuery: string;
+  /**
+   * A verified 12Go route ("Origin to Destination") for the cross-border
+   * transit checklist, or null when 12Go does not serve the region — the
+   * checklist omits the transit item rather than dead-linking it.
+   */
+  transitRoute: string | null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -241,6 +265,11 @@ export interface Article {
   title: string;
   category: ArticleCategory;
   tags: string[];
+  /**
+   * Concrete embarkation/port city used by the sidebar Booking CTA on cruise
+   * guides ("City, Country") — a real search query, never a region label.
+   */
+  portCity?: string;
   seo: {
     title: string;
     description: string;

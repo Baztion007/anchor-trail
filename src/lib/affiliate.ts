@@ -12,15 +12,17 @@ const AFFILIATE_REL = "nofollow sponsored noopener noreferrer";
  * components are forbidden.
  *
  * Behavior:
- * - Starts from the partner's registered base URL
- * - Maps destination / campaign / subId onto the partner's documented
- *   dynamic query keys
+ * - Partners with a buildUrl function (12Go route pages, Hostelworld city
+ *   pages, Travelpayouts marker fallback) get their URL from it directly
+ * - All other partners start from the registered base URL and map the
+ *   destination onto their documented dynamic query key
  * - Appends the partner's static tracking params (affiliate id, medium)
  * - Guarantees a utm_source of "anchor-and-trail"
  */
 export function buildAffiliateLink(input: AffiliateLinkInput): string {
   const partner = partners[input.partner];
-  const url = new URL(partner.baseUrl);
+  const rawUrl = partner.buildUrl ? partner.buildUrl(input.destination) : partner.baseUrl;
+  const url = new URL(rawUrl);
 
   const dyn = partner.dynamicParamMap ?? {};
   if (dyn.destination) {

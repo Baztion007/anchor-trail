@@ -12,6 +12,7 @@ export const cruiseArticles: Article[] = [
       "Best Mediterranean Luxury Cruises 2026: Viking, Regent & Celebrity, Honestly Compared",
     category: "cruise",
     tags: ["Mediterranean", "Luxury Cruise", "Cruise Reviews"],
+    portCity: "Barcelona, Spain",
     seo: {
       title: "Best Mediterranean Luxury Cruises 2026 (Tested & Compared)",
       description:
@@ -262,6 +263,7 @@ export const cruiseArticles: Article[] = [
       "Viking vs. Regent Seven Seas: Which Luxury Cruise Actually Delivers More for Your Money",
     category: "cruise",
     tags: ["Viking Cruises", "Regent Seven Seas", "Cruise Comparison"],
+    portCity: "Copenhagen, Denmark",
     seo: {
       title: "Viking vs. Regent Seven Seas: Real Cost-per-Day Comparison",
       description:

@@ -88,7 +88,9 @@ export const deals: Deal[] = [
     vertical: "backpacking",
     partner: "twelve-go",
     badge: "Route of the Month",
-    destination: "Thailand & Cambodia",
+    // Must be a real 12Go route (12go.asia/en/travel/bangkok/siem-reap);
+    // region labels like "Thailand & Cambodia" resolve to a 404 there.
+    destination: "Bangkok to Siem Reap",
     region: "Southeast Asia",
     priceFrom: 1475,
     currency: "USD",
@@ -110,7 +112,9 @@ export const deals: Deal[] = [
     vertical: "backpacking",
     partner: "omio",
     badge: "Best Value",
-    destination: "The Balkans",
+    // Omio deep-search URLs need internal IDs, so the CTA lands on omio.com;
+    // the loop's flagship leg is named here and in the card copy.
+    destination: "Split to Dubrovnik",
     region: "Balkans",
     priceFrom: 690,
     currency: "USD",
@@ -132,7 +136,7 @@ export const deals: Deal[] = [
     vertical: "backpacking",
     partner: "travelpayouts",
     badge: "Long-Haul Pick",
-    destination: "Colombia & Peru",
+    destination: "Cartagena to Cusco",
     region: "South America",
     priceFrom: 1890,
     currency: "USD",

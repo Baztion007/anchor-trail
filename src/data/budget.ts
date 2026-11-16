@@ -9,6 +9,13 @@ import type { BudgetRate } from "@/types/affiliate";
  * and are structured as flat data so a live pricing feed or CMS collection
  * can replace the static array without touching the calculator. The id
  * values double as destinationId inputs for computeTripCost — do not rename.
+ *
+ * staysQuery / activitiesQuery / transitRoute exist because partner sites
+ * resolve concrete places, not regions: Booking.com's `ss` and Hostelworld's
+ * /hostels/{city} need a city, Viator's text search needs a city, and 12Go
+ * route pages (/en/travel/{from}/{to}) 404 on region labels. Every transitRoute
+ * below was verified live on 12go.asia; null means 12Go does not serve the
+ * region and the calculator omits the transit checklist item entirely.
  */
 export const budgetRates: BudgetRate[] = [
   {
@@ -20,6 +27,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 650,
     flightHigh: 1100,
     currency: "USD",
+    staysQuery: "Barcelona, Spain",
+    activitiesQuery: "Barcelona, Spain",
+    transitRoute: "Barcelona to Madrid",
   },
   {
     id: "dest-greek-islands",
@@ -30,6 +40,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 700,
     flightHigh: 1150,
     currency: "USD",
+    staysQuery: "Santorini, Greece",
+    activitiesQuery: "Santorini, Greece",
+    transitRoute: "Athens to Santorini",
   },
   {
     id: "dest-baltic",
@@ -40,6 +53,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 600,
     flightHigh: 1000,
     currency: "USD",
+    staysQuery: "Copenhagen, Denmark",
+    activitiesQuery: "Copenhagen, Denmark",
+    transitRoute: "Copenhagen to Stockholm",
   },
   {
     id: "dest-alaska",
@@ -50,6 +66,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 380,
     flightHigh: 700,
     currency: "USD",
+    staysQuery: "Seattle, USA",
+    activitiesQuery: "Juneau, Alaska",
+    transitRoute: null,
   },
   {
     id: "dest-caribbean",
@@ -60,6 +79,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 320,
     flightHigh: 640,
     currency: "USD",
+    staysQuery: "Miami, USA",
+    activitiesQuery: "Cozumel, Mexico",
+    transitRoute: null,
   },
   {
     id: "dest-southeast-asia",
@@ -70,6 +92,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 620,
     flightHigh: 1050,
     currency: "USD",
+    staysQuery: "Bangkok, Thailand",
+    activitiesQuery: "Bangkok, Thailand",
+    transitRoute: "Bangkok to Siem Reap",
   },
   {
     id: "dest-balkans",
@@ -80,6 +105,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 550,
     flightHigh: 950,
     currency: "USD",
+    staysQuery: "Dubrovnik, Croatia",
+    activitiesQuery: "Kotor, Montenegro",
+    transitRoute: "Split to Dubrovnik",
   },
   {
     id: "dest-south-america",
@@ -90,6 +118,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 480,
     flightHigh: 900,
     currency: "USD",
+    staysQuery: "Medellín, Colombia",
+    activitiesQuery: "Medellín, Colombia",
+    transitRoute: null,
   },
   {
     id: "dest-central-america",
@@ -100,6 +131,9 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 380,
     flightHigh: 720,
     currency: "USD",
+    staysQuery: "Antigua, Guatemala",
+    activitiesQuery: "Antigua, Guatemala",
+    transitRoute: null,
   },
   {
     id: "dest-japan",
@@ -110,5 +144,8 @@ export const budgetRates: BudgetRate[] = [
     flightLow: 700,
     flightHigh: 1200,
     currency: "USD",
+    staysQuery: "Tokyo, Japan",
+    activitiesQuery: "Tokyo, Japan",
+    transitRoute: "Tokyo to Kyoto",
   },
 ];

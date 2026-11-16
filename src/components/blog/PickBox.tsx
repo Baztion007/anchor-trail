@@ -29,7 +29,10 @@ function resolveCta(ref: ContentRef): ResolvedCta | null {
   switch (ref.type) {
     case "deal": {
       const deal: Deal | null | undefined = getDealById(ref.id);
-      return deal ? { partner: deal.partner, destination: ref.label } : null;
+      // Use the deal's own destination (a partner-resolvable query, e.g.
+      // "Bangkok to Siem Reap") — the editorial ref.label is display copy
+      // and would dead-end on the partner site.
+      return deal ? { partner: deal.partner, destination: deal.destination } : null;
     }
     case "tour": {
       const tour: Tour | null | undefined = getTourById(ref.id);
