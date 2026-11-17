@@ -1,6 +1,9 @@
 import { Check, MapPin } from "lucide-react";
 import type { StayCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
+import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
+import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
+import { formatEstimateFrom, stayTier } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 /**
@@ -9,6 +12,7 @@ import { cn } from "@/lib/utils";
  */
 export function StayCard({ stay }: StayCardProps) {
   const isLuxury = stay.tier === "luxury";
+  const tier = stayTier(stay);
 
   return (
     <article className="rounded-lg border bg-paper p-5 motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-200 ease-out">
@@ -47,13 +51,19 @@ export function StayCard({ stay }: StayCardProps) {
           {stay.walkToPort}
         </p>
       ) : null}
-      <p className="mt-4 flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
-        <span className="font-serif text-2xl font-bold text-navy">{`$${stay.priceFrom}`}</span>
-        <span className="text-[13px] text-mist">/night from</span>
+      <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+        <PriceTierBadge tier={tier} />
+        <span className="font-serif text-lg font-bold text-navy">
+          {formatEstimateFrom(stay.priceFrom, stay.currency)}
+        </span>
+        <span className="text-[13px] text-mist">/night · estimate</span>
         <span className="text-[13px] text-mist">
           {`· ${stay.reviewCount.toLocaleString("en-US")}+ reviews`}
         </span>
       </p>
+      <div className="mt-3">
+        <LivePriceWidget compact />
+      </div>
       <div className="mt-4">
         <AffiliateLink
           partner="booking"

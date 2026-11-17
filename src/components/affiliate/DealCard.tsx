@@ -3,7 +3,10 @@
 import { Check, Clock } from "lucide-react";
 import type { DealCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
+import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
+import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { getPartner } from "@/data/partners";
+import { dealTier, formatEstimateFrom } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 interface DealCardWithDimProps extends DealCardProps {
@@ -17,6 +20,7 @@ interface DealCardWithDimProps extends DealCardProps {
  */
 export function DealCard({ deal, featured = false, dimmed = false }: DealCardWithDimProps) {
   const isCruise = deal.vertical === "cruise";
+  const tier = dealTier(deal);
 
   return (
     <article
@@ -100,8 +104,9 @@ export function DealCard({ deal, featured = false, dimmed = false }: DealCardWit
           <div aria-hidden="true" className="mt-2 w-14 border-t-2 border-dashed border-terracotta/60" />
         )}
         <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
-          <span className="font-serif text-3xl font-bold">{`$${deal.priceFrom}`}</span>
-          <span className="text-[13px] text-mist">{deal.priceUnit}</span>
+          <PriceTierBadge tier={tier} />
+          <span className="font-serif text-xl font-bold">{formatEstimateFrom(deal.priceFrom, deal.currency)}</span>
+          <span className="text-[13px] text-mist">{`${deal.priceUnit} · estimate`}</span>
           <span className="inline-flex items-center gap-1 rounded-full bg-sand px-2.5 py-1 text-[12px] text-ink">
             <Clock aria-hidden="true" className="size-3.5 shrink-0" />
             {deal.duration}
@@ -121,10 +126,15 @@ export function DealCard({ deal, featured = false, dimmed = false }: DealCardWit
         </ul>
       </div>
 
+      {/* Booking slot: live partner rates render here, never a cached fare */}
+      <div className="px-6">
+        <LivePriceWidget />
+      </div>
+
       {/* Footer */}
       <footer className="mt-auto p-6 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="text-[13px] text-mist">{`≈ $${deal.dailyCost}/day all-in`}</span>
+          <span className="text-[13px] text-mist">Live fares move with season &amp; demand</span>
           <AffiliateLink
             partner={deal.partner}
             destination={deal.destination}

@@ -1,14 +1,19 @@
 import { Clock, Star } from "lucide-react";
 import type { TourCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
+import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
+import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
+import { formatEstimateFrom, tourTier } from "@/lib/pricing";
 
 /**
  * Viator tour card. Full variant is an editorial card; compact variant is a
- * single-row list item for sidebars and recaps.
+ * single-row list item for sidebars and recaps. Pricing follows the site
+ * strategy: tier badge plus an explicit estimate anchor — never a static rate.
  */
 export function TourCard({ tour, variant = "full" }: TourCardProps) {
   const reviewLabel = tour.reviewCount.toLocaleString("en-US");
   const ratingLabel = `Rated ${tour.rating} out of 5 from ${reviewLabel} Viator reviews`;
+  const tier = tourTier(tour);
 
   if (variant === "compact") {
     return (
@@ -28,14 +33,15 @@ export function TourCard({ tour, variant = "full" }: TourCardProps) {
           </p>
         </div>
         <div className="shrink-0 text-right">
-          <p className="font-serif font-bold">{`$${tour.priceFrom}`}</p>
+          <PriceTierBadge tier={tier} labelOnly />
+          <p className="mt-1 text-[12px] font-semibold text-mist">Est. rate</p>
           <AffiliateLink
             partner="viator"
             destination={tour.destination}
             campaign="tour-card"
             className="mt-1 px-3 py-2 text-[13px]"
           >
-            Reserve
+            Check Availability
           </AffiliateLink>
         </div>
       </article>
@@ -58,11 +64,15 @@ export function TourCard({ tour, variant = "full" }: TourCardProps) {
           <Clock aria-hidden="true" className="size-3.5 shrink-0" />
           {`${tour.durationHours} h`}
         </span>
-        <span className="rounded-full bg-sand px-2.5 py-1 text-[12px] font-semibold text-ink">
-          {`from $${tour.priceFrom}`}
+        <PriceTierBadge tier={tier} />
+        <span className="inline-flex items-center rounded-full bg-canvas px-2.5 py-1 text-[12px] font-semibold text-mist ring-1 ring-sand">
+          {formatEstimateFrom(tour.priceFrom, tour.currency)}
         </span>
       </div>
       <p className="mt-3 text-sm leading-relaxed text-mist">{tour.summary}</p>
+      <div className="mt-3">
+        <LivePriceWidget compact />
+      </div>
       <div className="mt-4">
         <AffiliateLink
           partner="viator"
@@ -70,7 +80,7 @@ export function TourCard({ tour, variant = "full" }: TourCardProps) {
           campaign="tour-card"
           className="text-[14px]"
         >
-          Reserve on Viator
+          Check Availability
         </AffiliateLink>
       </div>
     </article>

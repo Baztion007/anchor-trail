@@ -45,7 +45,8 @@ export default function CalculatorPage() {
         Choose a travel style, a destination, and how long you are going. The math runs on our
         snapshot 2026 rate table — all-in daily costs per region plus round-trip flights — and
         every estimate ends with the booking checklist we would use ourselves. No upsells, no
-        &ldquo;from $99&rdquo; theater.
+        fake-deal theater: totals are planning estimates, and partners always quote the live
+        rate before you pay anything.
       </p>
 
       <TripCalculator />

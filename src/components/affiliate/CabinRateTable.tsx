@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Check, Info, Minus, TriangleAlert } from "lucide-react";
 import type { CabinRate, CabinRateTableProps } from "@/types/affiliate";
+import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { cn } from "@/lib/utils";
 
 const PARTNER_NAMES: Record<CabinRate["partner"], string> = {
@@ -15,7 +16,7 @@ const AVAILABILITY_STYLES = {
 } as const;
 
 const DEFAULT_DISCLOSURE_PREFIX =
-  "Fares are research snapshots and change daily. We may earn a commission when you book through our partners — see our ";
+  "Fares are approximate and fluctuate based on season and availability — the partner always shows the live, bookable rate. We may earn a commission when you book through our partners, at no extra cost to you — see our ";
 
 /**
  * Cabin fare comparison table for cruise articles. Sticky cabin column, live
@@ -32,7 +33,7 @@ export function CabinRateTable({ caption, rates, disclosureNote }: CabinRateTabl
           </caption>
           <thead>
             <tr>
-              {["Cabin", "Included Perks", "Book With", "Fare", "Availability"].map((header, ci) => (
+              {["Cabin", "Included Perks", "Book With", "Fare Tier", "Availability"].map((header, ci) => (
                 <th
                   key={header}
                   scope="col"
@@ -63,8 +64,13 @@ export function CabinRateTable({ caption, rates, disclosureNote }: CabinRateTabl
                   <td className="px-4 py-3 text-[13px] text-ink">{rate.perks.join(" · ")}</td>
                   <td className="px-4 py-3 text-ink">{PARTNER_NAMES[rate.partner]}</td>
                   <td className="px-4 py-3">
-                    <span className="font-serif font-bold text-navy">{`$${rate.price}`}</span>
-                    <span className="block text-[12px] text-mist">{`per ${rate.per}`}</span>
+                    <PriceTierBadge
+                      tier={rate.price >= 5000 ? 3 : rate.price >= 2000 ? 2 : 1}
+                      className="whitespace-nowrap"
+                    />
+                    <span className="mt-1 block text-[12px] text-mist">
+                      {`per ${rate.per} · live rate at partner`}
+                    </span>
                   </td>
                   <td className="px-4 py-3">
                     <span

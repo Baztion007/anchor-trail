@@ -2,10 +2,14 @@ import Link from "next/link";
 import { Check, ShieldCheck } from "lucide-react";
 import type { InsuranceBannerProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
+import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
+import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
+import { formatEstimateFrom, insuranceTier } from "@/lib/pricing";
 
 /**
  * Inline insurance comparison block for articles: three sized plans with an
- * FTC mini-disclosure linking to the full /disclosure page.
+ * FTC mini-disclosure linking to the full /disclosure page. Premiums are
+ * presented as estimates — SafetyWing sets live pricing at quote time.
  */
 export function InsuranceBanner({ plans, heading }: InsuranceBannerProps) {
   const headingId = "insurance-banner-heading";
@@ -23,8 +27,11 @@ export function InsuranceBanner({ plans, heading }: InsuranceBannerProps) {
         {plans.map((plan) => (
           <div key={plan.id} className="flex flex-col rounded-md border border-sand bg-paper p-4">
             <p className="text-[15px] font-semibold text-ink">{plan.name}</p>
-            <p className="mt-1.5 flex flex-wrap items-baseline gap-x-1.5">
-              <span className="font-serif text-2xl font-bold text-navy">{plan.priceLabel}</span>
+            <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+              <PriceTierBadge tier={insuranceTier(plan)} />
+              <span className="font-serif text-lg font-bold text-navy">
+                {formatEstimateFrom(plan.price)}
+              </span>
               <span className="text-[12px] text-mist">{plan.periodLabel}</span>
             </p>
             <p className="mt-1.5 text-[13px] leading-relaxed text-mist">{plan.summary}</p>
@@ -51,6 +58,9 @@ export function InsuranceBanner({ plans, heading }: InsuranceBannerProps) {
                 {`Best for: ${plan.bestFor}`}
               </span>
             </p>
+            <div className="mt-3">
+              <LivePriceWidget compact />
+            </div>
             <div className="mt-auto pt-4">
               <AffiliateLink
                 partner={plan.partner}
@@ -58,14 +68,16 @@ export function InsuranceBanner({ plans, heading }: InsuranceBannerProps) {
                 campaign="insurance-banner"
                 className="text-[13.5px]"
               >
-                Get a Quick Quote
+                Check Live Rates
               </AffiliateLink>
             </div>
           </div>
         ))}
       </div>
-      <p className="mt-4 text-[12px] text-mist">
-        {"We earn a referral fee — "}
+      <p className="mt-4 text-[12px] leading-relaxed text-mist">
+        {
+          "Estimated premiums only — SafetyWing sets live pricing and coverage, not us. We earn a referral fee when you book, at no extra cost to you. "
+        }
         <Link
           href="/disclosure"
           className="underline underline-offset-2 hover:text-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"

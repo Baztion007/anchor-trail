@@ -47,7 +47,7 @@ export const backpackingArticles: Article[] = [
         ref: {
           type: "hostel",
           id: "hostel-bangkok-dorm",
-          label: "Bangkok Dorm, $11 a Night",
+          label: "Bangkok Riverside Dorm with Pool",
           why: "Pool, lockers and a midnight bar curfew — social where it counts, quiet where it pays.",
         },
         note: "Book four to six weeks ahead for November–February; the pool-facing dorms go first.",
@@ -275,7 +275,7 @@ export const backpackingArticles: Article[] = [
         ref: {
           type: "hostel",
           id: "hostel-sarajevo-bb",
-          label: "Sarajevo Family BB, $12",
+          label: "Sarajevo Family B&B with Breakfast",
           why: "A Habsburg-era townhouse with a breakfast that cancels lunch, at dorm prices.",
         },
         note: "Books out weeks ahead June–September; reserve it the day you buy flights.",

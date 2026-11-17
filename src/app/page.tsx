@@ -5,6 +5,7 @@ import { ArrowRight, CalendarDays, Clock } from "lucide-react";
 
 import { ComparisonTable } from "@/components/affiliate/ComparisonTable";
 import { DealsGrid } from "@/components/site/DealsGrid";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SearchTabs } from "@/components/site/SearchTabs";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { articles } from "@/data/articles";
@@ -38,23 +39,23 @@ export const metadata: Metadata = {
 const COMPARISON_ROWS: TableCell[][] = [
   [
     { text: "Daily cost" },
-    { text: "$380–$920/day all-in", tone: "good", icon: "check" },
-    { text: "$28–$75/day all-in", tone: "good", icon: "check" },
+    { text: "Luxury tier ($$$) — all-in daily math", tone: "good", icon: "check" },
+    { text: "Budget tier ($) — all-in daily math", tone: "good", icon: "check" },
   ],
   [
     { text: "Accommodation partner" },
     { text: "Booking.com port hotels, 8-min walks to terminals", tone: "neutral", icon: "minus" },
-    { text: "Hostelworld social dorms from $9/night", tone: "neutral", icon: "minus" },
+    { text: "Hostelworld social dorms at the budget tier", tone: "neutral", icon: "minus" },
   ],
   [
     { text: "Excursions" },
     { text: "Often included on luxury lines (Viking)", tone: "good", icon: "check" },
-    { text: "Viator day trips $26–$54, booked à la carte", tone: "neutral", icon: "minus" },
+    { text: "Viator day trips booked à la carte", tone: "neutral", icon: "minus" },
   ],
   [
     { text: "Insurance" },
     { text: "SafetyWing Complete for long sailings", tone: "neutral", icon: "minus" },
-    { text: "SafetyWing Essential from $56/4 weeks", tone: "good", icon: "check" },
+    { text: "SafetyWing Essential, budget-tier monthly cover", tone: "good", icon: "check" },
   ],
 ];
 
@@ -148,11 +149,11 @@ export default function HomePage() {
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center">
             <p className="eyebrow text-gold-light">— The Travel Bridge —</p>
             <h1 className="mt-3 max-w-3xl font-serif text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[1.1] text-canvas drop-shadow">
-              From Cruise Decks to $12 Dorm Beds — Honestly Compared
+              From Cruise Decks to Dorm Beds — Honestly Compared
             </h1>
             <p className="mt-4 max-w-xl text-[15px] text-canvas/85">
               Anchor &amp; Trail reviews both ends of travel: champagne-gold cruise fares and
-              $30-a-day backpacking routes. Real math, independent picks, zero paid placements.
+              shoestring backpacking routes. Real math, independent picks, zero paid placements.
             </p>
           </div>
         </div>
@@ -179,6 +180,7 @@ export default function HomePage() {
         <div className="mt-10">
           <DealsGrid deals={deals} />
         </div>
+        <PriceDisclaimer className="mt-6" />
       </section>
 
       {/* -------------------------------------------------------------- */}

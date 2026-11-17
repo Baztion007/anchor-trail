@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { StayCard } from "@/components/affiliate/StayCard";
 import { TourCard } from "@/components/affiliate/TourCard";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { deals } from "@/data/deals";
 import { stays } from "@/data/hotels";
@@ -55,8 +56,9 @@ export default function CruisesPage() {
             Luxury Cruises, Honestly Compared
           </h1>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-canvas/80">
-            Every fare is priced against real all-in daily math — excursions, drinks and
-            gratuities included only where the line actually includes them. Filter by line,
+            Every fare is judged on real all-in daily math — excursions, drinks and
+            gratuities included only where the line actually includes them. We show budget
+            tiers, not sticker prices: the live fare is always one tap away. Filter by line,
             region or budget below.
           </p>
           <ul
@@ -78,12 +80,16 @@ export default function CruisesPage() {
 
       <CruisesExplorer deals={CRUISE_DEALS} tours={CRUISE_TOURS} stays={PORT_HOTELS} />
 
+      <div className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+        <PriceDisclaimer />
+      </div>
+
       <section aria-label="Pre-cruise port hotels" className="bg-sand/50 py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Pre-Cruise Hotels"
             title="Sleep Near the Terminal"
-            description="Booking.com properties within a taxi-free morning of embarkation — early-enough breakfast, luggage held while you sail."
+            description="Booking.com properties within a taxi-free morning of embarkation — early-enough breakfast, luggage held while you sail, live rates on every card."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {PORT_HOTELS.map((stay) => (

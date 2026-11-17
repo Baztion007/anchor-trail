@@ -3,11 +3,12 @@ import type { Deal } from "@/types/affiliate";
 /**
  * Featured deals dataset.
  *
- * These six records are the editorial spine of the deals rail. Every entry is
- * researched against live operator pricing at publish time and stored as flat
- * data so a CMS collection can replace the static array without touching the
- * components. Keep ids stable across edits: article blocks and section pages
- * reference deals by id.
+ * These six records are the editorial spine of the deals rail. Numeric fields
+ * (priceFrom, dailyCost) are research-snapshot ESTIMATE ANCHORS only — they
+ * power the tier badge, the "Est. from" copy and the budget filters, and are
+ * never rendered as a fixed price. Booking partners always show the live rate.
+ * Keep ids stable across edits: article blocks and section pages reference
+ * deals by id.
  */
 export const deals: Deal[] = [
   {
@@ -74,7 +75,7 @@ export const deals: Deal[] = [
     summary:
       "An Edge-class ship on the Alaska run is unusual — Celebrity normally keeps Beyond in the Caribbean — so this round-trip Seattle itinerary pairs newer hardware with cheap domestic flights. The Endicott Arm and Dawes Glacier day is the scenic anchor, and balcony fares at this level are fair math for a 2026 sailing.",
     inclusions: [
-      "Balcony staterooms from $2,799",
+      "Balcony staterooms at the value end of the fare ladder",
       "The Retreat suite tier access optional",
       "Endicott Arm & Dawes Glacier scenic day",
     ],
@@ -98,11 +99,11 @@ export const deals: Deal[] = [
     duration: "21 days · 5 stops",
     dailyCost: 38,
     summary:
-      "Every long leg — Bangkok's border bus to Poipet, the onward shuttle to Siem Reap, and the Gulf coast ferries — books in one 12Go cart, which removes the day-of haggling that wrecks most first-timers' budgets. Hostel nights average $9–13, so a $38 daily spend still covers the three-day Angkor pass and more street food than you should honestly eat.",
+      "Every long leg — Bangkok's border bus to Poipet, the onward shuttle to Siem Reap, and the Gulf coast ferries — books in one 12Go cart, which removes the day-of haggling that wrecks most first-timers' budgets. Dorm nights sit firmly at the budget tier, so a shoestring daily spend still covers the three-day Angkor pass and more street food than you should honestly eat.",
     inclusions: [
       "All cross-border trains and ferries booked on 12Go",
       "21 nights in top-rated social hostels",
-      "Street-food budget of $10/day is realistic",
+      "Street-food days that stay pocket-change cheap",
     ],
     ctaText: "Check Live Rates",
   },
@@ -122,10 +123,10 @@ export const deals: Deal[] = [
     duration: "14 days · 4 countries",
     dailyCost: 32,
     summary:
-      "One bus-and-ferry chain stitches four countries together: Split to Mostar over the mountains, Mostar down to Kotor through the bay, then the fast catamaran hop to Dubrovnik to finish. Omio prices every leg up front, and dorm beds at $12–16 keep the daily math under $35 without skipping the cheap local wine.",
+      "One bus-and-ferry chain stitches four countries together: Split to Mostar over the mountains, Mostar down to Kotor through the bay, then the fast catamaran hop to Dubrovnik to finish. Omio prices every leg up front, dorm beds sit at the region's budget tier, and the daily math stays forgiving without skipping the cheap local wine.",
     inclusions: [
       "Intercity buses and ferries via Omio",
-      "Dorm beds averaging $14/night",
+      "Dorm beds at the budget tier, social scores earned nightly",
       "Kotor Bay kayak day included in budget",
     ],
     ctaText: "Check Live Rates",
@@ -144,11 +145,11 @@ export const deals: Deal[] = [
     duration: "28 days · 2 countries",
     dailyCost: 46,
     summary:
-      "Start on the Caribbean in Cartagena, ride the coast down through Medellín, then take the Bogotá–Lima hop with WayAway cashback before the Sacred Valley legs out of Cusco. Hostel beds under $20 and day trips from $35 stretch 28 days into a genuinely long trip without the budget ever feeling fragile.",
+      "Start on the Caribbean in Cartagena, ride the coast down through Medellín, then take the Bogotá–Lima hop with WayAway cashback before the Sacred Valley legs out of Cusco. Hostel beds and day trips both sit at the backpacker-friendly tier, stretching 28 days into a genuinely long trip without the budget ever feeling fragile.",
     inclusions: [
       "WayAway flight cashback on the Bogotá–Lima hop",
-      "Medellín and Cusco hostel stays under $20/night",
-      "Sacred Valley day trips from $35",
+      "Budget-tier hostel stays in Medellín and Cusco",
+      "Sacred Valley day trips at backpacker rates",
     ],
     ctaText: "Check Live Rates",
   },

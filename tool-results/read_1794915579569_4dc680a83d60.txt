@@ -1,0 +1,472 @@
+     1→     1→import type { Article } from "@/types/affiliate";
+     2→     2→import { siteAuthor } from "@/data/author";
+     3→     3→
+     4→     4→/**
+     5→     5→ * Backpacking vertical: two flagship budget-route features.
+     6→     6→ * All deal/tour/hostel/stay ids reference the shared dataset.
+     7→     7→ */
+     8→     8→export const backpackingArticles: Article[] = [
+     9→     9→  {
+    10→    10→    slug: "southeast-asia-backpacking-budget-itinerary",
+    11→    11→    title: "Three Weeks in Southeast Asia on $1,400: The Honest Backpacking Budget",
+    12→    12→    category: "backpacking",
+    13→    13→    tags: ["Southeast Asia", "Budget Itinerary", "Thailand", "Vietnam", "Insurance"],
+    14→    14→    seo: {
+    15→    15→      title: "Southeast Asia Backpacking Budget: 3 Weeks for $1,400 (2026)",
+    16→    16→      description:
+    17→    17→        "A real three-week Thailand, Cambodia and Vietnam itinerary with daily costs, hostel picks, transit fares and the honest math behind a $1,400 budget.",
+    18→    18→      keyword: "southeast asia backpacking budget",
+    19→    19→      secondaryKeywords: [
+    20→    20→        "thailand backpacking cost per day",
+    21→    21→        "southeast asia itinerary 3 weeks",
+    22→    22→        "cheap hostels southeast asia",
+    23→    23→        "12go asia transport booking",
+    24→    24→      ],
+    25→    25→    },
+    26→    26→    excerpt:
+    27→    27→      "The real math behind three weeks in Thailand, Cambodia and Vietnam: weekly burn rates, $11 dorms, $25 sleeper buses, 220-baht ATM fees, and the four places every budget actually breaks.",
+    28→    28→    author: siteAuthor,
+    29→    29→    datePublished: "2025-11-18T09:00:00.000Z",
+    30→    30→    dateModified: "2026-01-16T09:00:00.000Z",
+    31→    31→    readingMinutes: 9,
+    32→    32→    heroImage: "/images/cover-seasia.jpg",
+    33→    33→    heroAlt: "Longtail boat on a turquoise Thai bay with limestone cliffs",
+    34→    34→    picks: [
+    35→    35→      {
+    36→    36→        label: "Best Route Deal",
+    37→    37→        ref: {
+    38→    38→          type: "deal",
+    39→    39→          id: "deal-thailand-overland",
+    40→    40→          label: "Thailand Overland Loop",
+    41→    41→          why: "Locks the big intercity legs at near off-the-street rates so improvisation cannot eat the transport budget.",
+    42→    42→        },
+    43→    43→        note: "Pairs with 12Go for the legs it does not cover; together they replaced a $600 group tour on my last run.",
+    44→    44→      },
+    45→    45→      {
+    46→    46→        label: "Best Social Hostel",
+    47→    47→        ref: {
+    48→    48→          type: "hostel",
+    49→    49→          id: "hostel-bangkok-dorm",
+    50→    50→          label: "Bangkok Dorm, $11 a Night",
+    51→    51→          why: "Pool, lockers and a midnight bar curfew — social where it counts, quiet where it pays.",
+    52→    52→        },
+    53→    53→        note: "Book four to six weeks ahead for November–February; the pool-facing dorms go first.",
+    54→    54→      },
+    55→    55→      {
+    56→    56→        label: "Best Street-Food Intro",
+    57→    57→        ref: {
+    58→    58→          type: "tour",
+    59→    59→          id: "tour-bangkok-street-food",
+    60→    60→          label: "Bangkok Street-Food Night",
+    61→    61→          why: "Teaches the follow-the-locals rule in one evening, which saves money every day after.",
+    62→    62→        },
+    63→    63→        note: "Come hungry and skip lunch; there are more tastings than the itinerary admits.",
+    64→    64→      },
+    65→    65→    ],
+    66→    66→    faqs: [
+    67→    67→      {
+    68→    68→        question: "Is $1,400 really enough for three weeks in Southeast Asia?",
+    69→    69→        answer:
+    70→    70→          "Yes — as long as the $1,400 covers everything after landing and your long-haul flight is booked separately. Three weeks at the weekly rates in the table totals about $990, and visas, one regional flight and a buffer carry it to roughly $1,400. The number breaks when daily spending drifts past $66, which happens after sunset, not at ticket counters.",
+    71→    71→      },
+    72→    72→      {
+    73→    73→        question: "How much should flights cost?",
+    74→    74→        answer:
+    75→    75→          "Regional hops are cheap: AirAsia and VietJet seats move for $30–90 booked two or three weeks out, and buses via 12Go often beat them — the $25 Bangkok–Chiang Mai sleeper also saves a hotel night. Long-haul is the real variable: Europe to Bangkok runs $350–500 in low season, the US West Coast $550–750 on sales. Set alerts and never buy the first fare you see.",
+    76→    76→      },
+    77→    77→      {
+    78→    78→        question: "Is Southeast Asia safe for solo backpackers?",
+    79→    79→        answer:
+    80→    80→          "Broadly yes — violent crime against travelers is rare across Thailand, Cambodia and Vietnam, and hostel culture makes companions easy to find. The genuine risks are road-related: scooter crashes and unlicensed riding top most insurance claims, and boat operators vary wildly between islands. Petty theft targets phones on Khao San, and bag-snatchers on motorbikes work parts of Ho Chi Minh City, so keep bags zipped and off the traffic side.",
+    81→    81→      },
+    82→    82→      {
+    83→    83→        question: "Do you need to book transport ahead?",
+    84→    84→        answer:
+    85→    85→          "Anything over four hours: yes, especially night buses, ferries and December trains, which sell out in high season. 12Go handles most Thai, Cambodian and Vietnamese routes with card payment and e-boarding passes, so there is no ticket-office dance. Short local rides can stay spontaneous — those you buy at the station on the day.",
+    86→    86→      },
+    87→    87→      {
+    88→    88→        question: "What are the best months for this route?",
+    89→    89→        answer:
+    90→    90→          "November to February is the mainland sweet spot: dry, cooler and busy, so book beds a week ahead. May and June are the budget shoulder — prices drop 10–15% and crowds thin, at the cost of some loud afternoon storms. Avoid September's Gulf storms and April, when Bangkok's heat makes $11 dorms with pools very popular indeed.",
+    91→    91→      },
+    92→    92→    ],
+    93→    93→    relatedSlugs: [
+    94→    94→      "balkans-backpacking-route-30-dollars-day",
+    95→    95→      "best-mediterranean-luxury-cruises-2026",
+    96→    96→    ],
+    97→    97→    hubLinks: [
+    98→    98→      { label: "Budget Backpacking hub", href: "/backpacking" },
+    99→    99→      { label: "Trip Budget Calculator", href: "/calculator" },
+   100→   100→    ],
+   101→   101→    blocks: [
+   102→   102→      {
+   103→   103→        type: "paragraph",
+   104→   104→        text: "Twenty-one days, three countries, and a number I have argued about in hostel bars on three continents: $1,400. It is enough. It is not comfortable, and it will not survive contact with a traveler who treats every evening as a cocktail occasion. But if you sleep in dorms, eat where the plastic stools outnumber the chairs and let buses do the long miles, the math in this article is real. I ran it on my last November loop through Thailand, Cambodia and Vietnam, down to the 220-baht ATM fees.",
+   105→   105→      },
+   106→   106→      {
+   107→   107→        type: "paragraph",
+   108→   108→        text: "A quick honesty note before the spreadsheets: $1,400 here means everything after you land — twenty-one days across Bangkok, Siem Reap and central Vietnam, every bus and ferry, all visas, insurance, and a buffer for the days you get wrong. It does not include your long-haul flight from home — different article, different sale alerts. Land costs only — that is the deal, and every figure below is one I actually paid or watched hostel friends pay in late 2025.",
+   109→   109→      },
+   110→   110→      { type: "heading", level: 2, text: "The $1,400 Line-by-Line Budget" },
+   111→   111→      {
+   112→   112→        type: "paragraph",
+   113→   113→        text: "Here is the engine of the whole trip: three ordinary weeks, each burning roughly the same fuel. I track budgets in weeks rather than days because days lie — a $6 day in Kampot hides the $95 day you spent rerouting around a missed ferry. Three weeks at the rates in the table comes to about $990, and the one-off extras carry the total to roughly $1,400.",
+   114→   114→      },
+   115→   115→      {
+   116→   116→        type: "table",
+   117→   117→        caption: "Weekly burn — solo, dorms, November–February high season",
+   118→   118→        headers: ["Category", "Weekly Cost", "Notes"],
+   119→   119→        rows: [
+   120→   120→          [
+   121→   121→            { text: "Bed", tone: "good", icon: "check" },
+   122→   122→            { text: "$60–80", tone: "good", icon: "check" },
+   123→   123→            { text: "Dorms $9–14 region-wide; the $11 Bangkok pick has pool, lockers and a midnight curfew.", tone: "good", icon: "check" },
+   124→   124→          ],
+   125→   125→          [
+   126→   126→            { text: "Food", tone: "good", icon: "check" },
+   127→   127→            { text: "$55–70", tone: "good", icon: "check" },
+   128→   128→            { text: "$1 pad thai from a cart, 60-baht curries, dollar fruit shakes off the tourist strip.", tone: "good", icon: "check" },
+   129→   129→          ],
+   130→   130→          [
+   131→   131→            { text: "Transport", tone: "neutral", icon: "minus" },
+   132→   132→            { text: "$45–75", tone: "neutral", icon: "minus" },
+   133→   133→            { text: "$25 Bangkok–Chiang Mai sleeper, $9 shuttles, $5 trains. Book long legs ahead.", tone: "neutral", icon: "minus" },
+   134→   134→          ],
+   135→   135→          [
+   136→   136→            { text: "Things to do", tone: "neutral", icon: "minus" },
+   137→   137→            { text: "$40–60", tone: "neutral", icon: "minus" },
+   138→   138→            { text: "$37 Angkor day pass, $15 cooking class, $3 temple donations.", tone: "neutral", icon: "minus" },
+   139→   139→          ],
+   140→   140→          [
+   141→   141→            { text: "Coffee, beer, chaos", tone: "warn", icon: "alert" },
+   142→   142→            { text: "$30–45", tone: "warn", icon: "alert" },
+   143→   143→            { text: "Chang is 60 baht in a 7-Eleven, 250 on Khao San. The line where budgets go to die.", tone: "warn", icon: "alert" },
+   144→   144→          ],
+   145→   145→          [
+   146→   146→            { text: "Insurance, visas, fees", tone: "warn", icon: "alert" },
+   147→   147→            { text: "$25–35", tone: "warn", icon: "alert" },
+   148→   148→            { text: "220-baht ATM fees, $25 e-visas, about $2 a day for travel medical cover.", tone: "warn", icon: "alert" },
+   149→   149→          ],
+   150→   150→        ],
+   151→   151→        note: "One-offs: visas about $55, one regional flight $110–130, sundries, a $150 buffer. Three weeks lands near $1,400.",
+   152→   152→      },
+   153→   153→      { type: "deal-card", dealId: "deal-thailand-overland" },
+   154→   154→      {
+   155→   155→        type: "paragraph",
+   156→   156→        text: "Why book a routed deal? The classic mistake is treating Thailand as a horseshoe you can improvise. The country is 1,600 kilometers end to end, and figure-it-out-later costs real money when you retrace a leg over unchecked festival dates. A pre-priced overland loop locks the big transfers near off-the-street rates and leaves the small decisions — which beach, which second breakfast — flexible. Structure for the boring parts, freedom for the fun ones.",
+   157→   157→      },
+   158→   158→      {
+   159→   159→        type: "paragraph",
+   160→   160→        text: "Transport is where the $1,400 either holds or collapses, and my rule is boring: anything over four hours books through 12Go, everything else books on the day. The Bangkok to Chiang Mai sleeper bus runs about $25 on the platform, with operator ratings, seat layouts and an e-boarding pass that lands in your email — no printing, no ticket office, no 40-baht agency fee collected by a man with a laminated spreadsheet. Night buses also save a hotel night — an $11 bed becomes two travel days for the price of one.",
+   161→   161→      },
+   162→   162→      { type: "heading", level: 2, text: "Bangkok: The Launchpad" },
+   163→   163→      {
+   164→   164→        type: "paragraph",
+   165→   165→        text: "Give Bangkok three nights, not one. It is the cheapest airport city you will ever acclimatize in: 40-baht Skytrain hops, river piers on the Chao Phraya, street food that makes home prices feel like a prank. Stay riverside-adjacent rather than on Khao San itself: close enough for the chaos walk, far enough to sleep. The dorm I use every trip costs $11, has a pool for the 38-degree afternoons and stops pouring beer at midnight. That is not puritanism; it is budget engineering.",
+   166→   166→      },
+   167→   167→      { type: "hostel-card", hostelId: "hostel-bangkok-dorm" },
+   168→   168→      {
+   169→   169→        type: "paragraph",
+   170→   170→        text: "Do one organized thing in Bangkok and make it the street-food night. For roughly the price of two airport sandwiches you get a guide who orders the things you would never point at, from boat noodles to the crispy-pork rice that sells out by 8 p.m. More valuable than the food is the lesson: follow locals, skip menus with photos, and eat where the woks are loud. That rule saves a few dollars every day for two weeks.",
+   171→   171→      },
+   172→   172→      { type: "tour-card", tourId: "tour-bangkok-street-food" },
+   173→   173→      {
+   174→   174→        type: "callout",
+   175→   175→        variant: "money",
+   176→   176→        title: "The Quiet Taxes: Visa Runs and ATM Fees",
+   177→   177→        text: "Thai ATMs charge a fixed 220-baht fee (about $6.40) on every foreign-card withdrawal, so pull the 20,000-baht machine maximum weekly, not $40 five times. Cambodia's tourist visa costs $30 at Poipet, and someone will offer to arrange it for a $5–10 processing fee — the fee is optional, the visa is not. Thailand gives most passports 60 days visa-free; do not ride a bus to the border to renew it without checking current rules.",
+   178→   178→      },
+   179→   179→      {
+   180→   180→        type: "callout",
+   181→   181→        variant: "safety",
+   182→   182→        title: "Scooter Rentals: Where Trips End Early",
+   183→   183→        text: "Rental shops love holding passports — hand over a cash deposit instead, photograph every existing scratch before you roll, and know most travel insurance is void without a motorcycle license or an IDP with the motorcycle endorsement. Police fines for riding unlicensed run about 500 baht, a fraction of the $200 scratch bill that appears at return time. If you have never ridden in Southeast Asian traffic, the Skytrain is a marvel. Use it.",
+   184→   184→      },
+   185→   185→      { type: "heading", level: 2, text: "Crossing Borders Without Getting Ripped Off" },
+   186→   186→      {
+   187→   187→        type: "paragraph",
+   188→   188→        text: "Poipet, the Thailand–Cambodia crossing, is the most rehearsed scam in Southeast Asia and it still works. Touts sell a $28 VIP express bus from Khao San, the bus ends at a travel office four hundred meters short of the border, and a taxi cartel quotes $60 to Siem Reap. The honest route costs a fraction: train to Aranyaprathet from 50 baht, walk across on foot, pay the $30 visa, take the $10 government shuttle. The saving is roughly four road days.",
+   189→   189→      },
+   190→   190→      {
+   191→   191→        type: "paragraph",
+   192→   192→        text: "Vietnam is simpler. Skip every site charging $50 to arrange your e-visa; the official portal costs $25, takes about three working days and, since 2023, covers 90 days with multiple entries. Print the PDF — airlines still ask for it at check-in. At land crossings keep small, crisp US dollars; crumpled bills get rejected at invented exchange rates. Never hand your passport to a helpful stranger at a border window; helpers are why the scam economy survives.",
+   193→   193→      },
+   194→   194→      { type: "heading", level: 3, text: "Vietnam: Where Your Money Goes Furthest" },
+   195→   195→      {
+   196→   196→        type: "paragraph",
+   197→   197→        text: "Cambodia is charming; Vietnam is cheap. Across the border, the same weekly food line buys more: $1.50 banh mi that outclass most $12 sandwiches at home, 40,000-dong iced coffee, noodle bowls under $2. In Da Nang, dorms drop to $8–12 steps from a beach that charges exactly nothing, and the Marble Mountains cost about $1.60 to climb. This is where you bank days if week two ran hot, and the hostel below is where I do the banking.",
+   198→   198→      },
+   199→   199→      { type: "hostel-card", hostelId: "hostel-da-nang-beach" },
+   200→   200→      {
+   201→   201→        type: "paragraph",
+   202→   202→        text: "Budget one splurge in Vietnam and make it the Hoi An cooking class — not the $12 group version in a converted warehouse, but the small-market class where you shop for herbs before you cook. Around $30 buys four dishes, a market tour and recipes that survive the flight home. The old town needs a 120,000-dong ticket (about $5) covering five heritage houses; buy it, use it, and finish at the market-side banh mi cart everyone claims to have discovered.",
+   203→   203→      },
+   204→   204→      { type: "tour-card", tourId: "tour-hoi-an-cooking" },
+   205→   205→      {
+   206→   206→        type: "quote",
+   207→   207→        text: "You do not run out of money in Southeast Asia. You run out of discipline, usually around 11 p.m. on Khao San Road.",
+   208→   208→        attribution: "Every hostel bar in Bangkok, eventually",
+   209→   209→      },
+   210→   210→      { type: "insurance-banner" },
+   211→   211→      { type: "heading", level: 2, text: "Where the Budget Breaks (and How to Fix It)" },
+   212→   212→      {
+   213→   213→        type: "paragraph",
+   214→   214→        text: "Every failed $1,400 trip I have watched, usually from the adjacent hammock, failed in the same handful of places. Not flights, not visas, not some surprise fee at a train station. Decisions made after sunset, a taxi taken instead of a ten-minute walk, one we-are-on-holiday dinner that cost a day's budget. Here is the honest list, fix attached, so you recognize the moment when it arrives.",
+   215→   215→      },
+   216→   216→      {
+   217→   217→        type: "list",
+   218→   218→        items: [
+   219→   219→          "Island-hopping on vibes. Every ferry is $15–30 plus a $12–20 night on a beach with nothing cheap nearby. Fix: cap it at two islands.",
+   220→   220→          "Festival weeks. Beds on Koh Phangan triple and dorm social life becomes the event. Fix: build the calendar around dates, not the reverse.",
+   221→   221→          "Drunk upgrades at 2 a.m. The $25 sleeper becomes a $70 VIP van of unclear lineage. Fix: long bookings made sober, in daylight, through 12Go.",
+   222→   222→          "Budget-airline baggage fees. VietJet and AirAsia charge over 7 kg in the cabin. Fix: one 40-litre pack, weighed at home, twice.",
+   223→   223→          "The ATM drip. Five $40 withdrawals a week burns $32 in fixed fees alone. Fix: one maximum withdrawal weekly; refuse dynamic currency conversion.",
+   224→   224→        ],
+   225→   225→      },
+   226→   226→      { type: "divider" },
+   227→   227→      {
+   228→   228→        type: "paragraph",
+   229→   229→        text: "So is the $1,400 honest? It is honest the way a good friend is: it tells you what you can afford, then lets you ruin it. Follow the table and you finish three weeks with change in your daypack; follow the night and you will wire yourself money from a Siem Reap counter at a 4 percent surcharge. The number does not decide anything. You do, mostly between nine p.m. and midnight.",
+   230→   230→      },
+   231→   231→      {
+   232→   232→        type: "paragraph",
+   233→   233→        text: "My last run came in at $1,387: three weeks, Bangkok to Hanoi, one cooking class, one kayak, one regrettable pair of authentic elephant pants. If your long-haul flight is booked separately and your discipline holds before ten p.m., you can match that number. If neither is true, budget $1,700 and have a better trip for it. That is the most honest sentence in this budget, and the one travelers skip.",
+   234→   234→      },
+   235→   235→    ],
+   236→   236→  },
+   237→   237→  {
+   238→   238→    slug: "balkans-backpacking-route-30-dollars-day",
+   239→   239→    title: "The Balkans on $30 a Day: A Two-Week Route Through Croatia, Bosnia & Montenegro",
+   240→   240→    category: "backpacking",
+   241→   241→    tags: ["Balkans", "Budget Itinerary", "Montenegro"],
+   242→   242→    seo: {
+   243→   243→      title: "Balkans Backpacking Route: Croatia, Bosnia & Montenegro on $30/Day",
+   244→   244→      description:
+   245→   245→        "A tested two-week Split to Kotor route with real hostel prices, bus fares and the daily math that keeps the Balkans under $30 a day.",
+   246→   246→      keyword: "balkans backpacking route",
+   247→   247→      secondaryKeywords: [
+   248→   248→        "balkans budget travel",
+   249→   249→        "croatia backpacking cost",
+   250→   250→        "mostar to kotor bus",
+   251→   251→        "hostelworld balkans",
+   252→   252→      ],
+   253→   253→    },
+   254→   254→    excerpt:
+   255→   255→      "A tested two-week Split to Kotor route with $12 dorms in Bosnia, $12 buses to Kotor and the daily math that keeps Croatia's prices from wrecking a $30-a-day average.",
+   256→   256→    author: siteAuthor,
+   257→   257→    datePublished: "2025-12-09T09:00:00.000Z",
+   258→   258→    dateModified: "2026-01-14T09:00:00.000Z",
+   259→   259→    readingMinutes: 10,
+   260→   260→    heroImage: "/images/cover-balkans.jpg",
+   261→   261→    heroAlt: "Bay of Kotor with red-roofed old town and pine slopes",
+   262→   262→    picks: [
+   263→   263→      {
+   264→   264→        label: "Best Route Deal",
+   265→   265→        ref: {
+   266→   266→          type: "deal",
+   267→   267→          id: "deal-balkans-loop",
+   268→   268→          label: "Balkans Loop",
+   269→   269→          why: "Prices the whole Split–Mostar–Sarajevo–Kotor arc so the coast cannot ambush the average.",
+   270→   270→        },
+   271→   271→        note: "Shoulder-season departures match the daily budgets in the table almost line for line.",
+   272→   272→      },
+   273→   273→      {
+   274→   274→        label: "Best Character Stay",
+   275→   275→        ref: {
+   276→   276→          type: "hostel",
+   277→   277→          id: "hostel-sarajevo-bb",
+   278→   278→          label: "Sarajevo Family BB, $12",
+   279→   279→          why: "A Habsburg-era townhouse with a breakfast that cancels lunch, at dorm prices.",
+   280→   280→        },
+   281→   281→        note: "Books out weeks ahead June–September; reserve it the day you buy flights.",
+   282→   282→      },
+   283→   283→      {
+   284→   284→        label: "Best Value Day Out",
+   285→   285→        ref: {
+   286→   286→          type: "tour",
+   287→   287→          id: "tour-kotor-kayak",
+   288→   288→          label: "Kotor Bay Kayak",
+   289→   289→          why: "Two hours on the bay with a swim stop, for less than one Dubrovnik museum hop.",
+   290→   290→        },
+   291→   291→        note: "Late-afternoon slots catch the best light and the fewest boats.",
+   292→   292→      },
+   293→   293→    ],
+   294→   294→    faqs: [
+   295→   295→      {
+   296→   296→        question: "Is $30 a day realistic in Croatia?",
+   297→   297→        answer:
+   298→   298→          "In shoulder season, yes: a $20 dorm, $8–10 in bakery and market food and a few dollars of transit fit inside it, and Split's best swimming is free. In July and August the dorm line alone can hit $35–50, and the honest fix is structural — sleep inland, or let Bosnia's $18–22 days pull the trip average back under $30. Croatia is where the budget breathes hardest, not where it dies.",
+   299→   299→      },
+   300→   300→      {
+   301→   301→        question: "Which countries use euros, and where do I need local cash?",
+   302→   302→        answer:
+   303→   303→          "Croatia and Montenegro both use the euro, though Montenegro adopted it unilaterally, so no machine will refuse your notes. Bosnia uses the convertible mark (KM), pegged at about 1.96 to the euro. Bosnia is still a cash country — buses, cevapi stands and small museums prefer it — so withdraw from a bank-branch ATM in Sarajevo rather than the freestanding ones charging tourist fees.",
+   304→   304→      },
+   305→   305→      {
+   306→   306→        question: "How do I get from Dubrovnik to Kotor?",
+   307→   307→        answer:
+   308→   308→          "The direct bus costs about $12, takes two hours and crosses the Debeli Brijeg border, where you will queue twice — exit Croatia, enter Montenegro. Buy tickets a day ahead at the main station or online in summer, because the morning departures fill with day-trippers. The coastal approach through the bay is the point: sit on the right side.",
+   309→   309→      },
+   310→   310→      {
+   311→   311→        question: "How bad are peak-season prices?",
+   312→   312→        answer:
+   313→   313→          "July and August roughly double the coast: Dubrovnik dorms climb from the mid-$20s past $50, Kotor's old town follows, and Split is the worst value night on the route. Fixed dates mean booking beds by February and eating one street inland. Flexible dates mean May–June or September–October, when the same sea, walls and buses cost 30–40% less.",
+   314→   314→      },
+   315→   315→      {
+   316→   316→        question: "Is the Balkans safe to backpack?",
+   317→   317→        answer:
+   318→   318→          "Yes — violent crime against travelers is rare, locals are famously direct about helping, and the old war-era warnings mostly concern remote, unmarked backcountry rather than any town on this route. Stay on marked trails in rural Bosnia, watch for pickpockets in Dubrovnik's walled city at cruise-arrival hours, and treat mountain roads with respect if you rent anything with wheels. None of this differs much from Portugal.",
+   319→   319→      },
+   320→   320→    ],
+   321→   321→    relatedSlugs: [
+   322→   322→      "southeast-asia-backpacking-budget-itinerary",
+   323→   323→      "viking-vs-regent-luxury-cruise-value",
+   324→   324→    ],
+   325→   325→    hubLinks: [
+   326→   326→      { label: "Budget Backpacking hub", href: "/backpacking" },
+   327→   327→      { label: "Excursions & Stays", href: "/stays" },
+   328→   328→    ],
+   329→   329→    blocks: [
+   330→   330→      {
+   331→   331→        type: "paragraph",
+   332→   332→        text: "The Balkans still run on a rumor: that Europe's prettiest coastline must cost the same as its prettiest cities. It does not. Fourteen days through Croatia, Bosnia and Montenegro at $30 a day is not backpacking folklore — it is a specific route with specific bus timetables, and I have now run it twice, once in shoulder season and once, foolishly, in August. This is the version that works: Split to Kotor, two currencies, and one border queue you should never arrive at hungry.",
+   333→   333→      },
+   334→   334→      {
+   335→   335→        type: "paragraph",
+   336→   336→        text: "A second honesty note, because I promised one: $30 a day is an average, not a flat rate. Croatia will bill you $34–40 on some days and Bosnia will apologize with $18 ones, and the average lands at thirty. The route below is built so the cheap country sits in the middle of the calendar, absorbing the damage the coast inflicts. Flip that order — cheap first, expensive last — and the budget dies in week two. Order matters more than thrift.",
+   337→   337→      },
+   338→   338→      {
+   339→   339→        type: "paragraph",
+   340→   340→        text: "Shoulder season is the real trick. May–June and September–October deliver the same turquoise Adriatic with dorm prices 30–40% lower, buses you can board without a reservation, and old towns you can photograph without four thousand cruise passengers in the frame. Every price I quote below is shoulder-season reality. Come in July or August anyway if you must — half this route is a beach, after all — but then read the money callout below like a contract.",
+   341→   341→      },
+   342→   342→      { type: "heading", level: 2, text: "The Route at a Glance" },
+   343→   343→      {
+   344→   344→        type: "paragraph",
+   345→   345→        text: "Fifteen nights, five stops, one direction — south, with the sea on your right. Fly into Split and out of Dubrovnik, or reverse the whole thing if open-jaw fares say otherwise. Every leg runs by bus or train; there is not a single domestic flight on this route, and that is precisely the point of it. Buy the long legs a day or two ahead and the rest of the fortnight runs itself.",
+   346→   346→      },
+   347→   347→      {
+   348→   348→        type: "list",
+   349→   349→        ordered: true,
+   350→   350→        items: [
+   351→   351→          "Fly into Split (SPU), shoulder season if the fare allows. Three nights: Diocletian's Palace, Marjan hill swims, bus tickets south bought two days out.",
+   352→   352→          "Bus Split to Mostar, about 4.5 hours and €28–35. Two border checks, both quick off-peak, both slower with a tour group ahead of you.",
+   353→   353→          "Mostar, three nights. Stari Most divers at noon, Blagaj and Kravice on day two — the cheapest good days of the trip.",
+   354→   354→          "Slow train Mostar to Sarajevo, about two hours and roughly $11 — the best railway scenery per hour in Europe.",
+   355→   355→          "Sarajevo, three nights. Tunnel of Hope, bazaar lanes, burek breakfasts that run about $2.",
+   356→   356→          "Seasonal summer bus Sarajevo to Kotor via Nikšić, about 6.5 hours, then four nights; finish with two in Dubrovnik and fly out of DBV.",
+   357→   357→        ],
+   358→   358→      },
+   359→   359→      {
+   360→   360→        type: "table",
+   361→   361→        caption: "Nights and daily budgets, shoulder-season rates",
+   362→   362→        headers: ["Stop", "Nights", "Daily Budget", "Highlight"],
+   363→   363→        rows: [
+   364→   364→          [
+   365→   365→            { text: "Split, Croatia" },
+   366→   366→            { text: "3" },
+   367→   367→            { text: "$34", tone: "warn", icon: "alert" },
+   368→   368→            { text: "Diocletian's Palace basements, free swim beaches" },
+   369→   369→          ],
+   370→   370→          [
+   371→   371→            { text: "Mostar, Bosnia" },
+   372→   372→            { text: "3" },
+   373→   373→            { text: "$20", tone: "good", icon: "check" },
+   374→   374→            { text: "Bridge divers, Kravice Falls, $3 cevapi" },
+   375→   375→          ],
+   376→   376→          [
+   377→   377→            { text: "Sarajevo, Bosnia" },
+   378→   378→            { text: "3" },
+   379→   379→            { text: "$22", tone: "good", icon: "check" },
+   380→   380→            { text: "Tunnel of Hope, bazaar streets, burek by the kilo" },
+   381→   381→          ],
+   382→   382→          [
+   383→   383→            { text: "Kotor, Montenegro" },
+   384→   384→            { text: "4" },
+   385→   385→            { text: "$26", tone: "good", icon: "check" },
+   386→   386→            { text: "Walls at 7 a.m., kayak at sunset, free old town" },
+   387→   387→          ],
+   388→   388→          [
+   389→   389→            { text: "Dubrovnik, Croatia" },
+   390→   390→            { text: "2" },
+   391→   391→            { text: "$38", tone: "warn", icon: "alert" },
+   392→   392→            { text: "Walk the walls early, sleep in Lapad, not the old town" },
+   393→   393→          ],
+   394→   394→        ],
+   395→   395→        note: "The average lands at $28 a day across fifteen nights, leaving $2 a day of slack in the $30 target for the occasional miss.",
+   396→   396→      },
+   397→   397→      { type: "deal-card", dealId: "deal-balkans-loop" },
+   398→   398→      { type: "heading", level: 2, text: "Split & the Marina Crowd" },
+   399→   399→      {
+   400→   400→        type: "paragraph",
+   401→   401→        text: "Split is the most expensive city on this route and the most misunderstood. The marina crowd moors yachts beside a Roman palace, yes, but backpacker Split lives one street inland: bakeries selling $2 burek until noon, a green market where peaches are priced for locals, and free swimming at Bene on Marjan hill, a half-hour walk from anything expensive. Three nights is right. Any more and you start paying island-ferry prices for the privilege of indecision.",
+   402→   402→      },
+   403→   403→      { type: "hostel-card", hostelId: "hostel-split-marina" },
+   404→   404→      {
+   405→   405→        type: "paragraph",
+   406→   406→        text: "Book the marina-side dorm deliberately. It sits ten minutes' walk from the ferry terminal and the bus station — the two buildings that control your next fortnight — and the walk home along the water at night costs nothing and feels like theft. Ask reception which kiosk sells the Mostar run; in shoulder season you can buy on the day, but the 8 a.m. departure is the one that sells out first.",
+   407→   407→      },
+   408→   408→      { type: "heading", level: 2, text: "Mostar: The Budget Sweet Spot" },
+   409→   409→      {
+   410→   410→        type: "paragraph",
+   411→   411→        text: "Cross into Bosnia and the math changes religion. A bed in Mostar runs $12–15, a plate of cevapi with somun bread is $3–4, Bosnian coffee comes with a ritual you did not pay extra for, and the town's star attraction — young men diving off the Stari Most into icy green water — costs exactly zero to watch at noon. This is where your Croatian overspend goes to be forgiven. Stay three nights minimum.",
+   412→   412→      },
+   413→   413→      {
+   414→   414→        type: "paragraph",
+   415→   415→        text: "The best bed of the whole route, though, is not in Mostar at all. It sits two hours northeast in Sarajevo: a family-run bed-and-breakfast in a late-Habsburg townhouse that costs $12 a night and includes the kind of breakfast that cancels lunch. It books out weeks ahead in season, so reserve it the day you buy flights. Below is the card; the town around it is covered a section down.",
+   416→   416→      },
+   417→   417→      { type: "hostel-card", hostelId: "hostel-sarajevo-bb" },
+   418→   418→      {
+   419→   419→        type: "paragraph",
+   420→   420→        text: "In Mostar itself, go one tier up from the dorm: the heritage house behind the old bazaar rents doubles from around $35 with breakfast, which for a couple is cheaper than two beds anywhere in Croatia, and for a solo traveler is the affordable splurge night every itinerary needs. The courtyard, the fig trees, the 9 a.m. call to prayer drifting over the river — this is the stay people mean when they say Bosnia felt like a secret.",
+   421→   421→      },
+   422→   422→      { type: "stay-card", stayId: "stay-mostar-heritage" },
+   423→   423→      {
+   424→   424→        type: "paragraph",
+   425→   425→        text: "Give Mostar two full days: one for the bridge and the bazaar, one for Blagaj's tekke tucked under a cliff spring (entry about $3) and the Kravice Falls swim, which charges about $10 in high season and delivers a freshwater lagoon for the whole afternoon. Then ride the slow train northeast to Sarajevo, a city where $22 a day still buys the Tunnel of Hope museum, burek by the kilo and the title of Europe's most underpriced capital. The tunnel costs about $8 and explains the 1990s better than any book I read beforehand.",
+   426→   426→      },
+   427→   427→      {
+   428→   428→        type: "callout",
+   429→   429→        variant: "insider",
+   430→   430→        title: "Border Buses, Balkan Style",
+   431→   431→        text: "Balkan buses are cash economies with borders attached. Carry euros in small notes — several drivers still collect a €1–2 luggage fee by hand — keep your passport loose, because you will show it at least twice between Dubrovnik and Kotor, and never board the last crossing of the day without a plan B phone number. Buy tickets a day ahead at station kiosks in July; GetByBus and BusTicket4.me cover most legs online.",
+   432→   432→      },
+   433→   433→      {
+   434→   434→        type: "callout",
+   435→   435→        variant: "money",
+   436→   436→        title: "July Prices Are a Different Country",
+   437→   437→        text: "Dubrovnik dorms jump from the mid-$20s to $50-plus, Kotor's old town doubles, and Split in August is the single worst value night in the Balkans. If your dates are fixed, book beds by February and eat one street inland from the water. If they are not, move the whole route to late May–June or September, when the same sea costs 30–40% less and the buses actually have seats.",
+   438→   438→      },
+   439→   439→      { type: "heading", level: 3, text: "Kotor on a Budget" },
+   440→   440→      {
+   441→   441→        type: "paragraph",
+   442→   442→        text: "Montenegro takes the euro but not the euro prices, and Kotor proves it nightly. The walled town is free to wander once the day-trippers leave, the wall walk (about 1,350 steps) costs €15 — worth it only if you start at 7 a.m., for the light and the solitude both — and the bay does its best work free from a rock past the bus station. The smart money move is one paid thing, done properly.",
+   443→   443→      },
+   444→   444→      { type: "tour-card", tourId: "tour-kotor-kayak" },
+   445→   445→      {
+   446→   446→        type: "paragraph",
+   447→   447→        text: "The kayak session is that paid thing: two hours paddling the bay as the cruise-day crowds drain out, with a swim stop off a pebble beach most day-trippers never find. It costs less than a Dubrovnik museum hop and beats it on every metric I track. Add the €10 round-trip boat to Perast and Our Lady of the Rocks on another morning, and you have seen the bay properly for under $40 total.",
+   448→   448→      },
+   449→   449→      {
+   450→   450→        type: "paragraph",
+   451→   451→        text: "Getting here is the other bargain. The Dubrovnik to Kotor bus costs about $12 and takes two hours including the Debeli Brijeg border check; in summer it fills up, so buy a day ahead or line up at Dubrovnik's main station thirty minutes early. Your reward for the paperwork is your first proper look at Europe's southernmost fjord, arriving at sea level, where it photographs best.",
+   452→   452→      },
+   453→   453→      {
+   454→   454→        type: "quote",
+   455→   455→        text: "Somewhere between the third burek and the fourth border check, you stop converting prices. That is when the Balkans get cheap for real.",
+   456→   456→        attribution: "My own notebook, night five, Sarajevo",
+   457→   457→      },
+   458→   458→      { type: "insurance-banner" },
+   459→   459→      { type: "heading", level: 2, text: "The Verdict: Two Weeks, Two Currencies, One Good Month" },
+   460→   460→      {
+   461→   461→        type: "paragraph",
+   462→   462→        text: "Run the table again and the route averages about $28 a day across fifteen nights, with Croatia's warn cells offset by Bosnia's green ones — which is the entire design. The Balkans are not expensive; they are uneven, and a good route simply makes the uneven parts cancel. This one does. My September run came to $431 for the whole loop, buses included; the August attempt cost $590 and considerably more patience.",
+   463→   463→      },
+   464→   464→      {
+   465→   465→        type: "paragraph",
+   466→   466→        text: "Who this route suits: anyone who wants Europe's postcard coastline at Southeast Asian discipline, history that outranks the beaches, and borders you can feel rather than fly over. Who it does not: travelers who need reliable July party infrastructure on a $30 budget — that number and that month cannot both be true. Pick the shoulder season, keep the order as written, and the $30 holds. It did for me, twice.",
+   467→   467→      },
+   468→   468→      { type: "divider" },
+   469→   469→    ],
+   470→   470→  },
+   471→   471→];
+   472→   472→

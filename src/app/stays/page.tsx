@@ -6,6 +6,7 @@ import { StayCard } from "@/components/affiliate/StayCard";
 import { TourCard } from "@/components/affiliate/TourCard";
 import { TransitCard } from "@/components/affiliate/TransitCard";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { hostels } from "@/data/hostels";
 import { insurancePlans } from "@/data/insurance";
@@ -58,9 +59,11 @@ export default function StaysPage() {
         </h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-mist">
           Every tour, bed and border crossing we recommend, pulled out of the guides into one
-          honest shortlist. Prices are snapshot-checked at publish; commissions never change
+          honest shortlist. We never display fixed rates — partners reprice constantly — so each
+          card carries a budget tier and a live-rate slot instead. Commissions never change
           the picks.
         </p>
+        <PriceDisclaimer className="mt-4 max-w-2xl" />
       </section>
 
       <section aria-label="Tours and excursions" className="bg-sand/50 py-14">
@@ -68,7 +71,7 @@ export default function StaysPage() {
           <SectionHeading
             eyebrow="Viator Picks"
             title="Shore Excursions & Day Trips"
-            description="Nine excursions vetted against cruise port times and backpacking budgets — ratings are snapshots from live Viator listings."
+            description="Nine excursions vetted against cruise port times and backpacking budgets — every card links to Viator's live rates and availability."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {tours.map((tour) => (
@@ -83,7 +86,7 @@ export default function StaysPage() {
           <SectionHeading
             eyebrow="Booking.com Picks"
             title="Hotels & Port Stays"
-            description="Six properties on Booking.com's 10-point scale — port walks for embarkation mornings, neighborhood picks for everything else."
+            description="Six properties on Booking.com's 10-point scale — port walks for embarkation mornings, neighborhood picks for everything else. Rates live on Booking.com."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {stays.map((stay) => (

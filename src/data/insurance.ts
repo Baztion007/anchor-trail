@@ -3,10 +3,11 @@ import type { InsurancePlan } from "@/types/affiliate";
 /**
  * Travel insurance dataset.
  *
- * Three SafetyWing Nomad Insurance plans at the per-4-weeks price points we
- * verify at publish time. Policy terms change without notice — every card on
- * site should carry the disclosure that SafetyWing sets pricing and coverage,
- * not us. Flat data, CMS-swappable; keep ids stable.
+ * Three SafetyWing Nomad Insurance plans. The numeric `price` is an estimate
+ * anchor only — it renders as an "Est. from" figure next to a tier badge,
+ * never a fixed premium. SafetyWing sets live pricing and coverage at quote
+ * time, and every card on site carries that disclosure. Flat data,
+ * CMS-swappable; keep ids stable.
  */
 export const insurancePlans: InsurancePlan[] = [
   {
@@ -14,8 +15,7 @@ export const insurancePlans: InsurancePlan[] = [
     name: "Nomad Insurance Essential",
     partner: "safetywing",
     price: 56.1,
-    priceLabel: "$56.10",
-    periodLabel: "per 4 weeks · under 40",
+    periodLabel: "per 4 weeks · under 40 · estimate",
     medicalLimit: "Up to $250,000 emergency medical",
     deductibleLabel: "$100 deductible per claim",
     bestFor: "Backpackers & short cruise gaps",
@@ -32,8 +32,7 @@ export const insurancePlans: InsurancePlan[] = [
     name: "Nomad Insurance Essential (40–69)",
     partner: "safetywing",
     price: 102.1,
-    priceLabel: "$102.10",
-    periodLabel: "per 4 weeks · ages 40–69",
+    periodLabel: "per 4 weeks · ages 40–69 · estimate",
     medicalLimit: "Up to $250,000 emergency medical",
     deductibleLabel: "$100 deductible per claim",
     bestFor: "Older travelers & cruise add-on days",
@@ -50,8 +49,7 @@ export const insurancePlans: InsurancePlan[] = [
     name: "Nomad Insurance Complete",
     partner: "safetywing",
     price: 150.6,
-    priceLabel: "$150.60",
-    periodLabel: "per 4 weeks · under 40",
+    periodLabel: "per 4 weeks · under 40 · estimate",
     medicalLimit: "Up to $2,500,000 with trip interruption",
     deductibleLabel: "$0 deductible for emergency medical claims",
     bestFor: "Long cruises & remote regions",

@@ -14,6 +14,7 @@ import type { LucideIcon } from "lucide-react";
 import { useState, useSyncExternalStore } from "react";
 import type { FormEvent } from "react";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { budgetRates } from "@/data/budget";
 import { UnknownDestinationError, computeTripCost } from "@/lib/calculator";
 import { cn } from "@/lib/utils";
@@ -352,9 +353,11 @@ export function TripCalculator() {
               {submitted.result.totalHigh.toLocaleString()}
             </p>
             <p className="mt-1 text-[13px] text-mist">
-              Total for {submitted.travelers} {submitted.travelers === 1 ? "traveler" : "travelers"}{" "}
+              Planning estimate for {submitted.travelers} {submitted.travelers === 1 ? "traveler" : "travelers"}{" "}
               over {submitted.days} {submitted.days === 1 ? "day" : "days"}, flights included.
             </p>
+
+            <PriceDisclaimer className="mt-3" />
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="rounded-md border border-sand bg-canvas p-4">
@@ -381,6 +384,10 @@ export function TripCalculator() {
             </div>
 
             <h3 className="mt-8 font-serif text-lg font-bold text-navy">Your Booking Checklist</h3>
+            <p className="mt-1 text-[13px] text-mist">
+              Ranges below are planning estimates — each partner confirms the live rate on its
+              own page before you commit to anything.
+            </p>
             <ol className="mt-3 space-y-3">
               {submitted.result.checklist.map((item) => {
                 const Icon = CHECKLIST_ICONS[item.category];

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/site/Logo";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { RestoreDisclosureLink } from "@/components/site/RestoreDisclosureLink";
 import { partnerList } from "@/data/partners";
 
@@ -95,6 +96,8 @@ export function Footer() {
             sponsored tags.
           </p>
         </div>
+
+        <PriceDisclaimer tone="dark" className="mt-6 border-t border-white/10 pt-5" />
       </div>
     </footer>
   );

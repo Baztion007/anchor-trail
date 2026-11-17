@@ -90,7 +90,7 @@ export const stays: Stay[] = [
       "Riverside hammock terrace",
     ],
     summary:
-      "A family-run guesthouse on the Thonburi bank where the orange-flag express boat reaches Saphan Taksin and the Skytrain in about twenty minutes. Rooms are simple, the riverside terrace does the heavy lifting, and at this price you can stretch a Bangkok stay into a full week without thinking.",
+      "A family-run guesthouse on the Thonburi bank where the orange-flag express boat reaches Saphan Taksin and the Skytrain in about twenty minutes. Rooms are simple, the riverside terrace does the heavy lifting, and at budget-tier rates you can stretch a Bangkok stay into a full week without thinking.",
     nearPort: false,
   },
   {

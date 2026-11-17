@@ -94,7 +94,7 @@ export function PickBox({ picks }: PickBoxProps) {
                   campaign="quick-pick"
                   className="mt-3 text-[13.5px]"
                 >
-                  Check live price
+                  Check Live Rates
                 </AffiliateLink>
               ) : null}
             </div>

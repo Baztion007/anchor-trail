@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { articles } from "@/data/articles";
 import { breadcrumbJsonLd, itemListJsonLd, jsonLdScript } from "@/lib/seo";
 import { BlogIndex } from "./BlogIndex";
@@ -8,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Travel Guides — Cruise & Backpacking Editorial",
     description:
-      "Honest cruise reviews, backpacking itineraries, and gear-and-insurance guides from Anchor & Trail — every price a snapshot we could actually book.",
+      "Honest cruise reviews, backpacking itineraries, and gear-and-insurance guides from Anchor & Trail — every pick anchored to live partner rates, never stale sticker prices.",
     alternates: { canonical: "/blog" },
   };
 }
@@ -48,9 +49,11 @@ export default function BlogIndexPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-mist">
         Field-tested cruise reviews, backpacking itineraries, and gear-and-insurance
-        breakdowns. Every price in these guides is a snapshot we could actually book at the
-        time of writing — nothing here is a paid placement.
+        breakdowns. Figures in these guides are dated research snapshots for planning — booking
+        cards always send you to the partner's live rate — and nothing here is a paid placement.
       </p>
+
+      <PriceDisclaimer className="mt-4 max-w-2xl" />
 
       <BlogIndex articles={articles} />
     </div>

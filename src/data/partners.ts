@@ -125,7 +125,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail earns a commission on cruise bookings made through CruiseDirect. Fare ranges and cabin availability shown in our tables are research snapshots; CruiseDirect always shows the live, bookable rate.",
+      "Anchor & Trail earns a commission on cruise bookings made through CruiseDirect. Fare tiers shown in our tables are planning estimates; CruiseDirect always shows the live, bookable rate.",
   },
   "expedia-cruises": {
     id: "expedia-cruises",
@@ -166,7 +166,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail earns commissions on hostel bookings made through Hostelworld. Social scores and nightly prices are snapshot data from Hostelworld listings at the time of writing.",
+      "Anchor & Trail earns commissions on hostel bookings made through Hostelworld. Social scores are snapshot data from Hostelworld listings; nightly prices are shown as budget-tier estimates only, and Hostelworld always displays the live rate.",
   },
   safetywing: {
     id: "safetywing",
@@ -206,7 +206,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail earns commissions on ground and ferry transport booked through 12Go across Asia and select long-haul routes. Schedules and price bands are snapshots; 12Go always shows live availability.",
+      "Anchor & Trail earns commissions on ground and ferry transport booked through 12Go across Asia and select long-haul routes. Schedules and fare tiers are planning estimates; 12Go always shows live availability and pricing.",
   },
   omio: {
     id: "omio",
@@ -225,7 +225,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail earns commissions on European train, bus, and ferry bookings made through Omio. Price bands shown are research snapshots; Omio always displays live operator pricing.",
+      "Anchor & Trail earns commissions on European train, bus, and ferry bookings made through Omio. Fare tiers shown are planning estimates; Omio always displays live operator pricing.",
   },
 };
 

@@ -4,6 +4,7 @@ import { HostelCard } from "@/components/affiliate/HostelCard";
 import { InsuranceBanner } from "@/components/affiliate/InsuranceBanner";
 import { TransitCard } from "@/components/affiliate/TransitCard";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { hostels } from "@/data/hostels";
 import { insurancePlans } from "@/data/insurance";
@@ -57,8 +58,9 @@ export default function BackpackingPage() {
             Budget Backpacking, Honestly Costed
           </h1>
           <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-canvas/80">
-            Routes built on dorm beds, street food and long legs booked early. Every filter below
-            works off honest all-in daily costs — see exactly what a $30-a-day world buys.
+            Routes built on dorm beds, street food and long legs booked early. Every filter
+            below works off honest all-in daily costs — see what a shoestring daily budget
+            genuinely buys, then let partners quote the live rate.
           </p>
           <ul
             aria-label="What this page covers"
@@ -82,6 +84,10 @@ export default function BackpackingPage() {
         tours={BACKPACKING_TOURS}
         hostels={hostels}
       />
+
+      <div className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+        <PriceDisclaimer />
+      </div>
 
       <section aria-label="Cross-border transit" className="bg-sand/50 py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

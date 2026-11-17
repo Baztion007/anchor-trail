@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import type { HostelCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
+import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
+import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
+import { formatEstimateFrom, hostelTier } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 type RoomType = "dorm" | "private";
@@ -20,6 +23,7 @@ const ROOM_OPTIONS: { value: RoomType; label: string }[] = [
 export function HostelCard({ hostel }: HostelCardProps) {
   const [roomType, setRoomType] = useState<RoomType>("dorm");
   const nightly = roomType === "dorm" ? hostel.dormPrice : hostel.privatePrice;
+  const tier = hostelTier(hostel, roomType);
 
   return (
     <article className="rounded-lg border bg-paper p-5 motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-200 ease-out">
@@ -67,9 +71,12 @@ export function HostelCard({ hostel }: HostelCardProps) {
         </div>
       </fieldset>
 
-      <p className="mt-4 flex flex-wrap items-baseline gap-x-1.5">
-        <span className="font-serif text-2xl font-bold text-moss">{`$${nightly}`}</span>
-        <span className="text-[13px] text-mist">/night</span>
+      <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+        <PriceTierBadge tier={tier} />
+        <span className="font-serif text-lg font-bold text-moss">
+          {formatEstimateFrom(nightly, hostel.currency)}
+        </span>
+        <span className="text-[13px] text-mist">/night · estimate</span>
       </p>
       <p className="mt-1 text-[13px] text-mist">
         {`${hostel.rating} · ${hostel.reviewCount.toLocaleString("en-US")} Hostelworld reviews`}
@@ -84,13 +91,17 @@ export function HostelCard({ hostel }: HostelCardProps) {
         ))}
       </ul>
 
+      <div className="mt-3">
+        <LivePriceWidget compact />
+      </div>
+
       <div className="mt-4">
         <AffiliateLink
           partner="hostelworld"
           destination={`${hostel.city}, ${hostel.country}`}
           campaign="hostel-card"
         >
-          See Beds on Hostelworld
+          Check Availability
         </AffiliateLink>
       </div>
     </article>

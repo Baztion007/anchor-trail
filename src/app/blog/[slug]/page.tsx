@@ -10,6 +10,7 @@ import { FaqAccordion } from "@/components/blog/FaqAccordion";
 import { PickBox } from "@/components/blog/PickBox";
 import { Toc } from "@/components/blog/Toc";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { articles, getArticleBySlug, getRelatedArticles } from "@/data/articles";
 import {
@@ -169,6 +170,8 @@ export default async function ArticlePage({
       {/* Quick picks, right below the intro */}
       <PickBox picks={article.picks} />
 
+      <PriceDisclaimer className="mb-2 max-w-2xl" />
+
       {/* Two-column: article body + sticky sidebar */}
       <div className="grid gap-10 lg:grid-cols-[minmax(0,68fr)_minmax(0,32fr)]">
         <div className="min-w-0">
@@ -256,8 +259,8 @@ export default async function ArticlePage({
                     Book a port hotel
                   </h3>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-mist">
-                    Morning embarkation is stressful enough. Booking.com rates within walking
-                    distance of the terminal start around $180.
+                    Morning embarkation is stressful enough. Booking.com holds live rates for
+                    port-district rooms — check availability for your dates.
                   </p>
                   <AffiliateLink
                     partner="booking"
@@ -278,8 +281,9 @@ export default async function ArticlePage({
                     Insure the trip
                   </h3>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-mist">
-                    SafetyWing Nomad Insurance covers backpacking profiles from about $56 per 4
-                    weeks — buy while abroad, cancel anytime.
+                    SafetyWing Nomad Insurance covers backpacking profiles at the budget tier
+                    of monthly travel cover — buy while abroad, cancel anytime. Live premiums
+                    are quoted on their site.
                   </p>
                   <AffiliateLink
                     partner="safetywing"

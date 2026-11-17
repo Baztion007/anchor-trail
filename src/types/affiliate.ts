@@ -75,15 +75,23 @@ export interface Deal {
   badge: string;
   destination: string;
   region: string;
+  /**
+   * Estimate anchor for the "Est. from" line and tier badge. NEVER render
+   * this as a fixed price — booking partners hold the live rate.
+   */
   priceFrom: number;
   currency: "USD";
   priceUnit: "per person" | "per day" | "per night";
   duration: string;
-  /** Approximate all-in daily cost used in comparisons */
+  /**
+   * Approximate all-in daily cost. Drives the budget-tier badge and the
+   * hub filter bands; not displayed as an exact figure on cards.
+   */
   dailyCost: number;
   summary: string;
   /** Exactly three key inclusions shown on the card */
   inclusions: [string, string, string];
+  /** Booking CTA — always "Check Live Rates" or "Check Availability". */
   ctaText: string;
   cruiseLine?: string;
   ship?: string;
@@ -99,6 +107,7 @@ export interface Tour {
   durationHours: number;
   rating: number;
   reviewCount: number;
+  /** Estimate anchor for the "Est. from" chip — never a fixed price. */
   priceFrom: number;
   currency: "USD";
   summary: string;
@@ -113,6 +122,7 @@ export interface Stay {
   tier: "luxury" | "budget";
   rating: number;
   reviewCount: number;
+  /** Estimate anchor for the "Est. from" line — never a fixed price. */
   priceFrom: number;
   currency: "USD";
   perks: string[];
@@ -126,6 +136,7 @@ export interface Hostel {
   name: string;
   city: string;
   country: string;
+  /** Estimate anchors for the dorm/private toggle — never fixed prices. */
   dormPrice: number;
   privatePrice: number;
   currency: "USD";
@@ -141,8 +152,8 @@ export interface InsurancePlan {
   id: string;
   name: string;
   partner: PartnerId;
+  /** Estimate anchor rendered as "Est. from" — SafetyWing holds live pricing. */
   price: number;
-  priceLabel: string;
   periodLabel: string;
   medicalLimit: string;
   deductibleLabel: string;
@@ -158,6 +169,10 @@ export interface TransitRoute {
   partner: "twelve-go" | "omio";
   modes: string[];
   durationLabel: string;
+  /**
+   * Research band powering the fare-tier badge and budget tooling. Displayed
+   * only as a tier — the partner always shows the live fare.
+   */
   priceLow: number;
   priceHigh: number;
   currency: "USD";
@@ -170,6 +185,7 @@ export interface CabinRate {
   id: string;
   cabin: string;
   occupancy: string;
+  /** Estimate anchor for the fare-tier column — never a fixed fare. */
   price: number;
   currency: "USD";
   per: "person" | "cabin";
