@@ -78,6 +78,9 @@ export interface Deal {
   /**
    * Estimate anchor for the "Est. from" line and tier badge. NEVER render
    * this as a fixed price — booking partners hold the live rate.
+   * CRUISE deals: per-person fare (priceUnit "per person"). BACKPACKING
+   * deals: all-in per-day anchor, kept equal to dailyCost (priceUnit
+   * "per day") — never the trip total, which is not a bookable price.
    */
   priceFrom: number;
   currency: "USD";
@@ -85,7 +88,9 @@ export interface Deal {
   duration: string;
   /**
    * Approximate all-in daily cost. Drives the budget-tier badge and the
-   * hub filter bands; not displayed as an exact figure on cards.
+   * hub filter bands; not displayed as an exact figure on cards. Cruise
+   * deals: round(priceFrom / nights), matching the articles' fare-basis
+   * math. Backpacking deals: equal to priceFrom.
    */
   dailyCost: number;
   summary: string;

@@ -5,6 +5,7 @@ import { StyleProvider } from "@/components/site/StyleProvider";
 import { DisclosureBar } from "@/components/site/DisclosureBar";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { AffiliateConfigCheck } from "@/components/site/AffiliateConfigCheck";
 import { SITE, jsonLdScript, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 const playfair = Playfair_Display({
@@ -38,11 +39,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     title: "Anchor & Trail — Luxury Cruises & Budget Backpacking, Honestly Compared",
     description: SITE.description,
+    images: [
+      {
+        url: "/images/og-default.png",
+        width: 1344,
+        height: 768,
+        alt: "A cruise ship at anchor offshore while a backpacker stands on a golden coastal trail at dusk",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     site: SITE.twitter,
     creator: SITE.twitter,
+    images: ["/images/og-default.png"],
   },
   robots: {
     index: true,
@@ -81,6 +91,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </StyleProvider>
+        {/* Owner-only (?affiliate-check=1) credential audit — renders null for visitors. */}
+        <AffiliateConfigCheck />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

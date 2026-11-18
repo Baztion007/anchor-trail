@@ -9,6 +9,15 @@ import type { Deal } from "@/types/affiliate";
  * never rendered as a fixed price. Booking partners always show the live rate.
  * Keep ids stable across edits: article blocks and section pages reference
  * deals by id.
+ *
+ * Anchor semantics per vertical (keep them aligned or the cards lie):
+ * - CRUISE deals: priceFrom = per-person fare, priceUnit = "per person";
+ *   dailyCost = round(priceFrom / nights), matching the fare-basis math the
+ *   cruise comparison article documents ("fares divided by nights").
+ * - BACKPACKING deals: priceFrom = all-in PER-DAY anchor (kept equal to
+ *   dailyCost), priceUnit = "per day". The trip total is NOT an anchor — it
+ *   describes a route estimate, not a bookable package, so it must never be
+ *   labeled "per day" on the card.
  */
 export const deals: Deal[] = [
   {
@@ -23,7 +32,8 @@ export const deals: Deal[] = [
     currency: "USD",
     priceUnit: "per person",
     duration: "14 days · 9 ports",
-    dailyCost: 560,
+    // 8999 / 14 nights, per the article's documented fare-basis method.
+    dailyCost: 643,
     summary:
       "Viking includes a shore excursion in all nine ports, from Tallinn's walled old town to a Helsinki Design District walk, so the headline fare covers most of what other lines charge for onboard. One ship, no casino, no kids' club, and long Baltic summer evenings that make the sea days feel short.",
     inclusions: [
@@ -47,7 +57,9 @@ export const deals: Deal[] = [
     currency: "USD",
     priceUnit: "per person",
     duration: "11 nights · 7 ports",
-    dailyCost: 920,
+    // 11499 / 11 nights — the article separately notes an effective ~$920/day
+    // once the bundled first-class air is valued; the anchor stays fare-based.
+    dailyCost: 1045,
     summary:
       "Regent bundles first-class air, a pre-cruise hotel night, unlimited shore excursions, gratuities, and every pour onboard into one quoted fare — the closest thing to true all-inclusive that survives a look at your folio. Seven Seas Grandeur launched in 2023 and Iberia sailings typically sell out close to a year ahead.",
     inclusions: [
@@ -71,7 +83,8 @@ export const deals: Deal[] = [
     currency: "USD",
     priceUnit: "per person",
     duration: "7 nights · round-trip Seattle",
-    dailyCost: 380,
+    // 2799 / 7 nights — matches the "about $400 a day in fare" article math.
+    dailyCost: 400,
     summary:
       "An Edge-class ship on the Alaska run is unusual — Celebrity normally keeps Beyond in the Caribbean — so this round-trip Seattle itinerary pairs newer hardware with cheap domestic flights. The Endicott Arm and Dawes Glacier day is the scenic anchor, and balcony fares at this level are fair math for a 2026 sailing.",
     inclusions: [
@@ -93,7 +106,9 @@ export const deals: Deal[] = [
     // region labels like "Thailand & Cambodia" resolve to a 404 there.
     destination: "Bangkok to Siem Reap",
     region: "Southeast Asia",
-    priceFrom: 1475,
+    // Per-day anchor, not the ~$1,475 trip total — the card renders this as
+    // "Est. from $38 per day", so labeling a trip total "per day" would lie.
+    priceFrom: 38,
     currency: "USD",
     priceUnit: "per day",
     duration: "21 days · 5 stops",
@@ -117,7 +132,8 @@ export const deals: Deal[] = [
     // the loop's flagship leg is named here and in the card copy.
     destination: "Split to Dubrovnik",
     region: "Balkans",
-    priceFrom: 690,
+    // Per-day anchor, not the ~$690 trip total (see route semantics above).
+    priceFrom: 32,
     currency: "USD",
     priceUnit: "per day",
     duration: "14 days · 4 countries",
@@ -139,7 +155,8 @@ export const deals: Deal[] = [
     badge: "Long-Haul Pick",
     destination: "Cartagena to Cusco",
     region: "South America",
-    priceFrom: 1890,
+    // Per-day anchor, not the ~$1,890 trip total (see route semantics above).
+    priceFrom: 46,
     currency: "USD",
     priceUnit: "per day",
     duration: "28 days · 2 countries",

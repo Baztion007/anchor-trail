@@ -140,6 +140,9 @@ const internalRoutes = [
   "/stays",
   "/calculator",
   "/disclosure",
+  "/privacy",
+  // Owner-only credential audit endpoint (no-store JSON)
+  "/api/affiliate-status",
   ...articles.map((a) => `/blog/${a.slug}`),
   "/sitemap.xml",
   "/robots.txt",

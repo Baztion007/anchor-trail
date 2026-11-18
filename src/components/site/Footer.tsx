@@ -78,7 +78,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className={`block py-1.5 ${footerLink}`}>
+                <Link href="/privacy" className={`block py-1.5 ${footerLink}`}>
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/disclosure#standards" className={`block py-1.5 ${footerLink}`}>
                   Editorial Standards
                 </Link>
               </li>

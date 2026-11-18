@@ -37,6 +37,10 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    // Sandbox scaffolding outside the app — not built, not shipped.
+    "examples",
+    "skills",
+    "tests"
   ]
 }

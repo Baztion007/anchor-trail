@@ -1,4 +1,5 @@
 import { budgetRates } from "@/data/budget";
+import { getInsurancePlanById } from "@/data/insurance";
 import type {
   ChecklistItem,
   TripCostInput,
@@ -19,6 +20,24 @@ export class UnknownDestinationError extends Error {
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, Math.round(value)));
+}
+
+const ESSENTIAL_PLAN_ID = "ins-essential-under-39";
+
+/**
+ * Insurance checklist copy. The per-4-weeks anchor derives from
+ * data/insurance.ts so the calculator and the insurance cards can never
+ * quote different figures. Falls back to copy without a number if the
+ * dataset shape ever changes.
+ */
+function insuranceCopyFor(days: number): string {
+  const plan = getInsurancePlanById(ESSENTIAL_PLAN_ID);
+  const per4Weeks = plan ? Math.round(plan.price) : null;
+  const anchor =
+    per4Weeks !== null
+      ? `from roughly $${per4Weeks.toLocaleString("en-US")} per 4 weeks for travelers under 40 (estimate)`
+      : "at a monthly rolling rate for travelers under 40 (estimate)";
+  return `SafetyWing Nomad Insurance covers this trip profile ${anchor}, including emergency medical and evacuation. For a ${days}-day trip, that math almost always beats the airline checkout upsell.`;
 }
 
 /**
@@ -96,7 +115,9 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
       category: "insurance",
       partner: "safetywing",
       heading: "Insure the trip itself",
-      copy: `SafetyWing Nomad Insurance covers this trip profile from roughly $56 per 4 weeks for travelers under 40 (estimate), including emergency medical and evacuation. For a ${days}-day trip, that math almost always beats the airline checkout upsell.`,
+      // Price anchor comes from the insurance dataset (single source of
+      // truth) — never re-hardcode it here or the two will drift apart.
+      copy: insuranceCopyFor(days),
       cta: "Get a quick quote",
       link: {
         partner: "safetywing",
