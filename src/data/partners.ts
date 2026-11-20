@@ -16,6 +16,10 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  * - Omio / CruiseDirect / Expedia: deep-link search URLs require internal
  *   IDs or are bot-gated; CTAs land on their canonical hub pages instead,
  *   with the route context preserved in utm_campaign.
+ * - Viator: the working free-text search URL is /searchResults/all?text=...
+ *   (camelCase path + "/all" sub-segment). The bare /searchresults path
+ *   renders Viator's 404 page — that was the cause of the "Shore
+ *   Excursions" 404 reports.
  * - Travelpayouts: tp.media/r needs a real marker; when only the demo
  *   fallback is configured we route to travelpayouts.com so links never 404.
  */
@@ -95,8 +99,14 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
     id: "viator",
     name: "Viator",
     network: "Viator (Tripadvisor) affiliate program",
-    baseUrl: "https://www.viator.com/searchresults",
+    // Verified live pattern (Nov 2025): free-text search lives at
+    // /searchResults/all?text=<query>&searchAll=true — mirrors what
+    // Viator's own search box produces. The lowercase /searchresults
+    // path is dead and 404s. Partner-program links additionally carry
+    // pid/mcid/uid; mc_id below is the site-wide channel tag.
+    baseUrl: "https://www.viator.com/searchResults/all",
     tracking: {
+      searchAll: "true",
       mc_id: env("NEXT_PUBLIC_VIATOR_MC", "at-demo"),
       utm_medium: "affiliate",
     },
