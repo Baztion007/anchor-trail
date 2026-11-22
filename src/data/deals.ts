@@ -24,7 +24,14 @@ export const deals: Deal[] = [
     id: "deal-viking-baltic",
     title: "Viking Homelands: 14 Days from Bergen to Copenhagen",
     vertical: "cruise",
-    partner: "cruisedirect",
+    // Booking partner switched to Expedia Cruises (Nov 2026): CruiseDirect's
+    // origin was serving 504 gateway timeouts behind its Cloudflare challenge,
+    // so every "Check Live Rates" click died. Flip back to "cruisedirect"
+    // once their infra stabilizes and real NEXT_PUBLIC_CD_REF credentials are
+    // configured (network redirect bypasses the wall). The /disclosure page
+    // already documents that we compare CruiseDirect and Expedia Cruises
+    // fares independently, so this swap needs no copy change.
+    partner: "expedia-cruises",
     badge: "Editor's Choice",
     destination: "The Baltic Sea",
     region: "Northern Europe",
@@ -75,7 +82,9 @@ export const deals: Deal[] = [
     id: "deal-celebrity-alaska",
     title: "Celebrity Beyond: Alaska Glacier Route from Seattle",
     vertical: "cruise",
-    partner: "cruisedirect",
+    // See deal-viking-baltic: CruiseDirect origin 504s; booking routed to
+    // Expedia Cruises until their infra recovers.
+    partner: "expedia-cruises",
     badge: "Best Value",
     destination: "Alaska Inside Passage",
     region: "Alaska",
