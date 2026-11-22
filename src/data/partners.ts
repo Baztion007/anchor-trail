@@ -16,6 +16,14 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  * - Omio / CruiseDirect / Expedia: deep-link search URLs require internal
  *   IDs or are bot-gated; CTAs land on their canonical hub pages instead,
  *   with the route context preserved in utm_campaign.
+ * - CruiseDirect: the whole domain sits behind an aggressive Cloudflare
+ *   managed challenge (cf-mitigated: challenge on every request, all paths,
+ *   with or without query params). Some visitors see the "Just a moment…"
+ *   interstitial and read it as a broken link — the URL itself is fine.
+ *   Once real CruiseDirect affiliate credentials are configured, prefer the
+ *   network's tracking redirect over the direct domain: network redirect
+ *   hosts are not Cloudflare-walled and improve both reliability and
+ *   attribution.
  * - Viator: the working free-text search URL is /searchResults/all?text=...
  *   (camelCase path + "/all" sub-segment). The bare /searchresults path
  *   renders Viator's 404 page — that was the cause of the "Shore
