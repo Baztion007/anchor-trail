@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { StyleProvider } from "@/components/site/StyleProvider";
@@ -93,6 +94,26 @@ export default function RootLayout({
         </StyleProvider>
         {/* Owner-only (?affiliate-check=1) credential audit — renders null for visitors. */}
         <AffiliateConfigCheck />
+        {/*
+          Travelpayouts "Drive" verification script — required for affiliate
+          account approval. Verbatim bootstrap from the Travelpayouts
+          dashboard ("Install Drive manually"); it appends the account loader
+          (tpembars.com/NjA1ODE3.js?t=605817, NjA1ODE3 = base64 of account id
+          605817) to <head> on every page. The WP-only attrs in the original
+          snippet (nowprocket, data-noptimize, data-cfasync, data-wpfc-render,
+          seraph-accel-crit, data-no-defer) are WordPress cache-plugin hints
+          and do nothing outside WP — the functional payload below is
+          identical. data-cmp-ab="2" is Travelpayouts' own consent flag.
+        */}
+        <Script id="travelpayouts-drive" strategy="afterInteractive" data-cmp-ab="2">
+          {`(function () {
+              var script = document.createElement("script");
+              script.async = 1;
+              script.setAttribute("data-cmp-ab","2");
+              script.src = 'https://tpembars.com/NjA1ODE3.js?t=605817';
+              document.head.appendChild(script);
+          })();`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
