@@ -82,11 +82,14 @@ export default function RootLayout({
           Impact Marketplace (Omio's affiliate network) site verification.
           Impact's crawler expects the exact tag with a `value=` attribute —
           Next.js's metadata API always emits `content=`, so this is rendered
-          directly; React 19 hoists <meta> into <head> during SSR.
+          directly; React 19 hoists <meta> into <head> during SSR. React's
+          <meta> typings only declare `content`, so `value` is passed through
+          a JSX spread: React serializes it verbatim while TypeScript skips
+          excess-property checks on spreads.
         */}
         <meta
           name="impact-site-verification"
-          value="743bc849-54aa-4f79-8d89-975bb46a6ba3"
+          {...{ value: "743bc849-54aa-4f79-8d89-975bb46a6ba3" }}
         />
         <a
           href="#main-content"
