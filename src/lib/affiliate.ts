@@ -21,6 +21,13 @@ const AFFILIATE_REL = "nofollow sponsored noopener noreferrer";
  */
 export function buildAffiliateLink(input: AffiliateLinkInput): string {
   const partner = partners[input.partner];
+
+  // Verbatim shortlinks (tpx.lu etc.): attribution lives in the redirect path
+  // and the redirector drops appended query params, so return it untouched.
+  if (partner.bareLink) {
+    return partner.buildUrl ? partner.buildUrl(input.destination) : partner.baseUrl;
+  }
+
   const rawUrl = partner.buildUrl ? partner.buildUrl(input.destination) : partner.baseUrl;
   const url = new URL(rawUrl);
 

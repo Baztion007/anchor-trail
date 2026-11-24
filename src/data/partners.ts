@@ -30,6 +30,21 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  *   Excursions" 404 reports.
  * - Travelpayouts: tp.media/r needs a real marker; when only the demo
  *   fallback is configured we route to travelpayouts.com so links never 404.
+ * - Klook: Travelpayouts-issued tpx.lu shortlink. Attribution (aid|pid) is
+ *   encoded in the redirect path — verified 302 →
+ *   affiliate.klook.com/redirect?aid=api|…|pid|784139. Appended query params
+ *   are ignored by the redirector, so Klook runs in bareLink mode and is sent
+ *   verbatim.
+ * - Expedia Cruises: Expedia Group affiliate tool link of the form
+ *   /affiliates/{affiliate-id}/{campaign-id}. The credential lives in the
+ *   PATH, so attribution survives even when the redirector drops appended
+ *   utm_* params (they are preserved through the first 301 hop).
+ *
+ * LIVE credentials below (SafetyWing ref, Expedia affiliate link, Klook
+ * shortlink) are baked in as the fallback value — affiliate IDs are not
+ * secrets (every outbound link exposes them in page source), and baking them
+ * keeps the site attributed with zero deployment-time env config. The
+ * NEXT_PUBLIC_* env vars still override any fallback at build/runtime.
  */
 const env = (key: string, fallback: string): string => {
   const value = process.env[key];
@@ -63,6 +78,7 @@ function parseRoute(destination: string): { from: string; to: string } | null {
 const DEMO_MARKER = "at.demo";
 
 const tpMarker = env("NEXT_PUBLIC_TP_MARKER", "");
+const swRef = env("NEXT_PUBLIC_SW_REF", "26643659");
 
 export const partners: Record<PartnerId, AffiliatePartner> = {
   travelpayouts: {
@@ -83,7 +99,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail is a Travelpayouts affiliate. We earn a commission when you book flights, hotels, or travel services through our Travelpayouts partner links (including WayAway and Airalo eSIM deep links). Rates and availability are set by the travel providers, never by us.",
+      "Anchor & Trail is a Travelpayouts affiliate. We earn a commission when you book flights, hotels, or travel services through our Travelpayouts partner links (including WayAway, Klook, and Airalo eSIM deep links). Rates and availability are set by the travel providers, never by us.",
   },
   booking: {
     id: "booking",
@@ -126,6 +142,21 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
     relationship:
       "Anchor & Trail earns commissions on excursions booked through Viator, a Tripadvisor company. Tour ratings shown on our site are snapshots pulled from Viator listings at the time of writing; live ratings may differ.",
   },
+  klook: {
+    id: "klook",
+    name: "Klook",
+    network: "Klook affiliate program (via Travelpayouts)",
+    // LIVE shortlink (Travelpayouts dashboard, Nov 2025). bareLink mode:
+    // attribution (aid api|13694|…|pid|784139) is encoded in the redirect
+    // path — verified 302 → affiliate.klook.com/redirect — and appended
+    // query params are ignored, so the link must go out verbatim.
+    baseUrl: env("NEXT_PUBLIC_KLOOK_LINK", "https://klook.tpx.lu/WprpOIa8"),
+    bareLink: true,
+    tracking: {},
+    dynamicParamMap: {},
+    relationship:
+      "Anchor & Trail earns commissions on attractions, transit passes, and day trips booked through Klook, delivered via the Travelpayouts network. Activity availability, pricing, and terms are set entirely by Klook and its operators.",
+  },
   cruisedirect: {
     id: "cruisedirect",
     name: "CruiseDirect",
@@ -148,12 +179,19 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
   "expedia-cruises": {
     id: "expedia-cruises",
     name: "Expedia Cruises",
-    network: "Expedia Cruises agency program",
-    // Expedia's cruise search uses bot-gated, session-dependent params — the
-    // /cruises hub is the stable, verified landing surface.
-    baseUrl: "https://www.expedia.com/cruises",
+    network: "Expedia Group affiliate program",
+    // LIVE affiliate link (Expedia Group affiliate tool, Nov 2025):
+    // /affiliates/{affiliate-id}/{campaign-id} — "anchor__trail/214". The
+    // credential lives in the PATH, so attribution survives even if the
+    // redirector drops appended utm_* params (they survive the first 301
+    // hop; verified Nov 2025). Sandbox/curl checks hit Expedia's bot wall
+    // (HTTP 429) — real browsers pass; click-test after deploy. Set
+    // NEXT_PUBLIC_EXPEDIA_AFF to a full link URL to swap campaigns.
+    baseUrl: env(
+      "NEXT_PUBLIC_EXPEDIA_AFF",
+      "https://expedia.com/affiliates/anchor__trail/214"
+    ),
     tracking: {
-      affiliation: env("NEXT_PUBLIC_EXPEDIA_AFF", "at-demo"),
       utm_medium: "affiliate",
     },
     dynamicParamMap: {
@@ -190,10 +228,16 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
     id: "safetywing",
     name: "SafetyWing",
     network: "SafetyWing ambassador program",
-    baseUrl: "https://safetywing.com",
+    // LIVE ambassador link (Nov 2025). The dashboard-generated link is
+    // safetywing.com/nomad-insurance?referenceID=<id>&utm_source=<id>
+    // &utm_medium=Ambassador — referenceID and utm_source must carry the
+    // SAME account id, and utm_medium must stay "Ambassador". Keep all
+    // three verbatim; the builder adds utm_campaign on top for our reports.
+    baseUrl: "https://safetywing.com/nomad-insurance",
     tracking: {
-      referenceID: env("NEXT_PUBLIC_SW_REF", "at-demo"),
-      utm_medium: "affiliate",
+      referenceID: swRef,
+      utm_source: swRef,
+      utm_medium: "Ambassador",
     },
     dynamicParamMap: {
       campaign: "utm_campaign",
@@ -251,6 +295,7 @@ export const partnerList: AffiliatePartner[] = [
   partners.travelpayouts,
   partners.booking,
   partners.viator,
+  partners.klook,
   partners.cruisedirect,
   partners["expedia-cruises"],
   partners.hostelworld,

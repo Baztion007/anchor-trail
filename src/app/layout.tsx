@@ -78,6 +78,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${jakarta.variable}`}>
       <body className="flex min-h-screen flex-col bg-canvas font-sans text-ink antialiased">
+        {/*
+          Impact Marketplace (Omio's affiliate network) site verification.
+          Impact's crawler expects the exact tag with a `value=` attribute —
+          Next.js's metadata API always emits `content=`, so this is rendered
+          directly; React 19 hoists <meta> into <head> during SSR.
+        */}
+        <meta
+          name="impact-site-verification"
+          value="743bc849-54aa-4f79-8d89-975bb46a6ba3"
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-navy focus:px-4 focus:py-2 focus:text-canvas focus:outline-2 focus:outline-offset-2 focus:outline-gold"

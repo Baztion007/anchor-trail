@@ -8,6 +8,7 @@ export type PartnerId =
   | "travelpayouts"
   | "booking"
   | "viator"
+  | "klook"
   | "cruisedirect"
   | "expedia-cruises"
   | "hostelworld"
@@ -30,6 +31,13 @@ export interface AffiliatePartner {
   baseUrl: string;
   /** Static query params always appended (affiliate id, medium, etc.) */
   tracking: Record<string, string>;
+  /**
+   * Verbatim-link mode for redirector shortlinks (e.g. Travelpayouts-issued
+   * tpx.lu links): the full attribution is encoded in the redirect PATH and
+   * the redirector ignores appended query params, so the builder returns the
+   * URL untouched — no utm_source/utm_campaign/sub-id additions.
+   */
+  bareLink?: boolean;
   /**
    * Partner-specific URL builder. When present it receives the raw destination
    * string and returns the full pre-tracking URL (path + core query params).

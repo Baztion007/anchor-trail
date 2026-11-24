@@ -21,7 +21,11 @@ const TABS: SearchTab[] = [
   {
     id: "cruises",
     label: "Find Cruises",
-    partner: "cruisedirect",
+    // CruiseDirect's origin kept 504-ing behind its Cloudflare challenge
+    // (see deal-viking-baltic in data/deals.ts), so this tab routes to the
+    // LIVE Expedia Group affiliate link instead. Flip back to "cruisedirect"
+    // once their infra stabilizes and a real NEXT_PUBLIC_CD_REF is configured.
+    partner: "expedia-cruises",
     cta: "Search Cruises",
     placeholder: "Cruise region or port (e.g. Mediterranean)",
     tone: "navy",
