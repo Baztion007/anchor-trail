@@ -2,8 +2,9 @@ import Link from "next/link";
 import type { AuthorCardProps } from "@/types/affiliate";
 
 /**
- * E-E-A-T author byline block with gradient monogram avatar and a link to
- * the author's guide hub. `compact` drops the bio for footer placements.
+ * E-E-A-T author byline block with gradient monogram avatar. The name links
+ * to the resolvable /about author profile (rel=author); a secondary link
+ * lists the author's guides. `compact` drops the bio for tight placements.
  */
 export function AuthorCard({ author, compact = false }: AuthorCardProps) {
   const firstName = author.name.split(" ")[0];
@@ -19,7 +20,15 @@ export function AuthorCard({ author, compact = false }: AuthorCardProps) {
         </div>
         <div className="min-w-0">
           <p className="eyebrow text-gold-ink">{author.role}</p>
-          <p className="mt-1 font-serif text-lg font-bold text-navy">{author.name}</p>
+          <p className="mt-1 font-serif text-lg font-bold text-navy">
+            <Link
+              href="/about"
+              rel="author"
+              className="underline-offset-4 hover:underline hover:text-gold-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy motion-safe:transition-colors motion-safe:duration-200 ease-out"
+            >
+              {author.name}
+            </Link>
+          </p>
           <p className="mt-1 text-[12.5px] text-mist">{author.credentials}</p>
           {compact ? null : (
             <p className="mt-2 text-sm leading-relaxed text-ink/80">{author.bio}</p>

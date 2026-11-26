@@ -12,6 +12,8 @@ const EXPLORE_LINKS = [
   { href: "/calculator", label: "Trip Budget Calculator" },
 ];
 
+const FEED_URL = "/feed.xml";
+
 const footerLink =
   "text-sm font-semibold text-canvas/80 underline-offset-4 transition-colors duration-150 ease-out hover:text-gold-light hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
 
@@ -73,6 +75,11 @@ export function Footer() {
             <h2 className="eyebrow text-gold">Trust &amp; Legal</h2>
             <ul className="mt-4 space-y-1">
               <li>
+                <Link href="/about" className={`block py-1.5 ${footerLink}`}>
+                  About the Author
+                </Link>
+              </li>
+              <li>
                 <Link href="/disclosure" className={`block py-1.5 ${footerLink}`}>
                   Full Affiliate Disclosure
                 </Link>
@@ -86,6 +93,15 @@ export function Footer() {
                 <Link href="/disclosure#standards" className={`block py-1.5 ${footerLink}`}>
                   Editorial Standards
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={FEED_URL}
+                  type="application/rss+xml"
+                  className={`block py-1.5 ${footerLink}`}
+                >
+                  RSS Feed
+                </a>
               </li>
               <li className="py-1.5">
                 <RestoreDisclosureLink />

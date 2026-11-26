@@ -17,6 +17,7 @@ export function absoluteUrl(path: string): string {
 export function websiteJsonLd(): Record<string, unknown> {
   return {
     "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
     name: SITE.name,
     url: SITE.url,
     description: SITE.description,
@@ -37,6 +38,7 @@ export function organizationJsonLd(): Record<string, unknown> {
       "@type": "Person",
       name: siteAuthor.name,
       jobTitle: siteAuthor.role,
+      url: absoluteUrl("/about"),
     },
   };
 }
@@ -55,6 +57,10 @@ export function articleJsonLd(article: Article, canonicalPath: string): Record<s
       name: article.author.name,
       jobTitle: article.author.role,
       description: article.author.credentials,
+      // E-E-A-T: point the author entity at its resolvable /about profile so
+      // answer engines can attach credentials to the byline.
+      url: absoluteUrl("/about"),
+      sameAs: [absoluteUrl("/about")],
     },
     publisher: { "@id": absoluteUrl("/#organization") },
     mainEntityOfPage: absoluteUrl(canonicalPath),

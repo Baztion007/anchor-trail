@@ -142,6 +142,9 @@ export default async function ArticlePage({
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center rounded-full bg-sand px-3 py-1 text-[12.5px] font-semibold text-ink">
+            <time dateTime={article.datePublished}>Published {formatDate(article.datePublished)}</time>
+          </span>
+          <span className="inline-flex items-center rounded-full bg-sand px-3 py-1 text-[12.5px] font-semibold text-ink">
             <time dateTime={article.dateModified}>Last updated {formatDate(article.dateModified)}</time>
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-sand px-3 py-1 text-[12.5px] font-semibold text-ink">
@@ -163,7 +166,9 @@ export default async function ArticlePage({
         </p>
 
         <div className="mt-6 max-w-xl">
-          <AuthorCard author={article.author} compact />
+          {/* Full card (bio included): a visible author bio is a core E-E-A-T
+              signal for search and answer engines alike. */}
+          <AuthorCard author={article.author} />
         </div>
       </header>
 

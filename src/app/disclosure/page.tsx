@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { EDITORIAL_STANDARDS } from "@/data/editorial";
 import { partnerList } from "@/data/partners";
 import { breadcrumbJsonLd, jsonLdScript } from "@/lib/seo";
 
@@ -11,14 +12,6 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: "/disclosure" },
   };
 }
-
-const EDITORIAL_STANDARDS: string[] = [
-  "We book every review trip with our own money — no comped cabins, rooms, tours, or press rates.",
-  "We never display fixed prices. Listings carry budget-tier badges and clearly labeled planning estimates; the partner you book with always shows the live, bookable rate.",
-  "No partner sees, previews, or edits our content before publication — not a sentence, not a headline.",
-  "Good and bad findings are flagged with icons and text, never with color alone, so the verdict survives any screen or reader.",
-  "Corrections are made transparently: the fix is noted in the guide and the \u201clast updated\u201d date always reflects it.",
-];
 
 export default function DisclosurePage() {
   return (

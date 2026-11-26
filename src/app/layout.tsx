@@ -60,7 +60,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/logo.svg",
+    icon: [
+      { url: "/logo.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -90,6 +94,18 @@ export default function RootLayout({
         <meta
           name="impact-site-verification"
           {...{ value: "743bc849-54aa-4f79-8d89-975bb46a6ba3" }}
+        />
+        {/*
+          RSS auto-discovery. Rendered directly (not via the metadata API)
+          because every page defines its own `alternates` for canonicals,
+          which would shallow-override the layout-level entry and drop this.
+          React 19 hoists <link> into <head> during SSR.
+        */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Anchor & Trail — Travel Guides"
+          href="/feed.xml"
         />
         <a
           href="#main-content"
