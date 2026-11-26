@@ -122,26 +122,14 @@ export default async function ArticlePage({
         ]}
       />
 
-      {/* Trust header — hero, title, freshness, FTC disclosure, author */}
-      <header className="mt-6">
-        <figure className="m-0">
-          <Image
-            src={article.heroImage}
-            alt={article.heroAlt}
-            width={1344}
-            height={768}
-            priority
-            sizes="(min-width:1024px) 66vw, 100vw"
-            className="aspect-[16/9] w-full rounded-xl object-cover"
-          />
-        </figure>
-
-        <p className="eyebrow mt-6 text-gold-ink">{article.category.replace("-", " & ")}</p>
+      {/* Trust header — title, freshness, direct answer, hero, FTC disclosure, author */}
+      <header className="mt-4">
+        <p className="eyebrow text-gold-ink">{article.category.replace("-", " & ")}</p>
         <h1 className="mt-2 max-w-3xl font-serif text-[clamp(1.9rem,3.5vw,2.75rem)] font-bold leading-tight text-navy">
           {article.title}
         </h1>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center rounded-full bg-sand px-3 py-1 text-[12.5px] font-semibold text-ink">
             <time dateTime={article.datePublished}>Published {formatDate(article.datePublished)}</time>
           </span>
@@ -154,8 +142,22 @@ export default async function ArticlePage({
           </span>
         </div>
 
-        {/* AEO surface: direct answer in the first screen, above the fold. */}
+        {/* AEO surface: direct answer in the first screen, above the fold.
+            Sits before the hero so the verdict is visible without scrolling
+            on every viewport (the 16:9 hero would push it below 900px). */}
         <QuickAnswer text={article.tldr} />
+
+        <figure className="m-0 mt-6">
+          <Image
+            src={article.heroImage}
+            alt={article.heroAlt}
+            width={1344}
+            height={768}
+            priority
+            sizes="(min-width:1024px) 66vw, 100vw"
+            className="aspect-[16/9] w-full rounded-xl object-cover"
+          />
+        </figure>
 
         <p className="mt-3 max-w-2xl text-[12.5px] text-mist">
           This guide contains affiliate links. If you book through them we may earn a
