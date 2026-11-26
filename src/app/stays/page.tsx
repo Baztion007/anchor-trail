@@ -6,8 +6,10 @@ import { StayCard } from "@/components/affiliate/StayCard";
 import { TourCard } from "@/components/affiliate/TourCard";
 import { TransitCard } from "@/components/affiliate/TransitCard";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { GuideTeasers } from "@/components/site/GuideTeasers";
 import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { articles } from "@/data/articles";
 import { hostels } from "@/data/hostels";
 import { insurancePlans } from "@/data/insurance";
 import { stays } from "@/data/hotels";
@@ -133,6 +135,18 @@ export default function StaysPage() {
           <InsuranceBanner plans={insurancePlans} heading="Insurance, Picked Honestly" />
         </div>
       </section>
+
+      <GuideTeasers
+        articles={articles.filter((article) =>
+          [
+            "best-mediterranean-luxury-cruises-2026",
+            "southeast-asia-backpacking-budget-itinerary",
+          ].includes(article.slug)
+        )}
+        eyebrow="From the Guides"
+        title="Where These Stays Fit the Trip"
+        description="The guides that put these port hotels, hostels, and excursions into full itinerary context — with the daily budgets to match."
+      />
 
       <script
         type="application/ld+json"

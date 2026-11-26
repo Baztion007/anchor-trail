@@ -3,8 +3,10 @@ import type { Metadata } from "next";
 import { StayCard } from "@/components/affiliate/StayCard";
 import { TourCard } from "@/components/affiliate/TourCard";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { GuideTeasers } from "@/components/site/GuideTeasers";
 import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { cruiseArticles } from "@/data/articles/cruise";
 import { deals } from "@/data/deals";
 import { stays } from "@/data/hotels";
 import { tours } from "@/data/tours";
@@ -113,6 +115,13 @@ export default function CruisesPage() {
           </div>
         </div>
       </section>
+
+      <GuideTeasers
+        articles={cruiseArticles}
+        eyebrow="From the Guides"
+        title="The Full Cost Breakdowns"
+        description="Per-day math, fare mechanics, and honest verdicts behind the fares recommended on this page."
+      />
 
       <script
         type="application/ld+json"

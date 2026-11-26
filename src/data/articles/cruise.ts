@@ -27,6 +27,8 @@ export const cruiseArticles: Article[] = [
     },
     excerpt:
       "We sailed and re-priced Viking, Regent Seven Seas, and Celebrity across the 2025 Mediterranean season to find out which luxury fare actually buys more. Real per-day math, an honest look at included excursions, and the two ports worth every euro ashore.",
+    tldr:
+      "Regent Seven Seas wins the all-inclusive brief (about $920/day once its bundled first-class air is valued), Celebrity Beyond is the value play (roughly $520/day all-in with packages), and Viking splits the difference at about $660/day with the best included shore tours. Book 11–12 months out; May, September, and early October price 20–35% below July.",
     author: siteAuthor,
     datePublished: "2025-11-04T09:00:00.000Z",
     dateModified: "2026-01-15T09:00:00.000Z",
@@ -278,6 +280,8 @@ export const cruiseArticles: Article[] = [
     },
     excerpt:
       "Viking and Regent sit on opposite sides of luxury's all-inclusive question, and their sticker fares are designed to confuse the comparison. We normalize both to a per-day figure and show where your money works harder in 2026.",
+    tldr:
+      "Viking's $8,999 Baltic fare and Regent's $11,499 Mediterranean fare are not comparable on sticker — normalized per day and valued for what's bundled, the true gap narrows to roughly 25%. Choose Viking for included excursions in every port and the lower all-in figure; choose Regent if you'd buy three or more tours and drink beyond meals anyway — then the bundle wins on math.",
     author: siteAuthor,
     datePublished: "2025-12-02T09:00:00.000Z",
     dateModified: "2026-01-18T09:00:00.000Z",

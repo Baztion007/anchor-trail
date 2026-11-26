@@ -25,6 +25,8 @@ export const backpackingArticles: Article[] = [
     },
     excerpt:
       "The real math behind three weeks in Thailand, Cambodia and Vietnam: weekly burn rates, $11 dorms, $25 sleeper buses, 220-baht ATM fees, and the four places every budget actually breaks.",
+    tldr:
+      "Yes — $1,400 covers three weeks in Thailand, Cambodia and Vietnam if your long-haul flight is booked separately and daily spend stays near $66. The weekly rates total about $990 before visas, one regional flight, and a buffer. The budget breaks after sunset, not at ticket counters; if discipline after 10 p.m. is doubtful, budget $1,700 and have a better trip.",
     author: siteAuthor,
     datePublished: "2025-11-18T09:00:00.000Z",
     dateModified: "2026-01-16T09:00:00.000Z",
@@ -253,6 +255,8 @@ export const backpackingArticles: Article[] = [
     },
     excerpt:
       "A tested two-week Split to Kotor route with $12 dorms in Bosnia, $12 buses to Kotor and the daily math that keeps Croatia's prices from wrecking a $30-a-day average.",
+    tldr:
+      "$30/day is a realistic shoulder-season average in the Balkans: Split → Mostar → Sarajevo → Kotor → Dubrovnik, with Bosnia's $18–22 days absorbing Croatia's $34–40 coast days. Order matters more than thrift — cheap country in the middle of the calendar. Travel May–June or September–October, when dorms and buses run 30–40% below July's doubled prices.",
     author: siteAuthor,
     datePublished: "2025-12-09T09:00:00.000Z",
     dateModified: "2026-01-14T09:00:00.000Z",

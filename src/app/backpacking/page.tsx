@@ -4,8 +4,10 @@ import { HostelCard } from "@/components/affiliate/HostelCard";
 import { InsuranceBanner } from "@/components/affiliate/InsuranceBanner";
 import { TransitCard } from "@/components/affiliate/TransitCard";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { GuideTeasers } from "@/components/site/GuideTeasers";
 import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { backpackingArticles } from "@/data/articles/backpacking";
 import { hostels } from "@/data/hostels";
 import { insurancePlans } from "@/data/insurance";
 import { transitRoutes } from "@/data/transit";
@@ -129,6 +131,13 @@ export default function BackpackingPage() {
           </div>
         </div>
       </section>
+
+      <GuideTeasers
+        articles={backpackingArticles}
+        eyebrow="From the Guides"
+        title="The Full Route Breakdowns"
+        description="Daily cost tables, booking tactics, and the honest math behind every route recommended above."
+      />
 
       <script
         type="application/ld+json"

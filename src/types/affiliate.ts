@@ -306,6 +306,12 @@ export interface Article {
     secondaryKeywords: string[];
   };
   excerpt: string;
+  /**
+   * Direct-answer TL;DR that answers the title question in the first screen.
+   * Rendered in a "Quick Answer" box above the intro — the single highest-
+   * leverage AEO surface (answer engines quote the first direct answer).
+   */
+  tldr: string;
   author: Author;
   datePublished: string;
   dateModified: string;

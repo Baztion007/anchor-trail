@@ -64,6 +64,8 @@ function articleToMarkdown(article: Article): string {
     `- Published: ${article.datePublished} — Last updated: ${article.dateModified}`,
     `- ${article.readingMinutes} min read — Category: ${article.category}`,
     "",
+    `TL;DR: ${article.tldr}`,
+    "",
     `> ${article.excerpt}`,
     "",
     body,

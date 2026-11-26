@@ -36,6 +36,7 @@ ${guides}
 
 ## About & trust
 - [About Maya Ellison](${absoluteUrl("/about")}): author biography, review methodology, and editorial standards
+- [Travel FAQ](${absoluteUrl("/faq")}): every question answered across the guides, collected on one page
 - [Affiliate Disclosure & Editorial Standards](${absoluteUrl("/disclosure")}): every affiliate partnership and exactly how the site earns money
 - [Privacy Policy](${absoluteUrl("/privacy")})
 

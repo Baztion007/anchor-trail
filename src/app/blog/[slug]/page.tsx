@@ -11,6 +11,7 @@ import { PickBox } from "@/components/blog/PickBox";
 import { Toc } from "@/components/blog/Toc";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
+import { QuickAnswer } from "@/components/blog/QuickAnswer";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { articles, getArticleBySlug, getRelatedArticles } from "@/data/articles";
 import {
@@ -152,6 +153,9 @@ export default async function ArticlePage({
             {article.readingMinutes} min read
           </span>
         </div>
+
+        {/* AEO surface: direct answer in the first screen, above the fold. */}
+        <QuickAnswer text={article.tldr} />
 
         <p className="mt-3 max-w-2xl text-[12.5px] text-mist">
           This guide contains affiliate links. If you book through them we may earn a

@@ -10,6 +10,7 @@ const EXPLORE_LINKS = [
   { href: "/blog", label: "Travel Guides" },
   { href: "/stays", label: "Excursions & Stays" },
   { href: "/calculator", label: "Trip Budget Calculator" },
+  { href: "/faq", label: "Travel FAQ" },
 ];
 
 const FEED_URL = "/feed.xml";
