@@ -1,7 +1,6 @@
 import { ArrowRight, Clock } from "lucide-react";
 import type { TransitCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
-import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
 import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { transitTier } from "@/lib/pricing";
 
@@ -36,9 +35,6 @@ export function TransitCard({ route }: TransitCardProps) {
         <span className="text-[12px]">{`via ${route.operator}`}</span>
       </p>
       <p className="mt-2 text-sm leading-relaxed text-mist">{route.summary}</p>
-      <div className="mt-3">
-        <LivePriceWidget compact />
-      </div>
       <div className="mt-4">
         <AffiliateLink
           partner={route.partner}

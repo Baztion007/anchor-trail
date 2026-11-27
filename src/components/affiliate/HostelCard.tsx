@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import type { HostelCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
-import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
 import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { formatEstimateFrom, hostelTier } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
@@ -19,7 +18,7 @@ const ROOM_OPTIONS: { value: RoomType; label: string }[] = [
 /**
  * Hostel card with an accessible dorm/private price toggle built on a native
  * radio group (arrow keys work, state is real form state). Ratings are
- * attributed to Hostelworld (the review source); booking goes through
+ * snapshot guest-review data on a 10-point scale; booking goes through
  * Expedia, which carries hostel inventory alongside hotels.
  */
 export function HostelCard({ hostel }: HostelCardProps) {
@@ -81,7 +80,7 @@ export function HostelCard({ hostel }: HostelCardProps) {
         <span className="text-[13px] text-mist">/night · estimate</span>
       </p>
       <p className="mt-1 text-[13px] text-mist">
-        {`${hostel.rating} · ${hostel.reviewCount.toLocaleString("en-US")} Hostelworld reviews`}
+        {`${hostel.rating} · ${hostel.reviewCount.toLocaleString("en-US")} guest reviews`}
       </p>
 
       <ul className="mt-3 space-y-1.5">
@@ -92,10 +91,6 @@ export function HostelCard({ hostel }: HostelCardProps) {
           </li>
         ))}
       </ul>
-
-      <div className="mt-3">
-        <LivePriceWidget compact />
-      </div>
 
       <div className="mt-4">
         <AffiliateLink

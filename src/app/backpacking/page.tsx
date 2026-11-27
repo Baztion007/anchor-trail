@@ -122,7 +122,7 @@ export default function BackpackingPage() {
             tone="moss"
             eyebrow="Social Stays"
             title="Dorms Worth the Bottom Bunk"
-            description="Hostelworld picks where the social score is earned, not marketed — curtained bunks, real kitchens, honest vibes."
+            description="Picks where the social score is earned, not marketed — curtained bunks, real kitchens, honest vibes."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {hostels.map((hostel) => (

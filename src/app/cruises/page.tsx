@@ -91,7 +91,7 @@ export default function CruisesPage() {
           <SectionHeading
             eyebrow="Pre-Cruise Hotels"
             title="Sleep Near the Terminal"
-            description="Booking.com properties within a taxi-free morning of embarkation — early-enough breakfast, luggage held while you sail, live rates on every card."
+            description="Guest-rated properties within a taxi-free morning of embarkation — early-enough breakfast, luggage held while you sail, live rates on every card."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {PORT_HOTELS.map((stay) => (

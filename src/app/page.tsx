@@ -45,7 +45,7 @@ const COMPARISON_ROWS: TableCell[][] = [
   [
     { text: "Accommodation partner" },
     { text: "Expedia port hotels, 8-min walks to terminals", tone: "neutral", icon: "minus" },
-    { text: "Hostelworld-rated social dorms at the budget tier", tone: "neutral", icon: "minus" },
+    { text: "Guest-rated social dorms at the budget tier", tone: "neutral", icon: "minus" },
   ],
   [
     { text: "Excursions" },

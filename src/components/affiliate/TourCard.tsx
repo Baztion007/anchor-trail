@@ -1,7 +1,6 @@
 import { Clock } from "lucide-react";
 import type { TourCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
-import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
 import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { formatEstimateFrom, tourTier } from "@/lib/pricing";
 
@@ -57,9 +56,6 @@ export function TourCard({ tour, variant = "full" }: TourCardProps) {
         </span>
       </div>
       <p className="mt-3 text-sm leading-relaxed text-mist">{tour.summary}</p>
-      <div className="mt-3">
-        <LivePriceWidget compact />
-      </div>
       <div className="mt-4">
         <AffiliateLink
           partner="go-city"

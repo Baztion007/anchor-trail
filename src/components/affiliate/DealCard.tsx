@@ -3,7 +3,6 @@
 import { Check, Clock } from "lucide-react";
 import type { DealCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
-import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
 import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { getPartner } from "@/data/partners";
 import { dealTier, formatEstimateFrom } from "@/lib/pricing";
@@ -124,11 +123,6 @@ export function DealCard({ deal, featured = false, dimmed = false }: DealCardWit
             </li>
           ))}
         </ul>
-      </div>
-
-      {/* Booking slot: live partner rates render here, never a cached fare */}
-      <div className="px-6">
-        <LivePriceWidget />
       </div>
 
       {/* Footer */}

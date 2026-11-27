@@ -1,13 +1,12 @@
 import { Check, MapPin } from "lucide-react";
 import type { StayCardProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
-import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
 import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { formatEstimateFrom, stayTier } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 /**
- * Booking.com stay card with luxury/budget tier treatment and port-walk info
+ * Expedia stay card with luxury/budget tier treatment and port-walk info
  * for cruise readers.
  */
 export function StayCard({ stay }: StayCardProps) {
@@ -31,7 +30,7 @@ export function StayCard({ stay }: StayCardProps) {
       <div className="mt-3">
         <span
           role="img"
-          aria-label={`Rated ${stay.rating} out of 10 on Booking.com`}
+          aria-label={`Rated ${stay.rating} out of 10 by guests`}
           className="inline-flex items-center rounded bg-navy px-2 py-1 text-[13px] font-bold text-canvas"
         >
           <span aria-hidden="true">{stay.rating}</span>
@@ -61,9 +60,6 @@ export function StayCard({ stay }: StayCardProps) {
           {`· ${stay.reviewCount.toLocaleString("en-US")}+ reviews`}
         </span>
       </p>
-      <div className="mt-3">
-        <LivePriceWidget compact />
-      </div>
       <div className="mt-4">
         <AffiliateLink
           partner="expedia"

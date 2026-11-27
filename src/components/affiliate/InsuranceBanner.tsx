@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Check, ShieldCheck } from "lucide-react";
 import type { InsuranceBannerProps } from "@/types/affiliate";
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
-import { LivePriceWidget } from "@/components/affiliate/LivePriceWidget";
 import { PriceTierBadge } from "@/components/affiliate/PriceTierBadge";
 import { formatEstimateFrom, insuranceTier } from "@/lib/pricing";
 
@@ -58,9 +57,6 @@ export function InsuranceBanner({ plans, heading }: InsuranceBannerProps) {
                 {`Best for: ${plan.bestFor}`}
               </span>
             </p>
-            <div className="mt-3">
-              <LivePriceWidget compact />
-            </div>
             <div className="mt-auto pt-4">
               <AffiliateLink
                 partner={plan.partner}

@@ -3,10 +3,9 @@ import type { Hostel } from "@/types/affiliate";
 /**
  * Hostels dataset.
  *
- * Six properties on Hostelworld's 10-point review scale with a social score
- * from 8.5 (fine, quiet) to 9.6 (bring earplugs anyway). Ratings are snapshot
- * data from Hostelworld listings and stay attributed to Hostelworld in the
- * copy; bookings route through Expedia since the Nov 2026 partner change.
+ * Six properties on a 10-point guest-review scale (snapshot data) with a
+ * social score from 8.5 (fine, quiet) to 9.6 (bring earplugs anyway).
+ * Bookings route through Expedia since the Nov 2026 partner change.
  * Prices are nightly, in USD, snapshot-checked at publish time. There is no
  * partner field on the Hostel type — the card component supplies it — so keep
  * the copy honest about what the money buys. Flat data, CMS-swappable.
@@ -73,7 +72,7 @@ export const hostels: Hostel[] = [
       "Ferry-port pickup map with local shortcuts",
     ],
     summary:
-      "Two streets from the Riva and the ferry port, this is where sail-week crews and indie backpackers end up on the same terrace in July — the 9.6 social score on Hostelworld is earned nightly. Dorms fill months ahead of regatta weeks, and the rooftop barbecues are the reason people rebook the following summer.",
+      "Two streets from the Riva and the ferry port, this is where sail-week crews and indie backpackers end up on the same terrace in July — the 9.6 social score is earned nightly. Dorms fill months ahead of regatta weeks, and the rooftop barbecues are the reason people rebook the following summer.",
   },
   {
     id: "hostel-sarajevo-bb",
@@ -94,7 +93,7 @@ export const hostels: Hostel[] = [
       "Honest local map of the War Tunnel bus",
     ],
     summary:
-      "A family-run bunk house at the edge of the old bazaar where the host pours Bosnian coffee the moment you arrive and walks you to the free walking tour meeting point himself. Quiet by design rather than by rule — most guests on Hostelworld are here for the history, not the happy hour.",
+      "A family-run bunk house at the edge of the old bazaar where the host pours Bosnian coffee the moment you arrive and walks you to the free walking tour meeting point himself. Quiet by design rather than by rule — most guests are here for the history, not the happy hour.",
   },
   {
     id: "hostel-medellin-social",

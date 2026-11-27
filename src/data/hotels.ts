@@ -3,11 +3,11 @@ import type { Stay } from "@/types/affiliate";
 /**
  * Hotel stays dataset.
  *
- * Six properties on Booking.com's 10-point review scale, chosen for port
- * proximity on cruise itineraries and neighborhood quality on backpacking
- * ones. There is intentionally no partner field on the Stay type — Booking.com
- * is implied editorially — so keep the copy mentioning the platform where it
- * matters. Structured as flat data for a straightforward CMS swap.
+ * Six properties on a 10-point guest-review scale (snapshot data), chosen for
+ * port proximity on cruise itineraries and neighborhood quality on backpacking
+ * ones. There is intentionally no partner field on the Stay type — bookings
+ * route through Expedia since the Nov 2026 partner change. Structured as flat
+ * data for a straightforward CMS swap.
  */
 export const stays: Stay[] = [
   {
@@ -27,7 +27,7 @@ export const stays: Stay[] = [
       "Blackout blinds and quiet-facing rooms",
     ],
     summary:
-      "On the Moll Adossat side of Port Vell, so embarkation morning is an eight-minute walk with your bags instead of a taxi gamble. The 6:30am breakfast, late checkout on cruise days, and a rooftop pool over the marina earn its 9.2 across 500-plus Booking.com reviews.",
+      "On the Moll Adossat side of Port Vell, so embarkation morning is an eight-minute walk with your bags instead of a taxi gamble. The 6:30am breakfast, late checkout on cruise days, and a rooftop pool over the marina earn its 9.2 across 500-plus guest reviews.",
     nearPort: true,
     walkToPort: "8-min walk to the cruise terminal at Moll Adossat",
   },
@@ -48,7 +48,7 @@ export const stays: Stay[] = [
       "Bike loan included in the rate",
     ],
     summary:
-      "Sits in the regenerated Nordhavn docklands, a 12-minute walk to the Oceankaj shuttle stop, with harbor-view rooms in the converted silo block. Booking.com reviewers rate the sauna and the breakfast breads; the metro into Nyhavn runs every few minutes from the door.",
+      "Sits in the regenerated Nordhavn docklands, a 12-minute walk to the Oceankaj shuttle stop, with harbor-view rooms in the converted silo block. Guests rate the sauna and the breakfast breads; the metro into Nyhavn runs every few minutes from the door.",
     nearPort: true,
     walkToPort: "12-min walk to Oceankaj cruise piers via shuttle stop",
   },
@@ -110,7 +110,7 @@ export const stays: Stay[] = [
       "Free parking for rental cars",
     ],
     summary:
-      "Stone-walled rooms in a restored Ottoman house on the east bank, close enough to Stari Most to hear the summer divers. The host family pours Bosnian coffee on arrival and will map out the Kravica Waterfall bus before you finish the cup — the reason it holds a 9.1 on Booking.com.",
+      "Stone-walled rooms in a restored Ottoman house on the east bank, close enough to Stari Most to hear the summer divers. The host family pours Bosnian coffee on arrival and will map out the Kravica Waterfall bus before you finish the cup — the reason it holds a 9.1 with guests.",
     nearPort: false,
   },
   {

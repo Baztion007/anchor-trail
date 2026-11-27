@@ -86,9 +86,9 @@ export default function StaysPage() {
       <section aria-label="Hotels and port stays" className="py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Booking.com Picks"
+            eyebrow="Guest-Rated Picks"
             title="Hotels & Port Stays"
-            description="Six properties on Booking.com's 10-point scale — port walks for embarkation mornings, neighborhood picks for everything else. Rates live on Booking.com."
+            description="Six properties on a 10-point guest-review scale — port walks for embarkation mornings, neighborhood picks for everything else. Live rates on every card."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {stays.map((stay) => (
@@ -102,7 +102,7 @@ export default function StaysPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tone="moss"
-            eyebrow="Hostelworld Picks"
+            eyebrow="Community-Rated Picks"
             title="Social Hostels, Vetted"
             description="Six hostels where the social score is earned nightly — from party-forward rooftops to family-run bunk houses."
           />
