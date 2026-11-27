@@ -159,7 +159,11 @@ export const deals: Deal[] = [
     id: "deal-colombia-peru",
     title: "Colombia to Peru: Caribbean Coast to Cusco",
     vertical: "backpacking",
-    partner: "travelpayouts",
+    // Travelpayouts was retired as a direct partner (Nov 2026) — its link
+    // landed on the network's own homepage. Flights and stays for this route
+    // now book through the LIVE Expedia Group affiliate link; see
+    // data/partners.ts expedia entry.
+    partner: "expedia",
     badge: "Long-Haul Pick",
     destination: "Cartagena to Cusco",
     region: "South America",
@@ -170,9 +174,9 @@ export const deals: Deal[] = [
     duration: "28 days · 2 countries",
     dailyCost: 46,
     summary:
-      "Start on the Caribbean in Cartagena, ride the coast down through Medellín, then take the Bogotá–Lima hop with WayAway cashback before the Sacred Valley legs out of Cusco. Hostel beds and day trips both sit at the backpacker-friendly tier, stretching 28 days into a genuinely long trip without the budget ever feeling fragile.",
+      "Start on the Caribbean in Cartagena, ride the coast down through Medellín, then take the Bogotá–Lima hop booked through Expedia before the Sacred Valley legs out of Cusco. Hostel beds and day trips both sit at the backpacker-friendly tier, stretching 28 days into a genuinely long trip without the budget ever feeling fragile.",
     inclusions: [
-      "WayAway flight cashback on the Bogotá–Lima hop",
+      "Bogotá–Lima flight hop booked via Expedia",
       "Budget-tier hostel stays in Medellín and Cusco",
       "Sacred Valley day trips at backpacker rates",
     ],

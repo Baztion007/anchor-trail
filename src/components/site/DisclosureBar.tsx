@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { SHOW_EVENT, STORAGE_KEY } from "@/components/site/disclosure-constants";
+import { STORAGE_KEY } from "@/components/site/disclosure-constants";
 
 /* ------------------------------------------------------------------ */
 /* External store: dismissed state persisted in localStorage           */
@@ -55,18 +55,11 @@ function setDismissed(next: boolean): void {
 
 /**
  * Persistent FTC affiliate disclosure bar (role="note").
- * Dismissal is stored in localStorage and can be restored from the footer
- * ("Show affiliate disclosure") via the at:disclosure-show event.
+ * Dismissal is stored in localStorage; the /disclosure page remains the
+ * always-available disclosure surface (linked from the footer).
  */
 export function DisclosureBar() {
   const dismissed = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-
-  // Footer restore control dispatches a window event; bridge it into the store.
-  useEffect(() => {
-    const onShow = () => setDismissed(false);
-    window.addEventListener(SHOW_EVENT, onShow);
-    return () => window.removeEventListener(SHOW_EVENT, onShow);
-  }, []);
 
   if (dismissed) return null;
 

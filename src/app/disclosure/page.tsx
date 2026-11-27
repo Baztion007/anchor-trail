@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Affiliate Disclosure — How Anchor & Trail Is Funded",
     description:
-      "How Anchor & Trail earns money: every affiliate partnership, our editorial standards, and the promise that we never accept paid placements or free trips.",
+      "The short version: when you book through our links, the partner pays us a commission and you pay the same price. Here is the full list of partners and our standards.",
     alternates: { canonical: "/disclosure" },
   };
 }
@@ -38,75 +38,72 @@ export default function DisclosurePage() {
         ]}
       />
 
-      <p className="eyebrow mt-6 text-gold-ink">— The Fine Print, In Plain Words —</p>
-      <h1 className="mt-2 font-serif text-[clamp(1.9rem,3.5vw,2.75rem)] font-bold leading-tight text-navy">
-        Affiliate Disclosure
-      </h1>
+      <div className="mx-auto mt-8 max-w-[68ch]">
+        <h1 className="font-serif text-[clamp(1.9rem,3.5vw,2.75rem)] font-bold leading-tight text-navy">
+          Affiliate Disclosure
+        </h1>
 
-      <div className="mt-5 max-w-[68ch] space-y-4 text-[15px] leading-relaxed text-ink/85">
-        <p>
-          Anchor &amp; Trail is an independent, reader-funded travel magazine. When you book a
-          cruise, a hotel, a tour, or an insurance policy through the links on this site, the
-          partner pays us a small commission — typically a low single-digit percentage of the
-          booking. The price you pay is exactly the same as booking direct: rates, availability,
-          and terms are set entirely by the partners, never by us.
-        </p>
-        <p>
-          Commission never buys a verdict. We do not accept paid placements, sponsored posts,
-          comped trips, or &ldquo;preferred partner&rdquo; edits, and no affiliate relationship
-          changes what we would recommend to a friend. When a deal is weak, we say so — those
-          flags are the point of the site.
-        </p>
-        <p className="text-[13.5px] text-mist">
-          Last updated <time dateTime="2026-01-15">Jan 15, 2026</time>.
-        </p>
-      </div>
+        <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-ink/85">
+          <p>
+            Anchor &amp; Trail is reader-supported. When you book a cruise, hotel,
+            tour, transfer, or insurance policy through a link on this site, the
+            partner pays us a small commission — and you pay exactly the same
+            price you would booking direct.
+          </p>
+          <p>
+            That is the entire business model. No paid placements, no sponsored
+            posts, no free trips.
+          </p>
+        </div>
 
-      <nav
-        aria-label="Disclosure sections"
-        className="mt-8 rounded-lg border border-sand bg-sand/50 p-5"
-      >
-        <h2 className="font-serif text-lg font-bold text-navy">Partner-by-partner</h2>
-        <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {partnerList.map((partner) => (
-            <li key={partner.id}>
-              <a
-                href={`#${partner.id}`}
-                className="inline-flex min-h-[44px] items-center text-[14px] font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy motion-safe:transition-colors motion-safe:duration-200 ease-out"
-              >
-                {partner.name}
-              </a>
+        <h2 className="mt-10 font-serif text-xl font-bold text-navy">
+          How it works
+        </h2>
+        <ul className="mt-4 space-y-3">
+          {[
+            "You never pay more. Commissions come out of the partner's margin, not out of your wallet.",
+            "We only feature partners we would book with ourselves. If a deal is weak, we say so — those flags are the point of the site.",
+            "Commissions never buy a verdict. Rankings, reviews, and recommendations are set by our research, never by the partners.",
+          ].map((line) => (
+            <li key={line} className="flex gap-3 text-[15px] leading-relaxed text-ink/85">
+              <span
+                aria-hidden="true"
+                className="mt-2 size-1.5 shrink-0 rounded-full bg-gold"
+              />
+              {line}
             </li>
           ))}
         </ul>
-      </nav>
 
-      {partnerList.map((partner) => (
-        <section
-          key={partner.id}
-          id={partner.id}
-          aria-labelledby={`${partner.id}-heading`}
-          className="mt-8 scroll-mt-24 border-t border-sand pt-8"
-        >
-          <h2 id={`${partner.id}-heading`} className="font-serif text-xl font-bold text-navy">
-            {partner.name}
-          </h2>
-          <p className="eyebrow mt-1.5 text-mist">{partner.network}</p>
-          <p className="mt-3 max-w-[68ch] text-[15px] leading-relaxed text-ink/85">
-            {partner.relationship}
-          </p>
-        </section>
-      ))}
-
-      <section
-        id="standards"
-        aria-labelledby="standards-heading"
-        className="mt-8 scroll-mt-24 border-t border-sand pt-8"
-      >
-        <h2 id="standards-heading" className="font-serif text-xl font-bold text-navy">
-          Editorial Standards
+        <h2 className="mt-10 font-serif text-xl font-bold text-navy">
+          Our current partners
         </h2>
-        <ul className="mt-4 max-w-[68ch] space-y-3">
+        <p className="mt-3 text-[15px] leading-relaxed text-ink/85">
+          Every partner we work with today, and what we earn from each:
+        </p>
+        <ul className="mt-4 divide-y divide-sand rounded-lg border border-sand bg-sand/40">
+          {partnerList.map((partner) => (
+            <li key={partner.id} id={partner.id} className="scroll-mt-24 p-4">
+              <p className="text-[15px] font-semibold text-navy">
+                {partner.name}
+                <span className="ml-2 text-[12px] font-medium font-sans text-mist">
+                  {partner.network}
+                </span>
+              </p>
+              <p className="mt-1.5 text-[14px] leading-relaxed text-ink/80">
+                {partner.relationship}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        <h2
+          id="standards"
+          className="mt-10 scroll-mt-24 font-serif text-xl font-bold text-navy"
+        >
+          Editorial standards
+        </h2>
+        <ul className="mt-4 space-y-3">
           {EDITORIAL_STANDARDS.map((standard) => (
             <li key={standard} className="flex gap-3 text-[15px] leading-relaxed text-ink/85">
               <span
@@ -117,7 +114,18 @@ export default function DisclosurePage() {
             </li>
           ))}
         </ul>
-      </section>
+
+        <p className="mt-8 text-[13.5px] text-mist">
+          Questions about any of this? Write to us via the{" "}
+          <a
+            href="/about"
+            className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+          >
+            about page
+          </a>
+          . Last updated <time dateTime="2026-11-27">Nov 27, 2026</time>.
+        </p>
+      </div>
     </div>
   );
 }

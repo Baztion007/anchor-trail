@@ -33,8 +33,15 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  * - Removed partners: Booking.com, Viator, Hostelworld, and 12Go were let go
  *   in the Nov 2026 roster change; their slots became Go City, Welcome
  *   Pickups, and Expedia (stays), and the Asia transit cards moved to Klook.
- * - Travelpayouts: tp.media/r needs a real marker; when only the demo
- *   fallback is configured we route to travelpayouts.com so links never 404.
+ * - Travelpayouts was retired as a DIRECT partner in the same pass (Nov
+ *   2026): with no marker configured its links landed on the network's own
+ *   homepage, which is an affiliate-marketing site rather than a bookable
+ *   travel destination. The account itself stays alive behind the scenes —
+ *   it ISSUES the tpx.lu shortlinks for Klook, Go City, and Welcome Pickups
+ *   — but no outbound link points at Travelpayouts' own properties anymore,
+ *   and the Drive verification script was removed with it (the shortlinks
+ *   attribute via their redirect paths, not via domain verification).
+ *   Flights surfaces moved to Expedia.
  *
  * LIVE credentials below (SafetyWing ref, Expedia affiliate link, Klook and
  * Go City and Welcome Pickups shortlinks, Omio Impact shortlink, CruiseDirect
@@ -51,30 +58,9 @@ const env = (key: string, fallback: string): string => {
 /** URL-safe slug helpers were removed with the 12Go/Hostelworld entries. */
 const DEMO_MARKER = "at.demo";
 
-const tpMarker = env("NEXT_PUBLIC_TP_MARKER", "");
 const swRef = env("NEXT_PUBLIC_SW_REF", "26643659");
 
 export const partners: Record<PartnerId, AffiliatePartner> = {
-  travelpayouts: {
-    id: "travelpayouts",
-    name: "Travelpayouts",
-    network: "Travelpayouts affiliate network",
-    // With a real marker configured, links redirect through tp.media.
-    // Without one, they land on travelpayouts.com — tp.media/r rejects
-    // unknown markers with a 400, so the demo fallback must not use it.
-    baseUrl: tpMarker ? "https://tp.media/r" : "https://www.travelpayouts.com",
-    tracking: {
-      ...(tpMarker ? { marker: tpMarker } : {}),
-      utm_medium: "affiliate",
-    },
-    dynamicParamMap: {
-      destination: tpMarker ? "destination" : undefined,
-      campaign: "utm_campaign",
-      subId: "sub_id",
-    },
-    relationship:
-      "Anchor & Trail is a Travelpayouts affiliate. We earn a commission when you book flights, hotels, or travel services through our Travelpayouts partner links (including WayAway, Klook, and Airalo eSIM deep links). Rates and availability are set by the travel providers, never by us.",
-  },
   "go-city": {
     id: "go-city",
     name: "Go City",
@@ -217,7 +203,6 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
 };
 
 export const partnerList: AffiliatePartner[] = [
-  partners.travelpayouts,
   partners.klook,
   partners["go-city"],
   partners["welcome-pickups"],

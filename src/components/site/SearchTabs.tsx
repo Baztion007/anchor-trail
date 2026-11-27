@@ -64,7 +64,13 @@ const TABS: SearchTab[] = [
   {
     id: "flights",
     label: "Flights",
-    partner: "travelpayouts",
+    // Travelpayouts was retired as a direct partner (Nov 2026) — with no
+    // marker configured, its link landed on the network's own homepage.
+    // Flight searches now go through the LIVE Expedia Group affiliate link
+    // (path-based credential, see data/partners.ts expedia entry). The
+    // destination rides in utm_campaign, so the CTA lands on Expedia where
+    // the in-page flight search covers the query.
+    partner: "expedia",
     cta: "Compare Fares",
     placeholder: "Destination (e.g. Bangkok)",
     tone: "moss",

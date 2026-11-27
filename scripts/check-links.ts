@@ -90,7 +90,7 @@ for (const plan of insurancePlans) {
 // Calculator: every destination x style produces a full checklist
 for (const rate of budgetRates) {
   for (const style of ["cruise", "backpacking"] as const) {
-    addOutbound("travelpayouts", rate.destination, "calculator-flights", `calc:${rate.id}:${style}:flights`);
+    addOutbound("expedia", rate.destination, "calculator-flights", `calc:${rate.id}:${style}:flights`);
     addOutbound(
       "expedia",
       rate.staysQuery,
@@ -119,7 +119,7 @@ addOutbound("cruisedirect", "Mediterranean", "hero-search", "hero-search:cruises
 addOutbound("expedia", "Barcelona", "hero-search", "hero-search:stays");
 addOutbound("go-city", "Rome", "hero-search", "hero-search:tours");
 addOutbound("welcome-pickups", "Lisbon Airport", "hero-search", "hero-search:transfers");
-addOutbound("travelpayouts", "Bangkok", "hero-search", "hero-search:flights");
+addOutbound("expedia", "Bangkok", "hero-search", "hero-search:flights");
 
 // Sanity: partner registry base URLs themselves must resolve
 for (const partner of Object.values(partners)) {

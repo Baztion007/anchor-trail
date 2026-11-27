@@ -10,14 +10,12 @@ import type { PartnerId } from "@/types/affiliate";
  * - scripts/check-config.ts (CLI gate for CI / pre-launch checks)
  *
  * Two credential styles, both read from what the link builder ACTUALLY sends:
- * - Env-driven partners (Booking was removed; Travelpayouts remains): the
- *   credential arrives via NEXT_PUBLIC_* and the registry falls back to
- *   "at-demo" (or omits the param for marker-style partners) when unset.
  * - Registry-baked partners (SafetyWing, Expedia, Klook, Go City, Welcome
  *   Pickups, Omio, CruiseDirect): the live credential is baked into
  *   src/data/partners.ts as the fallback — affiliate IDs are public in every
  *   outbound link, so this is safe — and read() inspects the registry value
- *   (which still honors env overrides).
+ *   (which still honors env overrides). Travelpayouts was retired as a direct
+ *   partner in Nov 2026, so there are no env-driven partners left.
  */
 
 export type AffiliateConfigStatus = "live" | "demo" | "missing";
@@ -49,12 +47,6 @@ const DEMO_FALLBACK = "at-demo";
 interface ParamSpec {
   param: string;
   envVar: string;
-  /**
-   * Marker-style partners omit the tracking param entirely when unset AND
-   * downgrade the landing URL to the network homepage — reported as
-   * "missing" (strictly worse than a placeholder value).
-   */
-  omitsParamWhenMissing?: boolean;
   landingWithoutTracking: string;
   /**
    * Overrides the default env-var lookup for registry-baked partners: returns
@@ -67,12 +59,6 @@ interface ParamSpec {
 
 /** One row per PartnerId — keep in sync with src/data/partners.ts. */
 const PARAM_SPECS: Record<PartnerId, ParamSpec> = {
-  travelpayouts: {
-    param: "marker",
-    envVar: "NEXT_PUBLIC_TP_MARKER",
-    omitsParamWhenMissing: true,
-    landingWithoutTracking: "travelpayouts.com (network homepage)",
-  },
   klook: {
     param: "tpx.lu shortlink",
     envVar: "NEXT_PUBLIC_KLOOK_LINK",
@@ -164,18 +150,6 @@ export function getPartnerConfigStatuses(): PartnerConfigStatus[] {
         envVar: spec.envVar,
         status: "live",
         impact: `Live credential: every click sends your real ${spec.param} and attributes to your account.`,
-      };
-    }
-
-    if (spec.omitsParamWhenMissing) {
-      return {
-        partnerId: partner.id,
-        name: partner.name,
-        network: partner.network,
-        param: spec.param,
-        envVar: spec.envVar,
-        status: "missing",
-        impact: `No ${spec.envVar} set: the tracking param is omitted and links land on ${spec.landingWithoutTracking} with NO tracking. Commissions are lost on every click.`,
       };
     }
 

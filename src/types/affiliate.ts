@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 /* ------------------------------------------------------------------ */
 
 export type PartnerId =
-  | "travelpayouts"
   | "klook"
   | "go-city"
   | "welcome-pickups"

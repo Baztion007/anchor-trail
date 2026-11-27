@@ -69,12 +69,14 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
   const checklist: ChecklistItem[] = [
     {
       category: "flights",
-      partner: "travelpayouts",
+      partner: "expedia",
       heading: "Lock in flights",
-      copy: `Round-trip fares to ${rate.destination} have typically run $${rate.flightLow.toLocaleString("en-US")}–$${rate.flightHigh.toLocaleString("en-US")} per person from the US (a planning estimate — live fares move daily). WayAway's cashback tiers frequently beat standard fares on this corridor.`,
+      copy: `Round-trip fares to ${rate.destination} have typically run $${rate.flightLow.toLocaleString("en-US")}–$${rate.flightHigh.toLocaleString("en-US")} per person from the US (a planning estimate — live fares move daily). Booking the flights first anchors every other line of this budget.`,
       cta: "Compare flight fares",
       link: {
-        partner: "travelpayouts",
+        partner: "expedia",
+        // The Expedia affiliate link is path-based, so the destination rides
+        // in utm_campaign for reporting rather than a search query.
         destination: rate.destination,
         campaign: "calculator-flights",
       },

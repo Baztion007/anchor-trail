@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/site/Logo";
 import { PriceDisclaimer } from "@/components/site/PriceDisclaimer";
-import { RestoreDisclosureLink } from "@/components/site/RestoreDisclosureLink";
 import { partnerList } from "@/data/partners";
 
 const EXPLORE_LINKS = [
@@ -103,9 +102,6 @@ export function Footer() {
                 >
                   RSS Feed
                 </a>
-              </li>
-              <li className="py-1.5">
-                <RestoreDisclosureLink />
               </li>
             </ul>
           </nav>
