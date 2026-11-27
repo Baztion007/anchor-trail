@@ -5,7 +5,7 @@ import type { TransitRoute } from "@/types/affiliate";
  *
  * Six overland and ferry corridors, each with a price band we snapshot at
  * publish time. Durations are door-to-door estimates including borders and
- * transfers, not operator brochures. Partner is narrowed to "twelve-go" or
+ * transfers, not operator brochures. Partner is narrowed to "klook" or
  * "omio" by the TransitRoute contract. Flat data, CMS-swappable.
  */
 export const transitRoutes: TransitRoute[] = [
@@ -13,7 +13,7 @@ export const transitRoutes: TransitRoute[] = [
     id: "transit-bangkok-chiangmai",
     origin: "Bangkok",
     destination: "Chiang Mai",
-    partner: "twelve-go",
+    partner: "klook",
     modes: ["Train", "Sleeper Bus"],
     durationLabel: "12–13 h",
     priceLow: 25,
@@ -22,13 +22,13 @@ export const transitRoutes: TransitRoute[] = [
     operator: "State Railway of Thailand / Nakhonchai Air",
     region: "Southeast Asia",
     summary:
-      "State Railway's overnight sleepers leave Krung Thep Aphiwat in the evening and roll into Chiang Mai around breakfast, with second-class AC berths the sweet spot. Nakhonchai Air's buses are faster on paper and rougher in fact; 12Go prices both side by side with seat selection, which matters over Songkran and Loy Krathong.",
+      "State Railway's overnight sleepers leave Krung Thep Aphiwat in the evening and roll into Chiang Mai around breakfast, with second-class AC berths the sweet spot. Nakhonchai Air's buses are faster on paper and rougher in fact; Klook prices both side by side with e-voucher delivery, which matters over Songkran and Loy Krathong.",
   },
   {
     id: "transit-bangkok-siemreap",
     origin: "Bangkok",
     destination: "Siem Reap",
-    partner: "twelve-go",
+    partner: "klook",
     modes: ["Bus", "Ferry"],
     durationLabel: "10–11 h",
     priceLow: 32,
@@ -43,7 +43,7 @@ export const transitRoutes: TransitRoute[] = [
     id: "transit-hanoi-luangprabang",
     origin: "Hanoi",
     destination: "Luang Prabang",
-    partner: "twelve-go",
+    partner: "klook",
     modes: ["Sleeper Bus"],
     durationLabel: "22–24 h",
     priceLow: 38,
@@ -88,7 +88,7 @@ export const transitRoutes: TransitRoute[] = [
     id: "transit-dubrovnik-kotor",
     origin: "Dubrovnik",
     destination: "Kotor",
-    partner: "twelve-go",
+    partner: "klook",
     modes: ["Bus"],
     durationLabel: "3–3.5 h",
     priceLow: 12,

@@ -7,47 +7,38 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  * fallbacks so the same code path works locally and in production.
  * Replace the NEXT_PUBLIC_* values at deploy time with live account IDs.
  *
- * URL formats below were verified against the live partner sites (Nov 2025):
- * - 12Go: route pages are path-based /en/travel/{from}/{to}; the old
- *   /en/search?q= format redirects to a slug and 404s. Non-route strings
- *   fall back to the 12Go homepage.
- * - Hostelworld: /search?search_keywords= is retired (404s). City pages
- *   /hostels/{city} are the working pattern.
+ * URL formats below were verified against the live partner sites (Nov 2025
+ * through Nov 2026):
  * - Omio: LIVE Impact Marketplace shortlink omio.sjv.io/2RDPaG (Nov 2026)
  *   → 302 ojrq.net → omio.sjv.io/c/7831404/409973/7385 — attribution lives in
  *   the redirect path, so it cannot be lost. Omio's own deep-link search URLs
  *   require internal IDs, so CTAs land on Omio (via the network) where the
  *   in-page search covers the route named in the surrounding copy.
- * - CruiseDirect / Expedia: deep-link search URLs require internal IDs
- *   or are bot-gated; CTAs land on their canonical hub pages instead,
- *   with the route context preserved in utm_campaign.
- * - CruiseDirect: the whole domain sits behind an aggressive Cloudflare
- *   managed challenge (cf-mitigated: challenge on every request, all paths,
- *   with or without query params). Some visitors see the "Just a moment…"
- *   interstitial and read it as a broken link — the URL itself is fine.
- *   Once real CruiseDirect affiliate credentials are configured, prefer the
- *   network's tracking redirect over the direct domain: network redirect
- *   hosts are not Cloudflare-walled and improve both reliability and
- *   attribution.
- * - Viator: the working free-text search URL is /searchResults/all?text=...
- *   (camelCase path + "/all" sub-segment). The bare /searchresults path
- *   renders Viator's 404 page — that was the cause of the "Shore
- *   Excursions" 404 reports.
+ * - CruiseDirect: LIVE CJ Affiliate click link jdoqocy.com/click-101934884-
+ *   17380663 (Nov 2026). The click-{advertiser}-{campaign} PATH carries the
+ *   credential; appended utm_* params survive the first hop (verified 302 →
+ *   cj.dotomi.com). The CJ redirect also bypasses the Cloudflare managed
+ *   challenge that used to 504 the direct domain — CTAs are reliable again.
+ * - Expedia: the Expedia Group affiliate tool link /affiliates/{affiliate-id}/
+ *   {campaign-id} ("anchor__trail/214"). The credential lives in the PATH, so
+ *   attribution survives even if the redirector drops appended utm_* params
+ *   (they survive the first 301 hop; verified Nov 2025). Sandbox/curl checks
+ *   hit Expedia's bot wall (HTTP 429) — real browsers pass; click-test after
+ *   deploy.
+ * - Go City / Welcome Pickups: Travelpayouts-issued tpx.lu shortlinks (Nov
+ *   2026). Go City 302s to prf.hn (Performance network) with the camref in
+ *   the path; Welcome Pickups 302s with aff_track_id injected as a query
+ *   param. Both redirectors rebuild the query string, so both run in
+ *   bareLink mode and are sent verbatim.
+ * - Removed partners: Booking.com, Viator, Hostelworld, and 12Go were let go
+ *   in the Nov 2026 roster change; their slots became Go City, Welcome
+ *   Pickups, and Expedia (stays), and the Asia transit cards moved to Klook.
  * - Travelpayouts: tp.media/r needs a real marker; when only the demo
  *   fallback is configured we route to travelpayouts.com so links never 404.
- * - Klook: Travelpayouts-issued tpx.lu shortlink. Attribution (aid|pid) is
- *   encoded in the redirect path — verified 302 →
- *   affiliate.klook.com/redirect?aid=api|…|pid|784139. Appended query params
- *   are ignored by the redirector, so Klook runs in bareLink mode and is sent
- *   verbatim.
- * - Expedia Cruises: Expedia Group affiliate tool link of the form
- *   /affiliates/{affiliate-id}/{campaign-id}. The credential lives in the
- *   PATH, so attribution survives even when the redirector drops appended
- *   utm_* params (they are preserved through the first 301 hop).
  *
- * LIVE credentials below (SafetyWing ref, Expedia affiliate link, Klook
- * shortlink, Omio Impact shortlink) are baked in as the fallback value —
- * affiliate IDs are not
+ * LIVE credentials below (SafetyWing ref, Expedia affiliate link, Klook and
+ * Go City and Welcome Pickups shortlinks, Omio Impact shortlink, CruiseDirect
+ * CJ click link) are baked in as the fallback value — affiliate IDs are not
  * secrets (every outbound link exposes them in page source), and baking them
  * keeps the site attributed with zero deployment-time env config. The
  * NEXT_PUBLIC_* env vars still override any fallback at build/runtime.
@@ -57,30 +48,7 @@ const env = (key: string, fallback: string): string => {
   return value && value.length > 0 ? value : fallback;
 };
 
-/** URL-safe slug: accent-folded, lowercase, non-alphanumerics to dashes. */
-function pathSlug(text: string): string {
-  return text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-/**
- * Parse "Origin to Destination" into its two halves. Returns null for region
- * labels ("The Balkans") that contain no route — those must never become
- * path URLs, they dead-end on the partner site.
- */
-function parseRoute(destination: string): { from: string; to: string } | null {
-  const match = destination.match(/^(.+?)\s+to\s+(.+)$/i);
-  if (!match) return null;
-  const from = match[1].trim();
-  const to = match[2].trim();
-  if (!from || !to) return null;
-  return { from, to };
-}
-
+/** URL-safe slug helpers were removed with the 12Go/Hostelworld entries. */
 const DEMO_MARKER = "at.demo";
 
 const tpMarker = env("NEXT_PUBLIC_TP_MARKER", "");
@@ -107,46 +75,36 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
     relationship:
       "Anchor & Trail is a Travelpayouts affiliate. We earn a commission when you book flights, hotels, or travel services through our Travelpayouts partner links (including WayAway, Klook, and Airalo eSIM deep links). Rates and availability are set by the travel providers, never by us.",
   },
-  booking: {
-    id: "booking",
-    name: "Booking.com",
-    network: "Booking.com Partner Programme",
-    baseUrl: "https://www.booking.com/searchresults.html",
-    tracking: {
-      aid: env("NEXT_PUBLIC_BOOKING_AID", "at-demo"),
-      label: "anchor-and-trail",
-      utm_medium: "affiliate",
-    },
-    dynamicParamMap: {
-      destination: "ss",
-      campaign: "utm_campaign",
-      subId: "sid",
-    },
+  "go-city": {
+    id: "go-city",
+    name: "Go City",
+    network: "Go City affiliate program (via Travelpayouts / Performance)",
+    // LIVE shortlink (Travelpayouts dashboard, Nov 2026). bareLink mode:
+    // verified 302 → prf.hn/click/camref:1100l4xn8/…/destination:gocity.com —
+    // attribution (camref) is encoded in the redirect path and the
+    // redirector rebuilds the query string, so appended params are dropped
+    // and the link must go out verbatim.
+    baseUrl: env("NEXT_PUBLIC_GOCITY_LINK", "https://gocity.tpx.lu/3ZiU6vsN"),
+    bareLink: true,
+    tracking: {},
+    dynamicParamMap: {},
     relationship:
-      "Anchor & Trail participates in the Booking.com Partner Programme. We earn a commission on completed stays booked through our hotel links. We independently select every property we feature; Booking.com does not review or approve our editorial content.",
+      "Anchor & Trail earns commissions on attraction passes and city sightseeing products booked through Go City, delivered via the Travelpayouts network. Pass inclusions, pricing, and booking terms are set entirely by Go City and its operators.",
   },
-  viator: {
-    id: "viator",
-    name: "Viator",
-    network: "Viator (Tripadvisor) affiliate program",
-    // Verified live pattern (Nov 2025): free-text search lives at
-    // /searchResults/all?text=<query>&searchAll=true — mirrors what
-    // Viator's own search box produces. The lowercase /searchresults
-    // path is dead and 404s. Partner-program links additionally carry
-    // pid/mcid/uid; mc_id below is the site-wide channel tag.
-    baseUrl: "https://www.viator.com/searchResults/all",
-    tracking: {
-      searchAll: "true",
-      mc_id: env("NEXT_PUBLIC_VIATOR_MC", "at-demo"),
-      utm_medium: "affiliate",
-    },
-    dynamicParamMap: {
-      destination: "text",
-      campaign: "utm_campaign",
-      subId: "sub_id",
-    },
+  "welcome-pickups": {
+    id: "welcome-pickups",
+    name: "Welcome Pickups",
+    network: "Welcome Pickups affiliate program (via Travelpayouts)",
+    // LIVE shortlink (Travelpayouts dashboard, Nov 2026). bareLink mode:
+    // verified 302 → welcomepickups.com/?aff_track_id=…-784139 — the
+    // redirector injects its own tracking query and rebuilds the string, so
+    // appended params are dropped and the link must go out verbatim.
+    baseUrl: env("NEXT_PUBLIC_WP_LINK", "https://tpx.lu/osoozVYR"),
+    bareLink: true,
+    tracking: {},
+    dynamicParamMap: {},
     relationship:
-      "Anchor & Trail earns commissions on excursions booked through Viator, a Tripadvisor company. Tour ratings shown on our site are snapshots pulled from Viator listings at the time of writing; live ratings may differ.",
+      "Anchor & Trail earns commissions on airport and port transfers booked through Welcome Pickups, delivered via the Travelpayouts network. Transfer pricing, driver terms, and cancellation rules are set entirely by Welcome Pickups.",
   },
   klook: {
     id: "klook",
@@ -166,13 +124,17 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
   cruisedirect: {
     id: "cruisedirect",
     name: "CruiseDirect",
-    network: "CruiseDirect affiliate program",
-    // Deep search URLs require session-scoped internal IDs, so CTAs land on
-    // the homepage; the destination rides along in utm_campaign for
-    // attribution and is what the copy already describes.
-    baseUrl: "https://www.cruisedirect.com",
+    network: "CruiseDirect affiliate program (via CJ Affiliate)",
+    // LIVE CJ click link (CJ Affiliate dashboard, Nov 2026):
+    // jdoqocy.com/click-101934884-17380663. The click-{advertiser}-{campaign}
+    // PATH carries the credential, so attribution survives every hop;
+    // appended utm_* params ride the first hop (verified 302 → cj.dotomi.com).
+    // The CJ redirect bypasses the Cloudflare managed challenge that used to
+    // 504 the direct domain, so CTAs are reliable again — deep search URLs
+    // still need session-scoped IDs, so CTAs land on CruiseDirect's homepage
+    // with the destination riding along in utm_campaign.
+    baseUrl: env("NEXT_PUBLIC_CD_CJ", "https://www.jdoqocy.com/click-101934884-17380663"),
     tracking: {
-      ref: env("NEXT_PUBLIC_CD_REF", "at-demo"),
       utm_medium: "affiliate",
     },
     dynamicParamMap: {
@@ -182,16 +144,17 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
     relationship:
       "Anchor & Trail earns a commission on cruise bookings made through CruiseDirect. Fare tiers shown in our tables are planning estimates; CruiseDirect always shows the live, bookable rate.",
   },
-  "expedia-cruises": {
-    id: "expedia-cruises",
-    name: "Expedia Cruises",
+  expedia: {
+    id: "expedia",
+    name: "Expedia",
     network: "Expedia Group affiliate program",
     // LIVE affiliate link (Expedia Group affiliate tool, Nov 2025):
     // /affiliates/{affiliate-id}/{campaign-id} — "anchor__trail/214". The
     // credential lives in the PATH, so attribution survives even if the
     // redirector drops appended utm_* params (they survive the first 301
     // hop; verified Nov 2025). Sandbox/curl checks hit Expedia's bot wall
-    // (HTTP 429) — real browsers pass; click-test after deploy. Set
+    // (HTTP 429) — real browsers pass; click-test after deploy. Covers
+    // hotels, hostels, and cruises since the Nov 2026 roster change. Set
     // NEXT_PUBLIC_EXPEDIA_AFF to a full link URL to swap campaigns.
     baseUrl: env(
       "NEXT_PUBLIC_EXPEDIA_AFF",
@@ -205,30 +168,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail earns commissions on cruise bookings made through Expedia Cruises. We compare CruiseDirect and Expedia Cruises fares independently; neither partner influences which one we recommend.",
-  },
-  hostelworld: {
-    id: "hostelworld",
-    name: "Hostelworld",
-    network: "Hostelworld affiliate program",
-    baseUrl: "https://www.hostelworld.com",
-    // /search?search_keywords= now 404s; city landing pages are the live
-    // pattern. "Bangkok, Thailand" -> /hostels/bangkok
-    buildUrl: (destination) => {
-      const city = destination.split(",")[0]?.trim() ?? destination;
-      return `https://www.hostelworld.com/hostels/${pathSlug(city)}`;
-    },
-    tracking: {
-      source: "affiliate",
-      partner: env("NEXT_PUBLIC_HW_PID", "at-demo"),
-      utm_medium: "affiliate",
-    },
-    dynamicParamMap: {
-      campaign: "utm_campaign",
-      subId: "sub_id",
-    },
-    relationship:
-      "Anchor & Trail earns commissions on hostel bookings made through Hostelworld. Social scores are snapshot data from Hostelworld listings; nightly prices are shown as budget-tier estimates only, and Hostelworld always displays the live rate.",
+      "Anchor & Trail earns commissions on stays and cruise bookings made through Expedia. We compare CruiseDirect and Expedia fares independently; neither partner influences which one we recommend.",
   },
   safetywing: {
     id: "safetywing",
@@ -251,30 +191,6 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
     },
     relationship:
       "Anchor & Trail earns a referral fee when you purchase SafetyWing Nomad Insurance through our links. We are not an insurance broker; policy terms, pricing, and eligibility are set entirely by SafetyWing and can change without notice.",
-  },
-  "twelve-go": {
-    id: "twelve-go",
-    name: "12Go",
-    network: "12Go affiliate program",
-    baseUrl: "https://12go.asia/en",
-    // 12Go resolves routes by path, not query: /en/travel/bangkok/chiang-mai.
-    // The /en/search?q= format redirects to a slug and 404s, and region
-    // labels ("The Balkans") have no page at all — fall back to the homepage.
-    buildUrl: (destination) => {
-      const route = parseRoute(destination);
-      if (!route) return "https://12go.asia/en";
-      return `https://12go.asia/en/travel/${pathSlug(route.from)}/${pathSlug(route.to)}`;
-    },
-    tracking: {
-      afc: env("NEXT_PUBLIC_12GO_AFC", "at-demo"),
-      utm_medium: "affiliate",
-    },
-    dynamicParamMap: {
-      campaign: "utm_campaign",
-      subId: "sub_id",
-    },
-    relationship:
-      "Anchor & Trail earns commissions on ground and ferry transport booked through 12Go across Asia and select long-haul routes. Schedules and fare tiers are planning estimates; 12Go always shows live availability and pricing.",
   },
   omio: {
     id: "omio",
@@ -302,14 +218,12 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
 
 export const partnerList: AffiliatePartner[] = [
   partners.travelpayouts,
-  partners.booking,
-  partners.viator,
   partners.klook,
+  partners["go-city"],
+  partners["welcome-pickups"],
   partners.cruisedirect,
-  partners["expedia-cruises"],
-  partners.hostelworld,
+  partners.expedia,
   partners.safetywing,
-  partners["twelve-go"],
   partners.omio,
 ];
 

@@ -24,14 +24,11 @@ export const deals: Deal[] = [
     id: "deal-viking-baltic",
     title: "Viking Homelands: 14 Days from Bergen to Copenhagen",
     vertical: "cruise",
-    // Booking partner switched to Expedia Cruises (Nov 2026): CruiseDirect's
-    // origin was serving 504 gateway timeouts behind its Cloudflare challenge,
-    // so every "Check Live Rates" click died. Flip back to "cruisedirect"
-    // once their infra stabilizes and real NEXT_PUBLIC_CD_REF credentials are
-    // configured (network redirect bypasses the wall). The /disclosure page
-    // already documents that we compare CruiseDirect and Expedia Cruises
-    // fares independently, so this swap needs no copy change.
-    partner: "expedia-cruises",
+    // Booking partner switched back to CruiseDirect (Nov 2026): the LIVE CJ
+    // Affiliate click link redirects through cj.dotomi.com, bypassing the
+    // Cloudflare challenge that used to 504 the direct origin. See
+    // data/partners.ts cruisedirect entry.
+    partner: "cruisedirect",
     badge: "Editor's Choice",
     destination: "The Baltic Sea",
     region: "Northern Europe",
@@ -56,7 +53,7 @@ export const deals: Deal[] = [
     id: "deal-regent-mediterranean",
     title: "Regent Seven Seas Grandeur: Western Med & Iberia",
     vertical: "cruise",
-    partner: "expedia-cruises",
+    partner: "cruisedirect",
     badge: "Luxury Pick",
     destination: "Western Mediterranean",
     region: "Mediterranean",
@@ -82,9 +79,9 @@ export const deals: Deal[] = [
     id: "deal-celebrity-alaska",
     title: "Celebrity Beyond: Alaska Glacier Route from Seattle",
     vertical: "cruise",
-    // See deal-viking-baltic: CruiseDirect origin 504s; booking routed to
-    // Expedia Cruises until their infra recovers.
-    partner: "expedia-cruises",
+    // See deal-viking-baltic: CruiseDirect is back via the CJ redirect,
+    // which bypasses the Cloudflare wall.
+    partner: "cruisedirect",
     badge: "Best Value",
     destination: "Alaska Inside Passage",
     region: "Alaska",
@@ -109,10 +106,11 @@ export const deals: Deal[] = [
     id: "deal-thailand-overland",
     title: "Thailand & Cambodia Overland: Bangkok to Angkor",
     vertical: "backpacking",
-    partner: "twelve-go",
+    partner: "klook",
     badge: "Route of the Month",
-    // Must be a real 12Go route (12go.asia/en/travel/bangkok/siem-reap);
-    // region labels like "Thailand & Cambodia" resolve to a 404 there.
+    // Klook carries Thailand/Cambodia bus, shuttle, and ferry inventory;
+    // attribution rides the tpx.lu redirect path (bareLink), so the CTA
+    // lands on Klook with the route named in the surrounding copy.
     destination: "Bangkok to Siem Reap",
     region: "Southeast Asia",
     // Per-day anchor, not the ~$1,475 trip total — the card renders this as
@@ -123,9 +121,9 @@ export const deals: Deal[] = [
     duration: "21 days · 5 stops",
     dailyCost: 38,
     summary:
-      "Every long leg — Bangkok's border bus to Poipet, the onward shuttle to Siem Reap, and the Gulf coast ferries — books in one 12Go cart, which removes the day-of haggling that wrecks most first-timers' budgets. Dorm nights sit firmly at the budget tier, so a shoestring daily spend still covers the three-day Angkor pass and more street food than you should honestly eat.",
+      "Every long leg — Bangkok's border bus to Poipet, the onward shuttle to Siem Reap, and the Gulf coast ferries — books through Klook, which removes the day-of haggling that wrecks most first-timers' budgets. Dorm nights sit firmly at the budget tier, so a shoestring daily spend still covers the three-day Angkor pass and more street food than you should honestly eat.",
     inclusions: [
-      "All cross-border trains and ferries booked on 12Go",
+      "All cross-border trains and ferries booked on Klook",
       "21 nights in top-rated social hostels",
       "Street-food days that stay pocket-change cheap",
     ],

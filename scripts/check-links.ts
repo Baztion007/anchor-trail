@@ -59,17 +59,17 @@ for (const deal of deals) {
 
 // Tour cards full + compact, PickBox tour picks
 for (const tour of tours) {
-  addOutbound("viator", tour.destination, "tour-card", `tour:${tour.id}`);
+  addOutbound("go-city", tour.destination, "tour-card", `tour:${tour.id}`);
 }
 
 // Stay cards + PickBox stay picks
 for (const stay of stays) {
-  addOutbound("booking", `${stay.city}, ${stay.country}`, "stay-card", `stay:${stay.id}`);
+  addOutbound("expedia", `${stay.city}, ${stay.country}`, "stay-card", `stay:${stay.id}`);
 }
 
 // Hostel cards + PickBox hostel picks
 for (const hostel of hostels) {
-  addOutbound("hostelworld", `${hostel.city}, ${hostel.country}`, "hostel-card", `hostel:${hostel.id}`);
+  addOutbound("expedia", `${hostel.city}, ${hostel.country}`, "hostel-card", `hostel:${hostel.id}`);
 }
 
 // Transit cards
@@ -92,15 +92,15 @@ for (const rate of budgetRates) {
   for (const style of ["cruise", "backpacking"] as const) {
     addOutbound("travelpayouts", rate.destination, "calculator-flights", `calc:${rate.id}:${style}:flights`);
     addOutbound(
-      style === "cruise" ? "booking" : "hostelworld",
+      "expedia",
       rate.staysQuery,
       "calculator-stays",
       `calc:${rate.id}:${style}:stays`
     );
-    addOutbound("viator", rate.activitiesQuery, "calculator-activities", `calc:${rate.id}:${style}:activities`);
+    addOutbound("go-city", rate.activitiesQuery, "calculator-activities", `calc:${rate.id}:${style}:activities`);
     addOutbound("safetywing", rate.destination, "calculator-insurance", `calc:${rate.id}:${style}:insurance`);
     if (style === "backpacking" && rate.transitRoute) {
-      addOutbound("twelve-go", rate.transitRoute, "calculator-transit", `calc:${rate.id}:transit`);
+      addOutbound("klook", rate.transitRoute, "calculator-transit", `calc:${rate.id}:transit`);
     }
   }
 }
@@ -108,7 +108,7 @@ for (const rate of budgetRates) {
 // Article sidebar partner cards
 for (const article of articles) {
   if (article.category === "cruise") {
-    addOutbound("booking", article.portCity ?? "Barcelona, Spain", "sidebar-partner", `sidebar:${article.slug}`);
+    addOutbound("expedia", article.portCity ?? "Barcelona, Spain", "sidebar-partner", `sidebar:${article.slug}`);
   } else {
     addOutbound("safetywing", article.seo.keyword, "sidebar-partner", `sidebar:${article.slug}`);
   }
@@ -116,8 +116,9 @@ for (const article of articles) {
 
 // Hero search tabs — representative queries per partner
 addOutbound("cruisedirect", "Mediterranean", "hero-search", "hero-search:cruises");
-addOutbound("booking", "Barcelona", "hero-search", "hero-search:stays");
-addOutbound("viator", "Santorini", "hero-search", "hero-search:tours");
+addOutbound("expedia", "Barcelona", "hero-search", "hero-search:stays");
+addOutbound("go-city", "Rome", "hero-search", "hero-search:tours");
+addOutbound("welcome-pickups", "Lisbon Airport", "hero-search", "hero-search:transfers");
 addOutbound("travelpayouts", "Bangkok", "hero-search", "hero-search:flights");
 
 // Sanity: partner registry base URLs themselves must resolve

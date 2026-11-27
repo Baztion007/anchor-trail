@@ -97,7 +97,7 @@ export default function BackpackingPage() {
             tone="moss"
             eyebrow="Overland & Ferry"
             title="Book the Long Legs Early"
-            description="12Go and Omio corridors priced up front — book them before hostels, because the good seats and berths sell first."
+            description="Klook and Omio corridors priced up front — book them before hostels, because the good seats and berths sell first."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {transitRoutes.map((route) => (

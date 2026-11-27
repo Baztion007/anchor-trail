@@ -6,14 +6,12 @@ import type { ReactNode } from "react";
 
 export type PartnerId =
   | "travelpayouts"
-  | "booking"
-  | "viator"
   | "klook"
+  | "go-city"
+  | "welcome-pickups"
   | "cruisedirect"
-  | "expedia-cruises"
-  | "hostelworld"
+  | "expedia"
   | "safetywing"
-  | "twelve-go"
   | "omio";
 
 export type Vertical = "cruise" | "backpacking";
@@ -42,9 +40,8 @@ export interface AffiliatePartner {
    * Partner-specific URL builder. When present it receives the raw destination
    * string and returns the full pre-tracking URL (path + core query params).
    * Used by partners whose search URLs are path-based or conditional rather
-   * than a simple dynamic query key — e.g. 12Go route pages
-   * (/en/travel/{from}/{to}) or Hostelworld city pages (/hostels/{city}).
-   * When absent, the destination is mapped onto dynamicParamMap.destination.
+   * than a simple dynamic query key. When absent, the destination is mapped
+   * onto dynamicParamMap.destination.
    */
   buildUrl?: (destination: string) => string;
   /** Which query keys receive dynamic destination/campaign/subId values */
@@ -118,8 +115,6 @@ export interface Tour {
   region: string;
   vertical: TourVertical;
   durationHours: number;
-  rating: number;
-  reviewCount: number;
   /** Estimate anchor for the "Est. from" chip — never a fixed price. */
   priceFrom: number;
   currency: "USD";
@@ -179,7 +174,7 @@ export interface TransitRoute {
   id: string;
   origin: string;
   destination: string;
-  partner: "twelve-go" | "omio";
+  partner: "klook" | "omio";
   modes: string[];
   durationLabel: string;
   /**
@@ -204,7 +199,7 @@ export interface CabinRate {
   per: "person" | "cabin";
   availability: "Available" | "Limited" | "Waitlist";
   tone: "good" | "fair" | "warn";
-  partner: "cruisedirect" | "expedia-cruises";
+  partner: "cruisedirect" | "expedia";
   perks: string[];
 }
 
@@ -220,18 +215,18 @@ export interface BudgetRate {
   flightHigh: number;
   currency: "USD";
   /**
-   * A concrete "City, Country" string the stay partners can resolve
-   * (Booking.com `ss` search and Hostelworld /hostels/{city} pages).
-   * Region names like "The Balkans" resolve nowhere — always keep this
-   * specific enough to land on live results.
+   * A concrete "City, Country" string the stay partner can resolve.
+   * The Expedia affiliate link is path-based (destination rides in
+   * utm_campaign), so this string is reporting context — keep it specific
+   * enough to stay meaningful in reports and campaign data.
    */
   staysQuery: string;
-  /** A concrete city string for Viator's text search. */
+  /** A concrete city string for Go City pass coverage context. */
   activitiesQuery: string;
   /**
-   * A verified 12Go route ("Origin to Destination") for the cross-border
-   * transit checklist, or null when 12Go does not serve the region — the
-   * checklist omits the transit item rather than dead-linking it.
+   * A concrete route ("Origin to Destination") for the cross-border transit
+   * checklist, or null when the region has no featured corridor — the
+   * checklist omits the transit item rather than filler-linking it.
    */
   transitRoute: string | null;
 }

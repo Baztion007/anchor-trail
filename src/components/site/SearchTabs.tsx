@@ -21,11 +21,11 @@ const TABS: SearchTab[] = [
   {
     id: "cruises",
     label: "Find Cruises",
-    // CruiseDirect's origin kept 504-ing behind its Cloudflare challenge
-    // (see deal-viking-baltic in data/deals.ts), so this tab routes to the
-    // LIVE Expedia Group affiliate link instead. Flip back to "cruisedirect"
-    // once their infra stabilizes and a real NEXT_PUBLIC_CD_REF is configured.
-    partner: "expedia-cruises",
+    // CruiseDirect is back (Nov 2026): the CJ Affiliate click link redirects
+    // through cj.dotomi.com, which bypasses the Cloudflare challenge that
+    // used to 504 the direct origin. Live credential is baked into the
+    // registry; see data/partners.ts cruisedirect entry.
+    partner: "cruisedirect",
     cta: "Search Cruises",
     placeholder: "Cruise region or port (e.g. Mediterranean)",
     tone: "navy",
@@ -33,17 +33,32 @@ const TABS: SearchTab[] = [
   {
     id: "stays",
     label: "Hotels & Hostels",
-    partner: "booking",
+    // Booking.com was dropped in the Nov 2026 roster change; stays now book
+    // through the LIVE Expedia Group affiliate link (path-based credential,
+    // see data/partners.ts expedia entry).
+    partner: "expedia",
     cta: "Search Stays",
     placeholder: "City (e.g. Barcelona)",
     tone: "navy",
   },
   {
     id: "tours",
-    label: "Tours",
-    partner: "viator",
-    cta: "Find Tours",
-    placeholder: "City or tour (e.g. Santorini)",
+    label: "Tours & Passes",
+    // Viator was dropped in the Nov 2026 roster change; city sightseeing now
+    // routes through the LIVE Go City shortlink (bareLink — see
+    // data/partners.ts go-city entry). Destination is dropped by the
+    // redirector, so the CTA lands on Go City's pass marketplace.
+    partner: "go-city",
+    cta: "Explore Passes",
+    placeholder: "City or attraction (e.g. Rome)",
+    tone: "terracotta",
+  },
+  {
+    id: "transfers",
+    label: "Airport Transfers",
+    partner: "welcome-pickups",
+    cta: "Book a Transfer",
+    placeholder: "Airport or city (e.g. Lisbon Airport)",
     tone: "terracotta",
   },
   {

@@ -36,16 +36,16 @@ function resolveCta(ref: ContentRef): ResolvedCta | null {
     }
     case "tour": {
       const tour: Tour | null | undefined = getTourById(ref.id);
-      return tour ? { partner: "viator", destination: tour.destination } : null;
+      return tour ? { partner: "go-city", destination: tour.destination } : null;
     }
     case "stay": {
       const stay: Stay | null | undefined = getStayById(ref.id);
-      return stay ? { partner: "booking", destination: `${stay.city}, ${stay.country}` } : null;
+      return stay ? { partner: "expedia", destination: `${stay.city}, ${stay.country}` } : null;
     }
     case "hostel": {
       const hostel: Hostel | null | undefined = getHostelById(ref.id);
       return hostel
-        ? { partner: "hostelworld", destination: `${hostel.city}, ${hostel.country}` }
+        ? { partner: "expedia", destination: `${hostel.city}, ${hostel.country}` }
         : null;
     }
     case "insurance": {

@@ -20,7 +20,7 @@ export const backpackingArticles: Article[] = [
         "thailand backpacking cost per day",
         "southeast asia itinerary 3 weeks",
         "cheap hostels southeast asia",
-        "12go asia transport booking",
+        "klook asia transport booking",
       ],
     },
     excerpt:
@@ -42,7 +42,7 @@ export const backpackingArticles: Article[] = [
           label: "Thailand Overland Loop",
           why: "Locks the big intercity legs at near off-the-street rates so improvisation cannot eat the transport budget.",
         },
-        note: "Pairs with 12Go for the legs it does not cover; together they replaced a $600 group tour on my last run.",
+        note: "Pairs with Klook for the legs it does not cover; together they replaced a $600 group tour on my last run.",
       },
       {
         label: "Best Social Hostel",
@@ -74,7 +74,7 @@ export const backpackingArticles: Article[] = [
       {
         question: "How much should flights cost?",
         answer:
-          "Regional hops are cheap: AirAsia and VietJet seats move for $30–90 booked two or three weeks out, and buses via 12Go often beat them — the $25 Bangkok–Chiang Mai sleeper also saves a hotel night. Long-haul is the real variable: Europe to Bangkok runs $350–500 in low season, the US West Coast $550–750 on sales. Set alerts and never buy the first fare you see.",
+          "Regional hops are cheap: AirAsia and VietJet seats move for $30–90 booked two or three weeks out, and overnight buses booked through Klook often beat them — the $25 Bangkok–Chiang Mai sleeper also saves a hotel night. Long-haul is the real variable: Europe to Bangkok runs $350–500 in low season, the US West Coast $550–750 on sales. Set alerts and never buy the first fare you see.",
       },
       {
         question: "Is Southeast Asia safe for solo backpackers?",
@@ -84,7 +84,7 @@ export const backpackingArticles: Article[] = [
       {
         question: "Do you need to book transport ahead?",
         answer:
-          "Anything over four hours: yes, especially night buses, ferries and December trains, which sell out in high season. 12Go handles most Thai, Cambodian and Vietnamese routes with card payment and e-boarding passes, so there is no ticket-office dance. Short local rides can stay spontaneous — those you buy at the station on the day.",
+          "Anything over four hours: yes, especially night buses, ferries and December trains, which sell out in high season. Klook covers the major Thai, Cambodian and Vietnamese bus and ferry routes with card payment and e-voucher delivery, so there is no ticket-office dance. Short local rides can stay spontaneous — those you buy at the station on the day.",
       },
       {
         question: "What are the best months for this route?",
@@ -159,7 +159,7 @@ export const backpackingArticles: Article[] = [
       },
       {
         type: "paragraph",
-        text: "Transport is where the $1,400 either holds or collapses, and my rule is boring: anything over four hours books through 12Go, everything else books on the day. The Bangkok to Chiang Mai sleeper bus runs about $25 on the platform, with operator ratings, seat layouts and an e-boarding pass that lands in your email — no printing, no ticket office, no 40-baht agency fee collected by a man with a laminated spreadsheet. Night buses also save a hotel night — an $11 bed becomes two travel days for the price of one.",
+        text: "Transport is where the $1,400 either holds or collapses, and my rule is boring: anything over four hours books ahead through Klook, everything else books on the day. The Bangkok to Chiang Mai sleeper bus runs about $25 on the platform, with operator ratings and an e-voucher that lands in your email — no printing, no ticket office, no 40-baht agency fee collected by a man with a laminated spreadsheet. Night buses also save a hotel night — an $11 bed becomes two travel days for the price of one.",
       },
       { type: "heading", level: 2, text: "Bangkok: The Launchpad" },
       {
@@ -220,7 +220,7 @@ export const backpackingArticles: Article[] = [
         items: [
           "Island-hopping on vibes. Every ferry is $15–30 plus a $12–20 night on a beach with nothing cheap nearby. Fix: cap it at two islands.",
           "Festival weeks. Beds on Koh Phangan triple and dorm social life becomes the event. Fix: build the calendar around dates, not the reverse.",
-          "Drunk upgrades at 2 a.m. The $25 sleeper becomes a $70 VIP van of unclear lineage. Fix: long bookings made sober, in daylight, through 12Go.",
+          "Drunk upgrades at 2 a.m. The $25 sleeper becomes a $70 VIP van of unclear lineage. Fix: long bookings made sober, in daylight, through Klook.",
           "Budget-airline baggage fees. VietJet and AirAsia charge over 7 kg in the cabin. Fix: one 40-litre pack, weighed at home, twice.",
           "The ATM drip. Five $40 withdrawals a week burns $32 in fixed fees alone. Fix: one maximum withdrawal weekly; refuse dynamic currency conversion.",
         ],
@@ -250,7 +250,7 @@ export const backpackingArticles: Article[] = [
         "balkans budget travel",
         "croatia backpacking cost",
         "mostar to kotor bus",
-        "hostelworld balkans",
+        "expedia balkans stays",
       ],
     },
     excerpt:

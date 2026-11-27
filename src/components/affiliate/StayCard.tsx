@@ -66,7 +66,7 @@ export function StayCard({ stay }: StayCardProps) {
       </div>
       <div className="mt-4">
         <AffiliateLink
-          partner="booking"
+          partner="expedia"
           destination={`${stay.city}, ${stay.country}`}
           campaign="stay-card"
         >

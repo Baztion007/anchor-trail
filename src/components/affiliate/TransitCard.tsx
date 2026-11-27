@@ -7,7 +7,7 @@ import { transitTier } from "@/lib/pricing";
 
 /**
  * Ground/ferry transit route card. CTA routes to the correct booking partner
- * (12Go in Asia, Omio in Europe) based on the route data. Fares are shown as
+ * (Klook in Asia, Omio in Europe) based on the route data. Fares are shown as
  * a budget tier, never a static number — operators reprice constantly.
  */
 export function TransitCard({ route }: TransitCardProps) {

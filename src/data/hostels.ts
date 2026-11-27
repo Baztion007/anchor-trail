@@ -4,10 +4,12 @@ import type { Hostel } from "@/types/affiliate";
  * Hostels dataset.
  *
  * Six properties on Hostelworld's 10-point review scale with a social score
- * from 8.5 (fine, quiet) to 9.6 (bring earplugs anyway). Prices are nightly,
- * in USD, snapshot-checked at publish time. There is no partner field on the
- * Hostel type — Hostelworld is implied editorially — so keep the copy honest
- * about what the money buys. Flat data, CMS-swappable.
+ * from 8.5 (fine, quiet) to 9.6 (bring earplugs anyway). Ratings are snapshot
+ * data from Hostelworld listings and stay attributed to Hostelworld in the
+ * copy; bookings route through Expedia since the Nov 2026 partner change.
+ * Prices are nightly, in USD, snapshot-checked at publish time. There is no
+ * partner field on the Hostel type — the card component supplies it — so keep
+ * the copy honest about what the money buys. Flat data, CMS-swappable.
  */
 export const hostels: Hostel[] = [
   {

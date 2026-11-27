@@ -19,7 +19,7 @@ import { SITE, breadcrumbJsonLd, itemListJsonLd, jsonLdScript } from "@/lib/seo"
 
 const TITLE = "Excursions & Stays — Tours, Hotels, Hostels & Transit";
 const DESCRIPTION =
-  "Every tour, hotel, hostel and transit leg we recommend in one place — Viator excursions, Booking.com stays, Hostelworld dorms and 12Go routes.";
+  "Every tour, hotel, hostel and transit leg we recommend in one place — Go City passes, Expedia stays, and Klook & Omio transit corridors.";
 
 export function generateMetadata(): Metadata {
   return {
@@ -71,9 +71,9 @@ export default function StaysPage() {
       <section aria-label="Tours and excursions" className="bg-sand/50 py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Viator Picks"
+            eyebrow="Go City Picks"
             title="Shore Excursions & Day Trips"
-            description="Nine excursions vetted against cruise port times and backpacking budgets — every card links to Viator's live rates and availability."
+            description="Nine excursions vetted against cruise port times and backpacking budgets — every card links through to live rates and availability."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {tours.map((tour) => (
@@ -118,7 +118,7 @@ export default function StaysPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tone="moss"
-            eyebrow="12Go & Omio"
+            eyebrow="Klook & Omio"
             title="Cross-Border Transit"
             description="Six overland and ferry corridors with door-to-door durations we would actually defend — book the long legs before the hostels."
           />

@@ -270,14 +270,13 @@ export default async function ArticlePage({
                     Book a port hotel
                   </h3>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-mist">
-                    Morning embarkation is stressful enough. Booking.com holds live rates for
+                    Morning embarkation is stressful enough. Expedia holds live rates for
                     port-district rooms — check availability for your dates.
                   </p>
                   <AffiliateLink
-                    partner="booking"
-                    // A concrete port city resolves on Booking's search; the
-                    // first tag would send a region label like "Mediterranean"
-                    // into the `ss` query and land on a dead results page.
+                    partner="expedia"
+                    // The Expedia affiliate link is path-based; the port city
+                    // rides in utm_campaign for reporting.
                     destination={article.portCity ?? "Barcelona, Spain"}
                     campaign="sidebar-partner"
                     className="mt-3 text-[14px]"

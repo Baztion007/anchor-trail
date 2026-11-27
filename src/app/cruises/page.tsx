@@ -106,7 +106,7 @@ export default function CruisesPage() {
           <SectionHeading
             eyebrow="Shore Excursions"
             title="Ports Worth Leaving the Ship For"
-            description="Viator day trips vetted against port times — every pick carries a realistic buffer back to the gangway."
+            description="Go City passes and port day trips vetted against port times — every pick carries a realistic buffer back to the gangway."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {CRUISE_TOURS.map((tour) => (

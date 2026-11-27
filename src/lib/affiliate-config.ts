@@ -10,14 +10,14 @@ import type { PartnerId } from "@/types/affiliate";
  * - scripts/check-config.ts (CLI gate for CI / pre-launch checks)
  *
  * Two credential styles, both read from what the link builder ACTUALLY sends:
- * - Env-driven partners (Booking, Viator, CruiseDirect, Hostelworld, 12Go,
- *   Travelpayouts): the credential arrives via NEXT_PUBLIC_* and the
- *   registry falls back to "at-demo" (or omits the param for marker-style
- *   partners) when unset.
- * - Registry-baked partners (SafetyWing, Expedia Cruises, Klook, Omio): the
- *   live credential is baked into src/data/partners.ts as the fallback —
- *   affiliate IDs are public in every outbound link, so this is safe — and
- *   read() inspects the registry value (which still honors env overrides).
+ * - Env-driven partners (Booking was removed; Travelpayouts remains): the
+ *   credential arrives via NEXT_PUBLIC_* and the registry falls back to
+ *   "at-demo" (or omits the param for marker-style partners) when unset.
+ * - Registry-baked partners (SafetyWing, Expedia, Klook, Go City, Welcome
+ *   Pickups, Omio, CruiseDirect): the live credential is baked into
+ *   src/data/partners.ts as the fallback — affiliate IDs are public in every
+ *   outbound link, so this is safe — and read() inspects the registry value
+ *   (which still honors env overrides).
  */
 
 export type AffiliateConfigStatus = "live" | "demo" | "missing";
@@ -73,16 +73,6 @@ const PARAM_SPECS: Record<PartnerId, ParamSpec> = {
     omitsParamWhenMissing: true,
     landingWithoutTracking: "travelpayouts.com (network homepage)",
   },
-  booking: {
-    param: "aid",
-    envVar: "NEXT_PUBLIC_BOOKING_AID",
-    landingWithoutTracking: "Booking.com search results",
-  },
-  viator: {
-    param: "mc_id",
-    envVar: "NEXT_PUBLIC_VIATOR_MC",
-    landingWithoutTracking: "Viator search results",
-  },
   klook: {
     param: "tpx.lu shortlink",
     envVar: "NEXT_PUBLIC_KLOOK_LINK",
@@ -94,37 +84,55 @@ const PARAM_SPECS: Record<PartnerId, ParamSpec> = {
       return base.includes("tpx.lu/") ? base : undefined;
     },
   },
-  cruisedirect: {
-    param: "ref",
-    envVar: "NEXT_PUBLIC_CD_REF",
-    landingWithoutTracking: "cruisedirect.com homepage",
+  "go-city": {
+    param: "tpx.lu shortlink",
+    envVar: "NEXT_PUBLIC_GOCITY_LINK",
+    landingWithoutTracking: "gocity.com (untracked)",
+    read: () => {
+      const base = partners["go-city"].baseUrl;
+      // The tpx.lu path IS the credential (verified 302 → prf.hn/click with
+      // the camref in the redirect path).
+      return base.includes("tpx.lu/") ? base : undefined;
+    },
   },
-  "expedia-cruises": {
+  "welcome-pickups": {
+    param: "tpx.lu shortlink",
+    envVar: "NEXT_PUBLIC_WP_LINK",
+    landingWithoutTracking: "welcomepickups.com (untracked)",
+    read: () => {
+      const base = partners["welcome-pickups"].baseUrl;
+      // The tpx.lu path IS the credential (verified 302 with aff_track_id
+      // injected by the redirector).
+      return base.includes("tpx.lu/") ? base : undefined;
+    },
+  },
+  cruisedirect: {
+    param: "CJ click link",
+    envVar: "NEXT_PUBLIC_CD_CJ",
+    landingWithoutTracking: "cruisedirect.com homepage",
+    read: () => {
+      const base = partners.cruisedirect.baseUrl;
+      // The click-{advertiser}-{campaign} PATH IS the credential (verified
+      // 302 → cj.dotomi.com).
+      return base.includes("jdoqocy.com/click-") ? base : undefined;
+    },
+  },
+  expedia: {
     param: "affiliate path",
     envVar: "NEXT_PUBLIC_EXPEDIA_AFF",
-    landingWithoutTracking: "expedia.com/cruises hub",
+    landingWithoutTracking: "expedia.com affiliate hub",
     read: () => {
       // The credential is the /affiliates/{affiliate-id}/{campaign-id} PATH,
       // not a query param. A malformed override fails the format check here.
-      const base = partners["expedia-cruises"].baseUrl;
+      const base = partners.expedia.baseUrl;
       return base.includes("/affiliates/") ? base : undefined;
     },
-  },
-  hostelworld: {
-    param: "partner",
-    envVar: "NEXT_PUBLIC_HW_PID",
-    landingWithoutTracking: "Hostelworld city page",
   },
   safetywing: {
     param: "referenceID",
     envVar: "NEXT_PUBLIC_SW_REF",
     landingWithoutTracking: "safetywing.com",
     read: () => partners.safetywing.tracking.referenceID,
-  },
-  "twelve-go": {
-    param: "afc",
-    envVar: "NEXT_PUBLIC_12GO_AFC",
-    landingWithoutTracking: "12go.asia",
   },
   omio: {
     param: "Impact shortlink",

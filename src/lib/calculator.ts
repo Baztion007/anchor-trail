@@ -81,7 +81,7 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
     },
     {
       category: "stays",
-      partner: input.style === "cruise" ? "booking" : "hostelworld",
+      partner: "expedia",
       heading:
         input.style === "cruise"
           ? "Book a pre-cruise hotel near the port"
@@ -92,21 +92,21 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
           : `At roughly $${dailyLow.toLocaleString("en-US")}–$${dailyHigh.toLocaleString("en-US")} per day all-in (estimate), target dorms and private rooms in the lower half of that band.`,
       cta: input.style === "cruise" ? "Check port hotels" : "Search hostels & rooms",
       link: {
-        partner: input.style === "cruise" ? "booking" : "hostelworld",
-        // staysQuery is a concrete "City, Country" — Booking's `ss` and
-        // Hostelworld's /hostels/{city} both resolve it. Region names don't.
+        partner: "expedia",
+        // The Expedia affiliate link is path-based, so the destination rides
+        // in utm_campaign for reporting rather than a search query.
         destination: rate.staysQuery,
         campaign: "calculator-stays",
       },
     },
     {
       category: "activities",
-      partner: "viator",
+      partner: "go-city",
       heading: "Reserve the anchor activities",
       copy: `Plan on roughly $${Math.round(dailyLow * 0.25).toLocaleString("en-US")}–$${Math.round(dailyHigh * 0.22).toLocaleString("en-US")} per activity day in ${rate.destination} (estimate). Booking two anchor tours in advance protects the rest of your budget.`,
-      cta: "Browse tours & excursions",
+      cta: "Browse passes & tours",
       link: {
-        partner: "viator",
+        partner: "go-city",
         destination: rate.activitiesQuery,
         campaign: "calculator-activities",
       },
@@ -127,17 +127,17 @@ export function computeTripCost(input: TripCostInput): TripCostResult {
     },
   ];
 
-  // Only offer the transit checklist when the region has a verified 12Go
-  // route — a region label ("The Balkans") would 404 on 12go.asia.
+  // Only offer the transit checklist when the region has a concrete route —
+  // the copy names the legs, and a region label would read as filler.
   if (input.style === "backpacking" && rate.transitRoute) {
     checklist.push({
       category: "transit",
-      partner: "twelve-go",
+      partner: "klook",
       heading: "Book cross-border transit early",
       copy: `Overland and ferry legs in this region swing 30–60% in price inside two weeks of departure. Reserving the long legs first keeps the rest of your ${days}-day plan flexible.`,
       cta: "Compare buses, trains & ferries",
       link: {
-        partner: "twelve-go",
+        partner: "klook",
         destination: rate.transitRoute,
         campaign: "calculator-transit",
       },

@@ -10,12 +10,13 @@ import type { BudgetRate } from "@/types/affiliate";
  * can replace the static array without touching the calculator. The id
  * values double as destinationId inputs for computeTripCost — do not rename.
  *
- * staysQuery / activitiesQuery / transitRoute exist because partner sites
- * resolve concrete places, not regions: Booking.com's `ss` and Hostelworld's
- * /hostels/{city} need a city, Viator's text search needs a city, and 12Go
- * route pages (/en/travel/{from}/{to}) 404 on region labels. Every transitRoute
- * below was verified live on 12go.asia; null means 12Go does not serve the
- * region and the calculator omits the transit checklist item entirely.
+ * staysQuery / activitiesQuery / transitRoute exist so the checklist copy
+ * names concrete places, not vague regions: Expedia's affiliate link is
+ * path-based (the destination rides in utm_campaign for reporting), Go City
+ * coverage is city-based, and Klook/Omio corridors are named in the transit
+ * checklist copy. Every transitRoute below names a corridor featured in the
+ * transit dataset; null means the region has no featured corridor and the
+ * calculator omits the transit checklist item entirely.
  */
 export const budgetRates: BudgetRate[] = [
   {

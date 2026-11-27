@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const PARTNER_NAMES: Record<CabinRate["partner"], string> = {
   cruisedirect: "CruiseDirect",
-  "expedia-cruises": "Expedia Cruises",
+  expedia: "Expedia",
 };
 
 const AVAILABILITY_STYLES = {

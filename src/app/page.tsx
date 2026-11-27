@@ -44,13 +44,13 @@ const COMPARISON_ROWS: TableCell[][] = [
   ],
   [
     { text: "Accommodation partner" },
-    { text: "Booking.com port hotels, 8-min walks to terminals", tone: "neutral", icon: "minus" },
-    { text: "Hostelworld social dorms at the budget tier", tone: "neutral", icon: "minus" },
+    { text: "Expedia port hotels, 8-min walks to terminals", tone: "neutral", icon: "minus" },
+    { text: "Hostelworld-rated social dorms at the budget tier", tone: "neutral", icon: "minus" },
   ],
   [
     { text: "Excursions" },
     { text: "Often included on luxury lines (Viking)", tone: "good", icon: "check" },
-    { text: "Viator day trips booked à la carte", tone: "neutral", icon: "minus" },
+    { text: "Day trips booked à la carte in port", tone: "neutral", icon: "minus" },
   ],
   [
     { text: "Insurance" },

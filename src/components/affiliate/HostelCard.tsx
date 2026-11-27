@@ -17,8 +17,10 @@ const ROOM_OPTIONS: { value: RoomType; label: string }[] = [
 ];
 
 /**
- * Hostelworld hostel card with an accessible dorm/private price toggle built
- * on a native radio group (arrow keys work, state is real form state).
+ * Hostel card with an accessible dorm/private price toggle built on a native
+ * radio group (arrow keys work, state is real form state). Ratings are
+ * attributed to Hostelworld (the review source); booking goes through
+ * Expedia, which carries hostel inventory alongside hotels.
  */
 export function HostelCard({ hostel }: HostelCardProps) {
   const [roomType, setRoomType] = useState<RoomType>("dorm");
@@ -97,7 +99,7 @@ export function HostelCard({ hostel }: HostelCardProps) {
 
       <div className="mt-4">
         <AffiliateLink
-          partner="hostelworld"
+          partner="expedia"
           destination={`${hostel.city}, ${hostel.country}`}
           campaign="hostel-card"
         >

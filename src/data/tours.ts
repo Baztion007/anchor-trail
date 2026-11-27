@@ -3,22 +3,22 @@ import type { Tour } from "@/types/affiliate";
 /**
  * Tours dataset.
  *
- * Nine hand-picked excursions, all bookable through Viator. Ratings and
- * review counts are snapshots from Viator listings at the time of writing
- * and should be refreshed when the array is moved to a CMS collection.
- * Keep ids stable: article blocks embed tour cards by id.
+ * Nine hand-picked excursions, monetized through Go City (attraction passes
+ * and city sightseeing, delivered via Travelpayouts/Performance). Ratings and
+ * review counts were removed with the Viator switch — Go City does not
+ * publish per-experience review data, and the site only shows ratings it can
+ * attribute to a live source. Keep ids stable: article blocks embed tour
+ * cards by id.
  */
 export const tours: Tour[] = [
   {
     id: "tour-santorini-catamaran",
     title: "Santorini Sunset Catamaran Cruise with BBQ & Drinks",
-    partner: "viator",
+    partner: "go-city",
     destination: "Santorini, Greece",
     region: "Mediterranean",
     vertical: "cruise",
     durationHours: 5,
-    rating: 4.8,
-    reviewCount: 2840,
     priceFrom: 149,
     currency: "USD",
     summary:
@@ -28,13 +28,11 @@ export const tours: Tour[] = [
   {
     id: "tour-rome-colosseum-underground",
     title: "Colosseum Underground & Arena Floor Guided Tour",
-    partner: "viator",
+    partner: "go-city",
     destination: "Civitavecchia (Rome), Italy",
     region: "Mediterranean",
     vertical: "cruise",
     durationHours: 3,
-    rating: 4.7,
-    reviewCount: 4620,
     priceFrom: 98,
     currency: "USD",
     summary:
@@ -44,13 +42,11 @@ export const tours: Tour[] = [
   {
     id: "tour-copenhagen-canal",
     title: "Copenhagen Canal & Harbor Sightseeing by Boat",
-    partner: "viator",
+    partner: "go-city",
     destination: "Copenhagen, Denmark",
     region: "Baltic",
     vertical: "cruise",
     durationHours: 2,
-    rating: 4.6,
-    reviewCount: 2410,
     priceFrom: 42,
     currency: "USD",
     summary:
@@ -60,13 +56,11 @@ export const tours: Tour[] = [
   {
     id: "tour-juneau-whale-glacier",
     title: "Juneau Whale Watching & Mendenhall Glacier Combo",
-    partner: "viator",
+    partner: "go-city",
     destination: "Juneau, Alaska",
     region: "Alaska",
     vertical: "cruise",
     durationHours: 6.5,
-    rating: 4.9,
-    reviewCount: 3120,
     priceFrom: 189,
     currency: "USD",
     summary:
@@ -76,13 +70,11 @@ export const tours: Tour[] = [
   {
     id: "tour-bangkok-street-food",
     title: "Bangkok Backstreets Street Food Tuk-Tuk Tour",
-    partner: "viator",
+    partner: "go-city",
     destination: "Bangkok, Thailand",
     region: "Southeast Asia",
     vertical: "backpacking",
     durationHours: 4,
-    rating: 4.8,
-    reviewCount: 5240,
     priceFrom: 38,
     currency: "USD",
     summary:
@@ -92,13 +84,11 @@ export const tours: Tour[] = [
   {
     id: "tour-hoi-an-cooking",
     title: "Hoi An Farm-to-Table Vietnamese Cooking Class",
-    partner: "viator",
+    partner: "go-city",
     destination: "Hoi An, Vietnam",
     region: "Southeast Asia",
     vertical: "backpacking",
     durationHours: 5,
-    rating: 4.9,
-    reviewCount: 3810,
     priceFrom: 29,
     currency: "USD",
     summary:
@@ -108,13 +98,11 @@ export const tours: Tour[] = [
   {
     id: "tour-kotor-kayak",
     title: "Kotor Bay Sea Kayak & Old Town Swim Stop",
-    partner: "viator",
+    partner: "go-city",
     destination: "Kotor, Montenegro",
     region: "Balkans",
     vertical: "both",
     durationHours: 3,
-    rating: 4.7,
-    reviewCount: 1240,
     priceFrom: 54,
     currency: "USD",
     summary:
@@ -124,13 +112,11 @@ export const tours: Tour[] = [
   {
     id: "tour-medellin-graffiti",
     title: "Comuna 13 Graffiti & Cable Car History Tour",
-    partner: "viator",
+    partner: "go-city",
     destination: "Medellín, Colombia",
     region: "South America",
     vertical: "backpacking",
     durationHours: 3,
-    rating: 4.8,
-    reviewCount: 6480,
     priceFrom: 26,
     currency: "USD",
     summary:
@@ -140,13 +126,11 @@ export const tours: Tour[] = [
   {
     id: "tour-bled-lake-row",
     title: "Lake Bled Traditional Pletna Rowing Experience",
-    partner: "viator",
+    partner: "go-city",
     destination: "Lake Bled, Slovenia",
     region: "Balkans",
     vertical: "backpacking",
     durationHours: 2,
-    rating: 4.6,
-    reviewCount: 940,
     priceFrom: 31,
     currency: "USD",
     summary:

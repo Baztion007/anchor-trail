@@ -12,10 +12,12 @@ const AFFILIATE_REL = "nofollow sponsored noopener noreferrer";
  * components are forbidden.
  *
  * Behavior:
- * - Partners with a buildUrl function (12Go route pages, Hostelworld city
- *   pages, Travelpayouts marker fallback) get their URL from it directly
+ * - Partners with a buildUrl function get their URL from it directly
+ *   (currently none — the 12Go/Hostelworld path builders left with those
+ *   partners; the hook stays for future path-based search URLs)
  * - All other partners start from the registered base URL and map the
  *   destination onto their documented dynamic query key
+ * - bareLink partners (tpx.lu shortlinks) go out verbatim
  * - Appends the partner's static tracking params (affiliate id, medium)
  * - Guarantees a utm_source of "anchor-and-trail"
  */
