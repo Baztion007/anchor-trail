@@ -260,8 +260,22 @@ export interface ContentRef {
   why: string;
 }
 
+/**
+ * A declarative inline affiliate link inside a paragraph block. `text` is
+ * the EXACT substring of the paragraph's prose (case-sensitive) to wrap in
+ * an outbound link — the article renderer splits the paragraph on each
+ * anchor and mounts an inline AffiliateLink, so monetized prose stays
+ * declarative data and every outbound link still flows through the central
+ * builder (FTC rel attributes included). Max one link per anchor substring;
+ * overlapping anchors are skipped by the renderer.
+ */
+export interface InlineArticleLink {
+  text: string;
+  link: AffiliateLinkInput;
+}
+
 export type ArticleBlock =
-  | { type: "paragraph"; text: string }
+  | { type: "paragraph"; text: string; links?: InlineArticleLink[] }
   | { type: "heading"; level: 2 | 3; text: string }
   | { type: "callout"; variant: "insider" | "money" | "safety"; title: string; text: string }
   | { type: "list"; items: string[]; ordered?: boolean }

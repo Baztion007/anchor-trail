@@ -139,6 +139,17 @@ export const cruiseArticles: Article[] = [
       {
         type: "paragraph",
         text: "This is the comparison most sites will not draw cleanly, because the fare structures are deliberately hard to stack. We priced each line's comparable June 2026 departure in the same cabin standard — a Veranda Stateroom on Viking Sky from Barcelona, the eleven-night Western Med and Iberia sailing on Seven Seas Grandeur, an AquaClass stateroom on Celebrity Beyond in the Greek islands. The routes differ; the cabin standard and the season are identical, the only comparison that holds. Regent's fare looks shocking until you notice what is inside it; Celebrity's looks like a bargain until you count the extras.",
+        links: [
+          {
+            text: "comparable June 2026 departure",
+            link: {
+              partner: "cruisedirect",
+              destination: "Mediterranean",
+              campaign: "article-inline",
+              subId: "med-luxury-2026",
+            },
+          },
+        ],
       },
       {
         type: "table",
@@ -195,6 +206,17 @@ export const cruiseArticles: Article[] = [
       {
         type: "paragraph",
         text: "A luxury cruise lives or dies at the gangway, and the gap between a ship's tour desk and a good independent booking has never been wider. Barcelona and Civitavecchia are easy alone — the Sagrada Familia and the Colosseum are timed-entry, fixed-price, and better without a guide flag. The islands are where a booked excursion earns its keep: Santorini's caldera, the bay at Kotor, and Mykonos' beach clubs all involve transfers, queues, and timing that a sharp operator solves for you. These two we would pay for without hesitation.",
+        links: [
+          {
+            text: "a booked excursion earns its keep",
+            link: {
+              partner: "go-city",
+              destination: "Mediterranean",
+              campaign: "article-inline",
+              subId: "med-luxury-2026",
+            },
+          },
+        ],
       },
       {
         type: "paragraph",
@@ -222,6 +244,17 @@ export const cruiseArticles: Article[] = [
       {
         type: "paragraph",
         text: "Mediterranean luxury pricing follows a schedule you can set your watch by. The fare you see eleven months out is usually the lowest it will ever be: Viking and Regent both hold early-booking fares on the best cabin categories, Regent's bundled-air window typically closes nine to ten months out, and Grandeur's Iberia departures sell out close to a year ahead. Sail in May, September, or October and you pay 20 to 35 percent less than peak summer — calmer seas, ports not yet filled with day-trippers.",
+        links: [
+          {
+            text: "The fare you see eleven months out",
+            link: {
+              partner: "cruisedirect",
+              destination: "Mediterranean",
+              campaign: "article-inline",
+              subId: "med-luxury-2026",
+            },
+          },
+        ],
       },
       {
         type: "list",
@@ -364,6 +397,17 @@ export const cruiseArticles: Article[] = [
       {
         type: "paragraph",
         text: "We have sailed both in the past eighteen months — Viking Sky through the Baltic in June, Seven Seas Grandeur in the western Mediterranean that September — then re-priced both for 2026 using the same method: identical cabin categories, the lines' flagship itineraries, fares actually bookable at the time of writing, and onboard spend estimated from our own folios. This article shows that work. Neither line saw it before publication, and the deals we flag below are the same fares we would book if no commission existed.",
+        links: [
+          {
+            text: "re-priced both for 2026",
+            link: {
+              partner: "cruisedirect",
+              destination: "Europe",
+              campaign: "article-inline",
+              subId: "viking-vs-regent",
+            },
+          },
+        ],
       },
       { type: "heading", level: 2, text: "The Fare Math Nobody Publishes" },
       {
@@ -518,6 +562,17 @@ export const cruiseArticles: Article[] = [
       {
         type: "paragraph",
         text: "For what it is worth, our own repeat booking is Viking: the fourteen-night Homelands in a midship veranda, with two privately booked excursions where the included tour looks thin. That is the honest answer of travelers who like spending money deliberately rather than avoiding it. If your answer is the opposite, the Regent fare we flagged is the sharpest we have tracked for 2026 — and either way, both of these ships will outperform what the sticker math suggests.",
+        links: [
+          {
+            text: "the sharpest we have tracked for 2026",
+            link: {
+              partner: "cruisedirect",
+              destination: "Europe",
+              campaign: "article-inline",
+              subId: "viking-vs-regent",
+            },
+          },
+        ],
       },
     ],
   },

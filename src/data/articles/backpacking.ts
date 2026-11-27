@@ -108,6 +108,29 @@ export const backpackingArticles: Article[] = [
       {
         type: "paragraph",
         text: "A quick honesty note before the spreadsheets: $1,400 here means everything after you land — twenty-one days across Bangkok, Siem Reap and central Vietnam, every bus and ferry, all visas, insurance, and a buffer for the days you get wrong. It does not include your long-haul flight from home — different article, different sale alerts. Land costs only — that is the deal, and every figure below is one I actually paid or watched hostel friends pay in late 2025.",
+        // Inline monetization: the two booking-shaped phrases in the land-cost
+        // definition link out to the partners that carry that inventory
+        // (Klook transit, SafetyWing insurance) with article-level subIds.
+        links: [
+          {
+            text: "every bus and ferry",
+            link: {
+              partner: "klook",
+              destination: "Southeast Asia",
+              campaign: "article-inline",
+              subId: "se-asia-budget",
+            },
+          },
+          {
+            text: "insurance",
+            link: {
+              partner: "safetywing",
+              destination: "Nomad Insurance",
+              campaign: "article-inline",
+              subId: "se-asia-budget",
+            },
+          },
+        ],
       },
       { type: "heading", level: 2, text: "The $1,400 Line-by-Line Budget" },
       {
@@ -160,6 +183,17 @@ export const backpackingArticles: Article[] = [
       {
         type: "paragraph",
         text: "Transport is where the $1,400 either holds or collapses, and my rule is boring: anything over four hours books ahead through Klook, everything else books on the day. The Bangkok to Chiang Mai sleeper bus runs about $25 on the platform, with operator ratings and an e-voucher that lands in your email — no printing, no ticket office, no 40-baht agency fee collected by a man with a laminated spreadsheet. Night buses also save a hotel night — an $11 bed becomes two travel days for the price of one.",
+        links: [
+          {
+            text: "books ahead through Klook",
+            link: {
+              partner: "klook",
+              destination: "Southeast Asia",
+              campaign: "article-inline",
+              subId: "se-asia-budget",
+            },
+          },
+        ],
       },
       { type: "heading", level: 2, text: "Bangkok: The Launchpad" },
       {
@@ -347,6 +381,19 @@ export const backpackingArticles: Article[] = [
       {
         type: "paragraph",
         text: "Fifteen nights, five stops, one direction — south, with the sea on your right. Fly into Split and out of Dubrovnik, or reverse the whole thing if open-jaw fares say otherwise. Every leg runs by bus or train; there is not a single domestic flight on this route, and that is precisely the point of it. Buy the long legs a day or two ahead and the rest of the fortnight runs itself.",
+        // Europe rail/bus corridor — Omio is the registered Europe transit
+        // partner, so the "every leg is surface travel" claim is the anchor.
+        links: [
+          {
+            text: "Every leg runs by bus or train",
+            link: {
+              partner: "omio",
+              destination: "Balkans",
+              campaign: "article-inline",
+              subId: "balkans-30-a-day",
+            },
+          },
+        ],
       },
       {
         type: "list",
@@ -408,6 +455,17 @@ export const backpackingArticles: Article[] = [
       {
         type: "paragraph",
         text: "Book the marina-side dorm deliberately. It sits ten minutes' walk from the ferry terminal and the bus station — the two buildings that control your next fortnight — and the walk home along the water at night costs nothing and feels like theft. Ask reception which kiosk sells the Mostar run; in shoulder season you can buy on the day, but the 8 a.m. departure is the one that sells out first.",
+        links: [
+          {
+            text: "Book the marina-side dorm deliberately",
+            link: {
+              partner: "expedia",
+              destination: "Split, Croatia",
+              campaign: "article-inline",
+              subId: "balkans-30-a-day",
+            },
+          },
+        ],
       },
       { type: "heading", level: 2, text: "Mostar: The Budget Sweet Spot" },
       {

@@ -1,6 +1,15 @@
 import Image from "next/image";
 import { Lightbulb, PiggyBank, ShieldCheck } from "lucide-react";
-import type { ArticleBlock, ArticleRendererProps, Deal, Hostel, Stay, Tour } from "@/types/affiliate";
+import type {
+  ArticleBlock,
+  ArticleRendererProps,
+  Deal,
+  Hostel,
+  InlineArticleLink,
+  Stay,
+  Tour,
+} from "@/types/affiliate";
+import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
 import { uniqueHeadingId } from "@/lib/slug";
 import { cn } from "@/lib/utils";
 import { ComparisonTable } from "@/components/affiliate/ComparisonTable";
@@ -32,6 +41,39 @@ function withHeadingIds(blocks: ArticleBlock[]): BlockWithId[] {
   }));
 }
 
+/**
+ * Split a paragraph's prose around its declarative inline affiliate links.
+ * Each anchor substring is matched case-sensitively; unmatched anchors are
+ * dropped silently (data drift must never crash a page) and overlapping
+ * anchors are skipped so the prose never renders out of order. Links keep
+ * the site-wide gold-underline styling but lose the 44px touch height —
+ * inside running text that height would blow up the line box.
+ */
+function InlineLinkedText({ text, links }: { text: string; links?: InlineArticleLink[] }) {
+  if (!links?.length) return <>{text}</>;
+
+  const anchors = links
+    .map((entry) => ({ ...entry, at: text.indexOf(entry.text) }))
+    .filter((entry) => entry.at >= 0)
+    .sort((a, b) => a.at - b.at);
+
+  const nodes: React.ReactNode[] = [];
+  let cursor = 0;
+  anchors.forEach(({ at, text: anchorText, link }, i) => {
+    if (at < cursor) return; // overlap guard
+    if (at > cursor) nodes.push(text.slice(cursor, at));
+    nodes.push(
+      <AffiliateLink key={`inline-${i}`} {...link} className="min-h-0">
+        {anchorText}
+      </AffiliateLink>
+    );
+    cursor = at + anchorText.length;
+  });
+  if (cursor < text.length) nodes.push(text.slice(cursor));
+
+  return <>{nodes}</>;
+}
+
 const CALLOUT_STYLES = {
   insider: { border: "border-l-gold", Icon: Lightbulb, iconClass: "text-gold-ink" },
   money: { border: "border-l-terracotta", Icon: PiggyBank, iconClass: "text-terracotta-ink" },
@@ -60,7 +102,7 @@ export function ArticleRenderer({ article }: ArticleRendererProps) {
                   index === dropCapIndex && "drop-cap"
                 )}
               >
-                {block.text}
+                <InlineLinkedText text={block.text} links={block.links} />
               </p>
             );
 
