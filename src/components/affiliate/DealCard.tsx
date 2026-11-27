@@ -9,7 +9,12 @@ import { dealTier, formatEstimateFrom } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 
 interface DealCardWithDimProps extends DealCardProps {
-  /** Visual mute applied by DealsGrid when the card is outside the active style filter. */
+  /**
+   * Visual mute applied by DealsGrid when the card is outside the active
+   * travel-style filter. Muted cards stay CLICKABLE — only opacity and
+   * saturation change — so a persisted filter never silently kills a CTA;
+   * DealsGrid's status row explains the muting in context.
+   */
   dimmed?: boolean;
 }
 
@@ -27,7 +32,7 @@ export function DealCard({ deal, featured = false, dimmed = false }: DealCardWit
         "flex h-full flex-col overflow-hidden rounded-lg border bg-paper shadow-sm",
         "motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-200 ease-out",
         featured && "ring-1 ring-gold",
-        dimmed && "pointer-events-none select-none opacity-45 saturate-[0.55]"
+        dimmed && "opacity-45 saturate-[0.55]"
       )}
     >
       {/* Decorative header band */}
