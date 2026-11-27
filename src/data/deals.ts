@@ -137,8 +137,9 @@ export const deals: Deal[] = [
     vertical: "backpacking",
     partner: "omio",
     badge: "Best Value",
-    // Omio deep-search URLs need internal IDs, so the CTA lands on omio.com;
-    // the loop's flagship leg is named here and in the card copy.
+    // Omio's Impact shortlink carries attribution in its path; deep-search
+    // URLs still need internal IDs, so the CTA lands on Omio (via Impact)
+    // and the loop's flagship leg is named here and in the card copy.
     destination: "Split to Dubrovnik",
     region: "Balkans",
     // Per-day anchor, not the ~$690 trip total (see route semantics above).

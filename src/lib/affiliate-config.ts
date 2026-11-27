@@ -11,13 +11,13 @@ import type { PartnerId } from "@/types/affiliate";
  *
  * Two credential styles, both read from what the link builder ACTUALLY sends:
  * - Env-driven partners (Booking, Viator, CruiseDirect, Hostelworld, 12Go,
- *   Omio, Travelpayouts): the credential arrives via NEXT_PUBLIC_* and the
+ *   Travelpayouts): the credential arrives via NEXT_PUBLIC_* and the
  *   registry falls back to "at-demo" (or omits the param for marker-style
  *   partners) when unset.
- * - Registry-baked partners (SafetyWing, Expedia Cruises, Klook): the live
- *   credential is baked into src/data/partners.ts as the fallback — affiliate
- *   IDs are public in every outbound link, so this is safe — and read()
- *   inspects the registry value (which still honors env overrides).
+ * - Registry-baked partners (SafetyWing, Expedia Cruises, Klook, Omio): the
+ *   live credential is baked into src/data/partners.ts as the fallback —
+ *   affiliate IDs are public in every outbound link, so this is safe — and
+ *   read() inspects the registry value (which still honors env overrides).
  */
 
 export type AffiliateConfigStatus = "live" | "demo" | "missing";
@@ -127,9 +127,16 @@ const PARAM_SPECS: Record<PartnerId, ParamSpec> = {
     landingWithoutTracking: "12go.asia",
   },
   omio: {
-    param: "afc",
-    envVar: "NEXT_PUBLIC_OMIO_AFC",
-    landingWithoutTracking: "omio.com",
+    param: "Impact shortlink",
+    envVar: "NEXT_PUBLIC_OMIO_LINK",
+    landingWithoutTracking: "omio.com (untracked)",
+    read: () => {
+      const base = partners.omio.baseUrl;
+      // The sjv.io path IS the credential (verified 302 → ojrq.net →
+      // omio.sjv.io/c/7831404/409973/7385 — campaign/advertiser/partner in
+      // the redirect path).
+      return base.includes("sjv.io/") ? base : undefined;
+    },
   },
 };
 

@@ -13,8 +13,13 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  *   fall back to the 12Go homepage.
  * - Hostelworld: /search?search_keywords= is retired (404s). City pages
  *   /hostels/{city} are the working pattern.
- * - Omio / CruiseDirect / Expedia: deep-link search URLs require internal
- *   IDs or are bot-gated; CTAs land on their canonical hub pages instead,
+ * - Omio: LIVE Impact Marketplace shortlink omio.sjv.io/2RDPaG (Nov 2026)
+ *   → 302 ojrq.net → omio.sjv.io/c/7831404/409973/7385 — attribution lives in
+ *   the redirect path, so it cannot be lost. Omio's own deep-link search URLs
+ *   require internal IDs, so CTAs land on Omio (via the network) where the
+ *   in-page search covers the route named in the surrounding copy.
+ * - CruiseDirect / Expedia: deep-link search URLs require internal IDs
+ *   or are bot-gated; CTAs land on their canonical hub pages instead,
  *   with the route context preserved in utm_campaign.
  * - CruiseDirect: the whole domain sits behind an aggressive Cloudflare
  *   managed challenge (cf-mitigated: challenge on every request, all paths,
@@ -41,7 +46,8 @@ import type { AffiliatePartner, PartnerId } from "@/types/affiliate";
  *   utm_* params (they are preserved through the first 301 hop).
  *
  * LIVE credentials below (SafetyWing ref, Expedia affiliate link, Klook
- * shortlink) are baked in as the fallback value — affiliate IDs are not
+ * shortlink, Omio Impact shortlink) are baked in as the fallback value —
+ * affiliate IDs are not
  * secrets (every outbound link exposes them in page source), and baking them
  * keeps the site attributed with zero deployment-time env config. The
  * NEXT_PUBLIC_* env vars still override any fallback at build/runtime.
@@ -273,13 +279,16 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
   omio: {
     id: "omio",
     name: "Omio",
-    network: "Omio affiliate program",
-    // Omio's search endpoint needs internal from/to IDs, so free-text deep
-    // links cannot be guaranteed; CTAs land on omio.com where the in-page
-    // search covers the route named in the surrounding copy.
-    baseUrl: "https://www.omio.com",
+    network: "Omio affiliate program (via Impact)",
+    // LIVE Impact shortlink (Impact Marketplace dashboard, Nov 2026):
+    // omio.sjv.io/2RDPaG → 302 ojrq.net → omio.sjv.io/c/7831404/409973/7385.
+    // Attribution (campaign 7831404, advertiser 409973, partner 7385) is
+    // encoded in the redirect PATH, so it survives every hop; appended
+    // utm_* params ride the first hop (verified Nov 2026), same as the
+    // Expedia link. Omio's own deep-search URLs still need internal IDs, so
+    // CTAs land on Omio where in-page search covers the named route.
+    baseUrl: env("NEXT_PUBLIC_OMIO_LINK", "https://omio.sjv.io/2RDPaG"),
     tracking: {
-      afc: env("NEXT_PUBLIC_OMIO_AFC", "at-demo"),
       utm_medium: "affiliate",
     },
     dynamicParamMap: {
@@ -287,7 +296,7 @@ export const partners: Record<PartnerId, AffiliatePartner> = {
       subId: "sub_id",
     },
     relationship:
-      "Anchor & Trail earns commissions on European train, bus, and ferry bookings made through Omio. Fare tiers shown are planning estimates; Omio always displays live operator pricing.",
+      "Anchor & Trail earns commissions on European train, bus, and ferry bookings made through Omio, delivered via the Impact network. Fare tiers shown are planning estimates; Omio always displays live operator pricing.",
   },
 };
 
